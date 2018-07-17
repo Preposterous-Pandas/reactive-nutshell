@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import EventList from './Components/Events/EventList';
 
 export default class Main extends Component {
-    render(){
+    render() {
         return (
-            <h1>Nuthell</h1>
+            <EventList />
         )
     }
 }
