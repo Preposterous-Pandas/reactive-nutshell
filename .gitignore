@@ -23,4 +23,4 @@ yarn-error.log*
 package.json
 package-lock.json
 
-database
+database.json
