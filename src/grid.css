@@ -1,7 +1,7 @@
 /* This module sets the grid layout of the page */
 /* Author: Elliot Huck */
 
-.grid__wrapper {
+#root {
   display: grid;
   grid-gap: 5px;
   grid-template-columns: 1fr 3fr 2fr;
@@ -10,7 +10,7 @@
   max-height: 100vh;
 }
 
-.grid__wrapper > div {
+#root > div {
   border: 1px solid black;
   /* margin: .5em; */
   padding: .5em;
@@ -19,7 +19,7 @@
   border-radius: 5px;
 }
 
-.grid__wrapper> div:nth-child(1) { /* header */
+.header { /* header */
   overflow: hidden;
   margin: 0;
   grid-column-start: 1;
