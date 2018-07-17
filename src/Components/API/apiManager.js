@@ -1,9 +1,9 @@
-
+import React from 'react'
 
 
 export default class apiManager {
 
-    getField(resource) {
+   static getField(resource) {
         return fetch(`http://localhost:5002/${resource}`).then(e => e.json())
     }
 
