@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
-import apiController from "./Components/API/apiManager"
+import api from "./Components/API/apiManager"
+
+const apiController = new api
 
 export default class Login extends Component {
   // Set initial state
@@ -51,39 +53,60 @@ export default class Login extends Component {
         )
         return
       } else if (
-        user[0].email === this.state.email &&
-        user[0].name === this.state.username
-      ) {
+        user[0].email === this.state.email && user[0].name === this.state.username) {
         sessionStorage.setItem("activeUser", user[0].id)
+        this.setStorageType()
         this.props.logUserIn()
       }
     })
-    if (this.state.remember) {
-      localStorage.setItem(
-        "credentials",
-        JSON.stringify({
-          username: this.state.username,
-          email: this.state.email
-        })
-      )
-    } else {
-      sessionStorage.setItem(
-        "credentials",
-        JSON.stringify({
-          username: this.state.username,
-          email: this.state.email
-        })
-      )
-    }
-    this.setState({ redirect: true })
   }
 
+  registerUser(e){
+      e.preventDefault()
+      apiController.getField(`users?name=${this.state.username}`).then(nameResponse => {
+          apiController.getField(`users?email=${this.state.email}`).then(emailResponse => {
+                      //Check to see if username or email are already registered
+                      if (nameResponse.length === 0 && emailResponse.length === 0) {
+                          //if not, then register the user
+                          apiController.postUser(this.state.username, this.state.email).then((response) => {
+                              this.setStorageType()
+                              this.props.logUserIn()
+                          })
+                      }
+                      else {
+                          //if username or email are already registered, throw an error
+                          alert("Sorry, that username or email is already registered")
+                          return
+                      }
+                  })
+              })
+          }
+
+setStorageType(){
+    if (this.state.remember) {
+        localStorage.setItem(
+            "credentials",
+            JSON.stringify({
+                username: this.state.username,
+                email: this.state.email
+            })
+        )
+    } else {
+        sessionStorage.setItem(
+            "credentials",
+            JSON.stringify({
+                username: this.state.username,
+                email: this.state.email
+            })
+        )
+    }
+}
   render() {
     // if (this.state.redirect) {
     //     return <Redirect to="/" />
     // } else {
     return (
-      <form onSubmit={this.handleLogin}>
+      <form>
         <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
         <label htmlFor="inputUname">Username</label>
         <input
@@ -106,7 +129,8 @@ export default class Login extends Component {
         />
         <label htmlFor="rememberMe">Remember Me</label>
         <input type="checkbox" ref="rememberMe" onChange={this.setRemember} />
-        <button type="submit">Sign in</button>
+        <button type="submit" onClick={this.handleLogin}>Sign in</button>
+        <button onClick={(e) => this.registerUser(e)}>Register</button>
       </form>
     )
   }

@@ -1,10 +1,25 @@
 import React, { Component } from 'react'
-import News from './News';
+import News from './Components/News/News';
+import Tasks from "./Components/Tasks/Tasks"
+import Chat from "./Components/Chat/Chat"
+import Events from './Components/Events/EventList';
+import Friends from "./Components/Friends/Friends"
+import Header from "./Components/Header"
+
 
 export default class Main extends Component {
-    render(){
+    render() {
         return (
-            < News />
+            <React.Fragment>
+                <Header />
+                <News />
+                <Friends />
+                <Chat />
+                <Events />
+                <Tasks />
+            </React.Fragment>
+
+
         )
     }
 }
