@@ -3,7 +3,7 @@ import React from 'react'
 
 export default class apiManager {
 
-   static getField(resource) {
+   getField(resource) {
         return fetch(`http://localhost:5002/${resource}`).then(e => e.json())
     }
 
@@ -22,7 +22,7 @@ export default class apiManager {
             })
     }
 
-    postUser(name, password, email) {
+    postUser(name, email) {
         return fetch("http://localhost:5002/users",
             {
                 method: "POST",
@@ -31,7 +31,6 @@ export default class apiManager {
                 },
                 body: JSON.stringify({
                     "name": name,
-                    "password": password,
                     "email": email
                 })
             })
