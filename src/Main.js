@@ -6,8 +6,8 @@ export default class Main extends Component {
     render() {
         return (
             <React.Fragment>
-            <Friends />
-            <EventList />
+                <Friends />
+                <EventList />
             </React.Fragment>
         )
     }
