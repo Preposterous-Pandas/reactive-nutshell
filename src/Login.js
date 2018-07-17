@@ -47,7 +47,7 @@ export default class Login extends Component {
                     }
                     else if (user[0].email === this.state.email && user[0].name === this.state.username){
                         this.props.logUserIn()
-                        this.setState({redirect: true})
+                        // this.setState({redirect: true})
                     }
                 })
         if (this.state.remember) {

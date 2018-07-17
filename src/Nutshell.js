@@ -9,7 +9,7 @@ export default class ApplicationViews extends Component {
         loggedIn: false
     }
     isAuthenticated = () => {
-        // return sessionStorage.getItem("credentials") || localStorage.getItem("credentials")
+        return sessionStorage.getItem("credentials") || localStorage.getItem("credentials")
     }
 
     logUserIn = () => {
@@ -17,7 +17,7 @@ export default class ApplicationViews extends Component {
     }
 
     render() {
-        if (this.state.loggedIn) {
+        if (this.state.loggedIn || this.isAuthenticated()) {
             return (
                 <React.Fragment>
                     <Route exact path="/" component={Main} />
