@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import APIManager from "../API/apiManager";
 import "./chat.css";
+import Message from "./Message";
 
 const messagesApi = new APIManager();
 
