@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default class apiManager {
+class apiManager {
 
    getField(resource) {
         return fetch(`http://localhost:5002/${resource}`).then(e => e.json())
@@ -176,4 +176,7 @@ export default class apiManager {
         })
     }
 }
+
+const API = new apiManager;
+export default API;
 
