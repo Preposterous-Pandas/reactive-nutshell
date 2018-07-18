@@ -1,8 +1,8 @@
 import React, { Component } from "react"
-import { Redirect } from "react-router-dom"
-import api from "./Components/API/apiManager"
+// import { Redirect } from "react-router-dom"
+import apiController from "./Components/API/apiManager" //was api
 
-const apiController = new api
+// const apiController = new api
 
 export default class Login extends Component {
   // Set initial state

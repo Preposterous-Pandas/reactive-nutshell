@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default class apiManager {
+class apiManager {
 
    getField(resource) {
         return fetch(`http://localhost:5002/${resource}`).then(e => e.json())
@@ -12,12 +12,13 @@ export default class apiManager {
             .then(e => e.json())
             .then(friends => {
                 const fList = [];
-                const User = sessionStorage.getItem("User");
+                const User = sessionStorage.getItem("activeUser");
                 friends.forEach(friend => {
                     if (friend.yourId == User) {
                         fList.push(friend.userId);
                     }
                 });
+                console.log('API friends', fList)
                 return fList;
             })
     }
@@ -176,4 +177,7 @@ export default class apiManager {
         })
     }
 }
+
+const API = new apiManager();
+export default API;
 
