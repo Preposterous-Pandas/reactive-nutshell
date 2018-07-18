@@ -20,69 +20,9 @@
       "id": 25
     },
     {
-      "userId": "3",
-      "yourId": "1",
-      "id": 26
-    },
-    {
-      "userId": "4",
-      "yourId": "1",
-      "id": 27
-    },
-    {
       "userId": "1",
       "yourId": "2",
       "id": 30
-    },
-    {
-      "userId": "8",
-      "yourId": "6",
-      "id": 31
-    },
-    {
-      "userId": "1",
-      "yourId": "6",
-      "id": 32
-    },
-    {
-      "userId": "8",
-      "yourId": "4",
-      "id": 44
-    },
-    {
-      "userId": "5",
-      "yourId": "4",
-      "id": 45
-    },
-    {
-      "userId": "7",
-      "yourId": "4",
-      "id": 46
-    },
-    {
-      "userId": "3",
-      "yourId": "4",
-      "id": 47
-    },
-    {
-      "userId": "8",
-      "yourId": "5",
-      "id": 48
-    },
-    {
-      "userId": "4",
-      "yourId": "5",
-      "id": 49
-    },
-    {
-      "userId": "6",
-      "yourId": "5",
-      "id": 50
-    },
-    {
-      "userId": "2",
-      "yourId": "5",
-      "id": 51
     }
   ],
   "messages": [
@@ -100,31 +40,6 @@
       "userId": "2",
       "message": "This is the first message from me!",
       "id": 7
-    },
-    {
-      "userId": "6",
-      "message": "THis is my for real first message",
-      "id": 8
-    },
-    {
-      "userId": "4",
-      "message": "Hey you guys!",
-      "id": 9
-    },
-    {
-      "userId": "4",
-      "message": "Hello everyone",
-      "id": 10
-    },
-    {
-      "userId": "5",
-      "message": "hi everyonnnneeee",
-      "id": 11
-    },
-    {
-      "userId": "8",
-      "message": "hey leaahhh its ur mom",
-      "id": 12
     }
   ],
   "news": [
@@ -143,13 +58,6 @@
       "synopsis": "some stuff happend",
       "timestamp": "2018-07-09T01:26:33",
       "id": 2
-    },
-    {
-      "userId": null,
-      "title": "React is.",
-      "url": "www.news.com",
-      "synopsis": "Something Something",
-      "id": 3
     }
   ],
   "events": [
@@ -166,20 +74,6 @@
       "location": "Home",
       "date": "2018-07-10T20:30",
       "id": 11
-    },
-    {
-      "userId": "5",
-      "name": "Dancing Swing",
-      "location": "Green park",
-      "date": "2018-07-25T19:30",
-      "id": 12
-    },
-    {
-      "userId": "8",
-      "name": "Presenting project",
-      "location": "nss",
-      "date": "2018-07-09T14:30",
-      "id": 13
     }
   ],
   "tasks": [
@@ -189,13 +83,6 @@
       "date": "2018-07-16T01:23",
       "completed": "false",
       "id": 21
-    },
-    {
-      "userId": "5",
-      "task": "...eat pizza",
-      "date": "2018-07-16T01:32",
-      "completed": "false",
-      "id": 22
     }
   ]
 }
