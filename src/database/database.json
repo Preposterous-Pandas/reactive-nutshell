@@ -44,19 +44,20 @@
   ],
   "news": [
     {
+      "userId": "1",
+      "title": "Evan's News",
+      "url": "www.ewlusky.com",
+      "synopsis": "cubes",
+      "timestamp": "2018-07-09T01:24:19",
+      "id": 1
+    },
+    {
       "userId": "2",
       "title": "Second's News",
       "url": "www.sldkf.com",
       "synopsis": "some stuff happend",
       "timestamp": "2018-07-09T01:26:33",
       "id": 2
-    },
-    {
-      "userId": "1",
-      "title": "Evan News 2",
-      "url": "jflll",
-      "synopsis": "soame ",
-      "id": 3
     }
   ],
   "events": [

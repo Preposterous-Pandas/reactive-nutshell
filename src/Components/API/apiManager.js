@@ -1,4 +1,3 @@
-import React from 'react'
 
 
 class apiManager {
@@ -124,8 +123,8 @@ class apiManager {
 
     delNews(id) {
         return fetch(`http://localhost:5002/news/${id}`, {
-            method: "DELETE"
-        })
+            method: "delete"
+        }).then(e => e.json())
     }
 
     postTask(user, task, done, date) {
