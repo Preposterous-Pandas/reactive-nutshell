@@ -32,10 +32,8 @@ export default class NewTaskSection extends Component {
 
     apiManager.postTask(currentUserId, taskName, taskDate)
       .then(
-        this.props.updateTasks()
-          .then(
-            this.setState({ addingTask: false })
-          )
+        this.props.loadTasks,
+        this.setState({ addingTask: false })
       )
 
   }

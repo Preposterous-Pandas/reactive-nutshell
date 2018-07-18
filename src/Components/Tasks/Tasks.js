@@ -9,8 +9,10 @@ export default class Tasks extends Component {
     allTasks: []
   }
 
-  componentDidMount() {
-    // This code will get the active user's id from session storage and then build out the list of tasks
+  // This code will get the active user's id from session storage and then build out the list of tasks
+  // It runs after componentDidMount and is passed to the NewTaskSection to run after a new task is saved
+  loadTasks = () => {
+    console.log("loading tasks...");
     const currentUser = sessionStorage.getItem("activeUser");
     const tableToAccess = "tasks";
     const filteredTable = `${tableToAccess}?_&userId=${currentUser}`;
@@ -18,27 +20,31 @@ export default class Tasks extends Component {
       .then(allUserTasks => {
         console.log("All user's tasks: ", allUserTasks);
         this.setState({ allTasks: allUserTasks });
-        console.log("State: ", this.state);
       })
+  }
+
+  componentDidMount() {
+    this.loadTasks();
   }
 
   render() {
     return (
-      <React.Fragment>
-        <div className="tasks">
-          <h4>Tasks</h4>
-          <NewTaskSection />
-          <article>
-            {
-              this.state.allTasks.map(singleTask => {
-                return <TaskCard
-                  key={singleTask.id.toString()}
-                  task={singleTask} />
-              })
-            }
-          </article>
-        </div>
-      </React.Fragment>
+      <div className="tasks">
+        <h4>Tasks</h4>
+
+        <NewTaskSection loadTasks={() => { this.loadTasks() }} />
+
+        <article id="task__list">
+          {
+            this.state.allTasks.map(singleTask => {
+              return <TaskCard
+                key={singleTask.id.toString()}
+                currentTask={singleTask} />
+            })
+          }
+        </article>
+        
+      </div>
     );
   }
 }
