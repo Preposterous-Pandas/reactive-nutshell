@@ -3,6 +3,7 @@ import Article from './News-Article'
 import API from '../API/apiManager'
 
 
+
 export default class News extends Component {
     state = {
         articles: [],
@@ -23,7 +24,7 @@ export default class News extends Component {
     }
 
     checkInarticle = () => {
-        API.postNews(sessionStorage.getItem("activeUser"), this.state.newsTitle, this.state.newsURL, this.state.newsBody)
+        API.postNews(sessionStorage.getItem("activeUser"), this.state.newsTitle, this.state.newsURL, this.state.newsBody, Date.now())
             .then(result => {
                 console.log('news post result:', result);
                 API.getField("news")
@@ -53,12 +54,13 @@ export default class News extends Component {
         return (
             <React.Fragment>
                 <div className="News">
+                    <h2>News</h2>
                     <label>Title</label>
-                    <input onChange={this.handleFieldChange} value={this.state.newsTitle} type="text" id="newsTitle" />
+                    <input onChange={this.handleFieldChange} value={this.state.newsTitle} type="text" id="newsTitle" required/><br/>
                     <label>Body</label>
-                    <input onChange={this.handleFieldChange} value={this.state.newsBody} type="text" id="newsBody" />
+                    <input onChange={this.handleFieldChange} value={this.state.newsBody} type="text" id="newsBody" required/><br/>
                     <label>URL</label>
-                    <input onChange={this.handleFieldChange} value={this.state.newsURL} type="text" id="newsURL" />
+                    <input onChange={this.handleFieldChange} value={this.state.newsURL} type="text" id="newsURL" required/><br/>
                     <button onClick={this.checkInarticle} id="add-article">New Article</button>
 
 

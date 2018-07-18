@@ -107,6 +107,7 @@ class apiManager {
     }
 
     postNews(user, title, url, syn, time) {
+        
         return fetch("http://localhost:5002/news", {
             headers: {
                 'Content-Type': 'application/json'
