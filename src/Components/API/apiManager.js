@@ -2,179 +2,219 @@ import React from 'react'
 
 
 class apiManager {
+  getField(resource) {
+    return fetch(`http://localhost:5002/${resource}`).then(e => e.json())
+  }
 
-   getField(resource) {
-        return fetch(`http://localhost:5002/${resource}`).then(e => e.json())
-    }
-
-    allFriends() {
-        return fetch(`http://localhost:5002/friends`)
-            .then(e => e.json())
-            .then(friends => {
-                const fList = [];
-                const User = sessionStorage.getItem("User");
-                friends.forEach(friend => {
-                    if (friend.yourId == User) {
-                        fList.push(friend.userId);
-                    }
-                });
-                return fList;
-            })
-    }
-
-    postUser(name, email) {
-        return fetch("http://localhost:5002/users",
-            {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "name": name,
-                    "email": email
-                })
-            })
-    }
-
-    getUser(userId) {
-        return fetch(`http://localhost:5002/users/${userId}`).then(e => e.json())
-    }
-
-    getMessage(messageId) {
-        return fetch(`http://localhost:5002/messages/${messageId}`).then(e => e.json())
-    }
-
-    postMessage(msg, user) {
-        return fetch("http://localhost:5002/messages", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "userId": user,
-                "message": msg
-            })
+  allFriends() {
+    return fetch(`http://localhost:5002/friends`)
+      .then(e => e.json())
+      .then(friends => {
+        const fList = []
+        const User = sessionStorage.getItem("User")
+        friends.forEach(friend => {
+          if (friend.yourId == User) {
+            fList.push(friend.userId)
+          }
         })
-    }
+        return fList
+      })
+  }
 
-    putMessage(user, msg, id) {
-        return fetch(`http://localhost:5002/messages/${id}`, {
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "userId": user,
-                "message": msg
-            })
-        })
-    }
+  postUser(name, email) {
+    return fetch("http://localhost:5002/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email
+      })
+    }).then(e => e.json())
+  }
 
-    postEvent(user, name, loc, date) {
-        return fetch("http://localhost:5002/events", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "userId": user,
-                "name": name,
-                "location": loc,
-                "date": date
-            })
-        })
-    }
+  getUser(userId) {
+    return fetch(`http://localhost:5002/users/${userId}`).then(e => e.json())
+  }
+  //////////////////////////////////////////OLD MESSAGE API CODE/////////////////////////////////////////////////
+  // getMessage(messageId) {
+  //     return fetch(`http://localhost:5002/messages/${messageId}`).then(e => e.json())
+  // }
 
-    putEvent(user, name, loc, date, id) {
-        return fetch(`http://localhost:5002/events/${id}`, {
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "userId": user,
-                "name": name,
-                "location": loc,
-                "date": date
-            })
-        })
-    }
+  // postMessage(msg, user) {
+  //     return fetch("http://localhost:5002/messages", {
+  //         method: "POST",
+  //         headers: {
+  //             'Content-Type': 'application/json'
+  //         },
+  //         body: JSON.stringify({
+  //             "userId": user,
+  //             "message": msg
+  //         })
+  //     })
+  // }
 
-    delEvent(id) {
-        return fetch(`http://localhost:5002/events/${id}`, {
-            method: "DELETE"
-        })
-    }
+  // putMessage(user, msg, id) {
+  //     return fetch(`http://localhost:5002/messages/${id}`, {
+  //         method: "PUT",
+  //         headers: {
+  //             'Content-Type': 'application/json'
+  //         },
+  //         body: JSON.stringify({
+  //             "userId": user,
+  //             "message": msg
+  //         })
+  //     })
+  // }
+  //////////////////////////////////////////OLD MESSAGE API CODE/////////////////////////////////////////////////
 
-    postNews(user, title, url, syn, time) {
-        return fetch("http://localhost:5002/news", {
-            headers: {
-                'Content-Type': 'application/json'
-            },            method: "POST",
-            body: JSON.stringify({
-                "userId": user,
-                "title": title,
-                "url": url,
-                "synopsis": syn,
-                "timestamp": time
-            })
-        })
-    }
+  getMessages() {
+    return fetch(
+      "http://localhost:5002/messages?_expand=user&_sort=timeStamp&_order=asc"
+    ).then(e => e.json());
+  }
 
-    delNews(id) {
-        return fetch(`http://localhost:5002/news/${id}`, {
-            method: "DELETE"
-        })
-    }
+  postMessage(userId, message, timestamp) {
+    return fetch("http://localhost:5002/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userId: userId,
+        message: message,
+        timeStamp: timestamp
+      })
+    });
+  }
 
-    postTask(user, task, done, date) {
-        return fetch("http://localhost:5002/tasks", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "userId": user,
-                "task": task,
-                "date": date,
-                "completed": done
-            })
-        })
-    }
+  putMessage(msgId, userId, newMessage, messageTimeStamp) {
+    return fetch(`http://localhost:5002/messages/${msgId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userId: userId,
+        message: newMessage,
+        timeStamp: messageTimeStamp
+      })
+    });
+  }
 
-    putTask(user, task, done, date, id) {
-        return fetch(`http://localhost:5002/tasks/${id}`, {
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "userId": user,
-                "task": task,
-                "date": date,
-                "completed": done
-            })
-        })
-    }
+  delMessage(msgId) {
+    return fetch(`http://localhost:5002/messages/${msgId}`, {
+      method: "DELETE"
+    });
+  }
 
-    postFriend(user, yourid) {
-        return fetch("http://localhost:5002/friends", {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({
-                "userId": user,
-                "yourId": yourid
-            })
-        })
-    }
+  postEvent(user, name, loc, date) {
+    return fetch("http://localhost:5002/events", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userId: user,
+        name: name,
+        location: loc,
+        date: date
+      })
+    })
+  }
 
-    delFriend(id) {
-        return fetch(`http://localhost:5002/friends/${id}`, {
-            method: "DELETE"
-        })
-    }
+  putEvent(user, name, loc, date, id) {
+    return fetch(`http://localhost:5002/events/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userId: user,
+        name: name,
+        location: loc,
+        date: date
+      })
+    })
+  }
+
+  delEvent(id) {
+    return fetch(`http://localhost:5002/events/${id}`, {
+      method: "DELETE"
+    })
+  }
+
+  postNews(user, title, url, syn, time) {
+    return fetch("http://localhost:5002/news", {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify({
+        userId: user,
+        title: title,
+        url: url,
+        synopsis: syn,
+        timestamp: time
+      })
+    })
+  }
+
+  delNews(id) {
+    return fetch(`http://localhost:5002/news/${id}`, {
+      method: "DELETE"
+    })
+  }
+
+  postTask(user, task, done, date) {
+    return fetch("http://localhost:5002/tasks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userId: user,
+        task: task,
+        date: date,
+        completed: done
+      })
+    })
+  }
+
+  putTask(user, task, done, date, id) {
+    return fetch(`http://localhost:5002/tasks/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userId: user,
+        task: task,
+        date: date,
+        completed: done
+      })
+    })
+  }
+
+  postFriend(user, yourid) {
+    return fetch("http://localhost:5002/friends", {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify({
+        userId: user,
+        yourId: yourid
+      })
+    })
+  }
+
+  delFriend(id) {
+    return fetch(`http://localhost:5002/friends/${id}`, {
+      method: "DELETE"
+    })
+  }
 }
 
 const API = new apiManager;

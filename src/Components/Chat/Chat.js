@@ -2,7 +2,11 @@ import React, { Component } from "react"
 import messagesApi from "../API/apiManager"
 import "./chat.css"
 import Message from "./Message"
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faStroopwafel, faCoffee } from "@fortawesome/free-solid-svg-icons"
 
+library.add(faStroopwafel, faCoffee)
 
 export default class Chat extends Component {
   state = {
@@ -45,19 +49,23 @@ export default class Chat extends Component {
 
   isAuthenticated = () => {
     return (
-      sessionStorage.getItem("credentials") ||
-      localStorage.getItem("credentials")
+      sessionStorage.getItem("activeUser") ||
+      localStorage.getItem("activeUser")
     )
   }
 
-  componentDidMount() {
-    const currentUser = this.isAuthenticated()
-    if (currentUser) {
+  componentDidMount = () => {
+    const activeUser = this.isAuthenticated()
+    if (activeUser) {
       this.setState({
-        currentUser: currentUser
+        currentUser: activeUser
       })
       this.read()
     }
+  }
+
+  editModeEnable = () => {
+    this.setState({ editMsgButtonDisplay: true})
   }
 
   handleFieldChange = evt => {
@@ -67,13 +75,11 @@ export default class Chat extends Component {
   }
 
   render() {
-    return (
-      <div className="chat" id="messagesDiv">
+    return <div className="chat" id="messagesDiv">
         <div id="messengerHeaderDiv">
           <h2 className="messengerHeader" />
-          <button id="msgOptionButton">
-            <i className="fa fa-cogs" />
-          </button>
+        <button onClick={this.editModeEnable} id="msgOptionButton">Options</button>
+          {/* <FontAwesomeIcon icon="faCoffee" /> */}
         </div>
         <div id="messengerBodyDiv">
           <div id="messengerBodyContent">
@@ -85,19 +91,19 @@ export default class Chat extends Component {
                 read={this.read}
                 update={this.update}
                 delete={this.delete}
-                currentUser={this.currentUser}
-                editMsgButtonDisplay={this.editMsgButtonDisplay}
+                currentUser={this.state.currentUser}
+                editMsgButtonDisplay={this.state.editMsgButtonDisplay}
               />
             ))}
           </div>
         </div>
         <div id="messageNewDiv">
-          <input id="newMessageInput" />
-          <button id="newMessageSubmitButton">
-            <i className="fa fa-paper-plane-o" />
+        <input onChange={(evt) => { this.handleFieldChange(evt) }} id="newMessageInput" />
+          <button onClick={() => {this.create(this.state.currentUser, this.state.newMessageInput)}} id="newMessageSubmitButton">
+            {/* <FontAwesomeIcon className="fa fa-paper-plane-o" /> */}
+            Send
           </button>
         </div>
       </div>
-    )
   }
 }

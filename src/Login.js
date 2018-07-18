@@ -69,6 +69,7 @@ export default class Login extends Component {
                       if (nameResponse.length === 0 && emailResponse.length === 0) {
                           //if not, then register the user
                           apiController.postUser(this.state.username, this.state.email).then((response) => {
+                            sessionStorage.setItem("activeUser", response.id)
                               this.setStorageType()
                               this.props.logUserIn()
                           })
