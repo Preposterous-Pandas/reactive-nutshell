@@ -170,3 +170,17 @@
     font-size: 95%;
     color:white;
 }
+
+#awesome-envelope {
+    color: white;
+    font-size: 1.5rem;
+    display: inline-block;
+    text-align: end;
+    margin-left: 50%;
+}
+#awesome-cog {
+    color: white;
+    font-size: 2rem;
+    display: inline-block;
+    text-align: end;
+}

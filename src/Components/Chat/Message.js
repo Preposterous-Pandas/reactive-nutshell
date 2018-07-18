@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import APIManager from "../API/apiManager"
 import "./chat.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
 
 export default class Message extends Component {
   state = {
@@ -55,7 +57,7 @@ export default class Message extends Component {
                     })
                   }}
                 >
-                  {/* <i className="fa fa-pencil" /> */}
+                  <FontAwesomeIcon icon="edit" />
                   Edit
                 </button>
             <span className={classNamesForUser}>
@@ -72,8 +74,7 @@ export default class Message extends Component {
             <p id={this.props.message.id} className="msgItem">
             <button className="addFriendButton" onClick={()=>{
             this.props.beFriend(String(this.props.message.user.id))}}>
-              <i className="fa fa-plus" />
-              +
+              <FontAwesomeIcon icon="user-plus" />
             </button>
           <span className={classNamesForUser}>
             {this.props.message.user.name}
@@ -102,8 +103,7 @@ export default class Message extends Component {
               this.setState({editMode: false})
             }}
           >
-            <i className="fa fa-floppy-o" />
-            Save
+            <FontAwesomeIcon icon="save" />
           </button>
           <button
             className="deleteMsgButton"
@@ -111,7 +111,7 @@ export default class Message extends Component {
               this.props.delete(this.props.message.id)
             }}
           >
-            <i className="fa fa-trash-o" />
+            <FontAwesomeIcon icon="times-circle" />
           </button>
           <button
             className="cancelMsgEditButton"
@@ -121,14 +121,13 @@ export default class Message extends Component {
               })
             }}
           >
-            <i className="fa fa-times" />
-            X
+            <FontAwesomeIcon icon="ban" />
           </button>
           <span className="msgUser msgText me">
             {this.props.message.user.name}
           </span>
           <span className="msgSeperator msgText" />
-          <input
+          <input onFocus={e => e.target.select()}
             className="editMsgInput msgText"
             value={this.state.editedMessage}
             onChange={this.handleFieldChange}

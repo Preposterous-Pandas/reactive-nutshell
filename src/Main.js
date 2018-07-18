@@ -6,6 +6,10 @@ import Events from './Components/Events/EventList';
 import Friends from "./Components/Friends/Friends"
 import Header from "./Components/Header"
 import API from './Components/API/apiManager'
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { faEnvelope, faKey, faCog, faEdit, faTimesCircle, faBan, faSave, faUserPlus } from "@fortawesome/free-solid-svg-icons"
+
+library.add(faEnvelope, faKey, faCog, faEdit, faTimesCircle, faBan, faSave, faUserPlus)
 
 
 export default class Main extends Component {

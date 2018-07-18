@@ -2,11 +2,7 @@ import React, { Component } from "react"
 import messagesApi from "../API/apiManager"
 import "./chat.css"
 import Message from "./Message"
-import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faStroopwafel, faCoffee } from "@fortawesome/free-solid-svg-icons"
-
-library.add(faStroopwafel, faCoffee)
 
 export default class Chat extends Component {
   state = {
@@ -28,11 +24,13 @@ export default class Chat extends Component {
     })
   }
 
-  create = (userId, message) => {
+  create = (e, userId, message) => {
+    e.preventDefault()
     const curTimeStamp = new Date()
     messagesApi.postMessage(userId, message, curTimeStamp).then(() => {
       this.read("createNew")
     })
+    this.refs.newMessageInput.value = ""
   }
 
   update = (msgId, userId, newMessage, messageTimeStamp) => {
@@ -76,6 +74,7 @@ export default class Chat extends Component {
     }
 
   handleFieldChange = evt => {
+    this.setState({ editMsgButtonDisplay: false})
     const stateToChange = {}
     stateToChange[evt.target.id] = evt.target.value
     this.setState(stateToChange)
@@ -85,8 +84,9 @@ export default class Chat extends Component {
     return <div className="chat" id="messagesDiv">
         <div id="messengerHeaderDiv">
           <h2 className="messengerHeader" />
-        <button onClick={this.editModeEnable} id="msgOptionButton">Options</button>
-          {/* <FontAwesomeIcon icon="faCoffee" /> */}
+        <button onClick={this.editModeEnable} id="msgOptionButton">
+          <FontAwesomeIcon icon="cog" id="awesome-cog"/>
+        </button>
         </div>
         <div id="messengerBodyDiv">
           <div id="messengerBodyContent">
@@ -106,11 +106,12 @@ export default class Chat extends Component {
           </div>
         </div>
         <div id="messageNewDiv">
-        <input onChange={(evt) => { this.handleFieldChange(evt) }} id="newMessageInput" />
-          <button onClick={() => {this.create(this.state.currentUser, this.state.newMessageInput)}} id="newMessageSubmitButton">
-            {/* <FontAwesomeIcon className="fa fa-paper-plane-o" /> */}
-            Send
+        <form onSubmit={(e) => { this.create(e, this.state.currentUser, this.state.newMessageInput) }}>
+        <input onChange={(evt) => { this.handleFieldChange(evt) }} id="newMessageInput" ref="newMessageInput"/>
+          <button onClick={(e) => {this.create(e, this.state.currentUser, this.state.newMessageInput)}} id="newMessageSubmitButton">
+            <FontAwesomeIcon icon="envelope" id="awesome-envelope"/>
           </button>
+          </form>
         </div>
       </div>
   }
