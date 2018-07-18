@@ -19,9 +19,31 @@ export default class NewTaskSection extends Component {
   render() {
 
     if (this.state.addingTask) {
-      return <div>NewTaskForm goes here</div>
+      return (
+        <div>
+          <section>
+            <label htmlFor="task-name">Task name:</label>
+            <input type="text"></input>
+          </section>
+
+          <section>
+            <label htmlFor="task-duedate">Date due:</label>
+            <input type="date"></input>
+          </section>
+
+          <section>
+            <button onClick={() => {
+              this.setState({ addingTask: false })
+            }}>Save task</button>
+          </section>
+        </div>
+      )
     } else {
-      return <button onClick={this.toggleState}>Go ahead; add another task</button>
+      return (
+        <button onClick={() => {
+          this.setState({ addingTask: true })
+        }}>Go ahead; add another task</button>
+      )
     }
   }
 }
