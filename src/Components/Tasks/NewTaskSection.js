@@ -5,44 +5,57 @@ import React, { Component } from "react"
 export default class NewTaskSection extends Component {
 
   state = {
-    addingTask: false
+    addingTask: false,
+    newTaskName: "",
+    newTaskDate: ""
   }
 
-  toggleState = () => {
-    if (this.state.addingTask) {
-      this.setState({ addingTask: false })
-    } else {
-      this.setState({ addingTask: true })
-    }
+  // Updates state whenever an input field is edited
+  handleFieldChange = (evt) => {
+    const stateToChange = {}
+    stateToChange[evt.target.id] = evt.target.value
+    this.setState(stateToChange)
+  }
+
+  // Handles the submit event for the task form
+  addNewTask = (evt) => {
+    evt.preventDefault()
+
+
+
+    this.setState({ addingTask: false })
   }
 
   render() {
 
     if (this.state.addingTask) {
       return (
-        <div>
+        <form onSubmit={this.addNewTask}>
           <section>
-            <label htmlFor="task-name">Task name:</label>
-            <input type="text"></input>
+            <label htmlFor="newTaskName">Task name:</label>
+            <input type="text" id="newTaskName"
+              onChange={this.handleFieldChange}>
+            </input>
           </section>
 
           <section>
-            <label htmlFor="task-duedate">Date due:</label>
-            <input type="date"></input>
+            <label htmlFor="newTaskDate">Date due:</label>
+            <input type="date" id="newTaskDate"
+              onChange={this.handleFieldChange}>
+            </input>
           </section>
 
           <section>
-            <button onClick={() => {
-              this.setState({ addingTask: false })
-            }}>Save task</button>
+            <button type="submit">Save task</button>
           </section>
-        </div>
+        </form>
       )
     } else {
       return (
-        <button onClick={() => {
-          this.setState({ addingTask: true })
-        }}>Go ahead; add another task</button>
+        <button
+          onClick={() => {
+            this.setState({ addingTask: true })
+          }}>New task</button>
       )
     }
   }
