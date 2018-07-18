@@ -15,23 +15,23 @@
   ],
   "friends": [
     {
-      "userId": "1",
-      "yourId": "7",
+      "userId": "2",
+      "yourId": "1",
       "id": 25
     },
     {
-      "userId": "7",
-      "yourId": "4",
+      "userId": "3",
+      "yourId": "1",
       "id": 26
     },
     {
-      "userId": "6",
-      "yourId": "4",
+      "userId": "4",
+      "yourId": "1",
       "id": 27
     },
     {
-      "userId": "2",
-      "yourId": "6",
+      "userId": "1",
+      "yourId": "2",
       "id": 30
     },
     {
