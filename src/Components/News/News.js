@@ -30,7 +30,7 @@ export default class articleList extends Component {
                     .then(articles => this.setState({ articles: articles }))
                 this.setState({ newsTitle: "" });
                 this.setState({ newsBody: "" });
-                this.setState({ NewsURL: "" });
+                this.setState({ newsURL: "" });
 
             })
     }
@@ -50,23 +50,25 @@ export default class articleList extends Component {
     render() {
         return (
             <React.Fragment>
-                <label>Title</label>
-                <input onChange={this.handleFieldChange} value={this.state.newsTitle} type="text" id="newsTitle" />
-                <label>Body</label>
-                <input onChange={this.handleFieldChange} value={this.state.newsBody} type="text" id="newsBody" />
-                <label>URL</label>
-                <input onChange={this.handleFieldChange} value={this.state.newsURL} type="text" id="newsURL" />
-                <button onClick={this.checkInarticle} id="add-pet">Add Pet</button>
+                <div className="News">
+                    <label>Title</label>
+                    <input onChange={this.handleFieldChange} value={this.state.newsTitle} type="text" id="newsTitle" />
+                    <label>Body</label>
+                    <input onChange={this.handleFieldChange} value={this.state.newsBody} type="text" id="newsBody" />
+                    <label>URL</label>
+                    <input onChange={this.handleFieldChange} value={this.state.newsURL} type="text" id="newsURL" />
+                    <button onClick={this.checkInarticle} id="add-pet">New Article</button>
 
 
-                {
-                    this.state.articles.map(article =>
-                        <Article key={article.id}
-                            article={article}
-                            checkOutarticle={this.checkOutarticle}
-                        />
-                    )
-                }
+                    {
+                        this.state.articles.map(article =>
+                            <Article key={article.id}
+                                article={article}
+                                checkOutarticle={this.checkOutarticle}
+                            />
+                        )
+                    }
+                </div>
             </React.Fragment>
         )
     }
