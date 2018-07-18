@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import NewTaskSection from "./NewTaskSection"
+import TaskCard from "./TaskCard"
+import apiManager from "../API/apiManager"
 
 export default class Tasks extends Component {
 
@@ -9,6 +11,15 @@ export default class Tasks extends Component {
 
   componentDidMount() {
     // This code will get the active user's id from session storage and then build out the list of tasks
+    const currentUser = sessionStorage.getItem("activeUser");
+    const tableToAccess = "tasks";
+    const filteredTable = `${tableToAccess}?_&userId=${currentUser}`;
+    apiManager.getField(filteredTable)
+      .then(allUserTasks => {
+        console.log("All user's tasks: ", allUserTasks);
+        this.setState({ allTasks: allUserTasks });
+        console.log("State: ", this.state);
+      })
   }
 
   render() {
@@ -17,12 +28,15 @@ export default class Tasks extends Component {
         <div className="tasks">
           <h4>Tasks</h4>
           <NewTaskSection />
-          {
-            this.state.allTasks.forEach(singleTask => {
-              // <TaskCard task={singleTask} />
-              console.log("Building task card...", singleTask)
-            })
-          }
+          <article>
+            {
+              this.state.allTasks.map(singleTask => {
+                return <TaskCard
+                  key={singleTask.id.toString()}
+                  task={singleTask} />
+              })
+            }
+          </article>
         </div>
       </React.Fragment>
     );

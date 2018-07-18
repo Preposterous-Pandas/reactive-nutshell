@@ -127,7 +127,7 @@ class apiManager {
         }).then(e => e.json())
     }
 
-    postTask(user, task, date) {
+    postTask(user, description, date) {
         return fetch("http://localhost:5002/tasks", {
             method: "POST",
             headers: {
@@ -135,14 +135,14 @@ class apiManager {
             },
             body: JSON.stringify({
                 "userId": user,
-                "task": task,
+                "description": description,
                 "date": date,
                 "completed": false
             })
         })
     }
 
-    putTask(user, task, done, date, id) {
+    putTask(user, description, done, date, id) {
         return fetch(`http://localhost:5002/tasks/${id}`, {
             method: "PUT",
             headers: {
@@ -150,7 +150,7 @@ class apiManager {
             },
             body: JSON.stringify({
                 "userId": user,
-                "task": task,
+                "description": description,
                 "date": date,
                 "completed": done
             })
