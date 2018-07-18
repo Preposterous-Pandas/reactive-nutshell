@@ -38,12 +38,14 @@ export default class News extends Component {
 
     checkOutarticle = (articleId) => {
         // Delete the specified article from the API
-        API.delNews()
-            .then(API.getField("news"))
+
+        API.delNews(articleId)
+            .then(() => {
+                return API.getField("news")
+            })
             .then(articleList => {
-                this.setState({
-                    articles: articleList
-                })
+                console.log('check out articles list', articleList)
+                this.setState({ articles: articleList });
             })
     }
 
@@ -57,13 +59,12 @@ export default class News extends Component {
                     <input onChange={this.handleFieldChange} value={this.state.newsBody} type="text" id="newsBody" />
                     <label>URL</label>
                     <input onChange={this.handleFieldChange} value={this.state.newsURL} type="text" id="newsURL" />
-                    <button onClick={this.checkInarticle} id="add-pet">New Article</button>
+                    <button onClick={this.checkInarticle} id="add-article">New Article</button>
 
 
                     {
                         this.state.articles.map(article => {
-                            this.props.friends.push(sessionStorage.getItem('activeUser'))
-                          return this.props.friends.includes(`${article.id}`) && <Article key={article.id}
+                            return this.props.friends.concat([sessionStorage.getItem('activeUser')]).includes(`${article.userId}`) && <Article key={article.id}
                                 article={article}
                                 checkOutarticle={this.checkOutarticle}
                             />

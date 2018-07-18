@@ -12,7 +12,7 @@ export default props => {
                 <p className="card-body">{props.article.url}</p>
                 <p className="card-body">{props.article.timestamp}</p>
 
-                <a href="#" onClick={() => props.checkOutArticle(props.article.id)}>Delete</a>
+                <a href="#" onClick={() => props.checkOutarticle(props.article.id)}>Delete</a>
             </div>
         </div>
     )

@@ -1,5 +1,3 @@
-import React from "react";
-
 class apiManager {
   getField(resource) {
     return fetch(`http://localhost:5002/${resource}`).then(e => e.json());
@@ -149,11 +147,11 @@ class apiManager {
 
   delNews(id) {
     return fetch(`http://localhost:5002/news/${id}`, {
-      method: "DELETE"
-    });
+      method: "delete"
+    }).then(e => e.json());
   }
 
-  postTask(user, task, done, date) {
+  postTask(user, task, date) {
     return fetch("http://localhost:5002/tasks", {
       method: "POST",
       headers: {
@@ -163,7 +161,7 @@ class apiManager {
         userId: user,
         task: task,
         date: date,
-        completed: done
+        completed: false
       })
     });
   }
