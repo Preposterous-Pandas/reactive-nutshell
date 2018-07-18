@@ -54,12 +54,13 @@ export default class News extends Component {
         return (
             <React.Fragment>
                 <div className="News">
+                    <h2>News</h2>
                     <label>Title</label>
-                    <input onChange={this.handleFieldChange} value={this.state.newsTitle} type="text" id="newsTitle" required/>
+                    <input onChange={this.handleFieldChange} value={this.state.newsTitle} type="text" id="newsTitle" required/><br/>
                     <label>Body</label>
-                    <input onChange={this.handleFieldChange} value={this.state.newsBody} type="text" id="newsBody" required/>
+                    <input onChange={this.handleFieldChange} value={this.state.newsBody} type="text" id="newsBody" required/><br/>
                     <label>URL</label>
-                    <input onChange={this.handleFieldChange} value={this.state.newsURL} type="text" id="newsURL" required/>
+                    <input onChange={this.handleFieldChange} value={this.state.newsURL} type="text" id="newsURL" required/><br/>
                     <button onClick={this.checkInarticle} id="add-article">New Article</button>
 
 
