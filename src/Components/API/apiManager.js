@@ -27,6 +27,77 @@ export default class apiManager {
 addNewFriend(currentUserId, friendToAddId) {
         return fetch("https://localhost:5002/friends", {
             
+class apiManager {
+
+   getField(resource) {
+        return fetch(`http://localhost:5002/${resource}`).then(e => e.json())
+    }
+
+    allFriends() {
+        return fetch(`http://localhost:5002/friends`)
+            .then(e => e.json())
+            .then(friends => {
+                const fList = [];
+                const User = sessionStorage.getItem("User");
+                friends.forEach(friend => {
+                    if (friend.yourId == User) {
+                        fList.push(friend.userId);
+                    }
+                });
+                return fList;
+            })
+    }
+
+    postUser(name, email) {
+        return fetch("http://localhost:5002/users",
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "name": name,
+                    "email": email
+                })
+            })
+    }
+
+    getUser(userId) {
+        return fetch(`http://localhost:5002/users/${userId}`).then(e => e.json())
+    }
+
+    getMessage(messageId) {
+        return fetch(`http://localhost:5002/messages/${messageId}`).then(e => e.json())
+    }
+
+    postMessage(msg, user) {
+        return fetch("http://localhost:5002/messages", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "userId": user,
+                "message": msg
+            })
+        })
+    }
+
+    putMessage(user, msg, id) {
+        return fetch(`http://localhost:5002/messages/${id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "userId": user,
+                "message": msg
+            })
+        })
+    }
+
+    postEvent(user, name, loc, date) {
+        return fetch("http://localhost:5002/events", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -78,19 +149,19 @@ deleteFriend(relId){
   // //     );
   // //   }
 
-  // postMessage(userId, message, timestamp) {
-  //   return fetch("http://localhost:5002/messages", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       userId: userId,
-  //       message: message,
-  //       timeStamp: timestamp
-  //     })
-  //   });
-  // }
+  postMessage(userId, message, timestamp) {
+    return fetch("http://localhost:5002/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userId: userId,
+        message: message,
+        timeStamp: timestamp
+      })
+    });
+  }
 
   // //   postMessage(msg, user) {
   // //     return fetch("http://localhost:5002/messages", {
@@ -105,19 +176,19 @@ deleteFriend(relId){
   // //     });
   // //   }
 
-  // putMessage(msgId, userId, newMessage, messageTimeStamp) {
-  //   return fetch(`http://localhost:5002/messages/${msgId}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       userId: userId,
-  //       message: newMessage,
-  //       timeStamp: messageTimeStamp
-  //     })
-  //   });
-  // }
+  putMessage(msgId, userId, newMessage, messageTimeStamp) {
+    return fetch(`http://localhost:5002/messages/${msgId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userId: userId,
+        message: newMessage,
+        timeStamp: messageTimeStamp
+      })
+    });
+  }
 
   // //   putMessage(user, msg, id) {
   // //     return fetch(`http://localhost:5002/messages/${id}`, {
@@ -132,11 +203,11 @@ deleteFriend(relId){
   // //     });
   // //   }
 
-  // delMessage(msgId) {
-  //   return fetch(`http://localhost:5002/messages/${msgId}`, {
-  //     method: "DELETE"
-  //   });
-  // }
+  delMessage(msgId) {
+    return fetch(`http://localhost:5002/messages/${msgId}`, {
+      method: "DELETE"
+    });
+  }
 
   postEvent(user, name, loc, date) {
     return fetch("http://localhost:5002/events", {
@@ -245,3 +316,7 @@ deleteFriend(relId){
   //   });
   // }
 }
+
+const API = new apiManager;
+export default API;
+

@@ -8,6 +8,10 @@ import Header from "./Components/Header"
 
 
 export default class Main extends Component {
+
+    state = {
+        friendList: []
+    }
     render() {
         return (
             <React.Fragment>
