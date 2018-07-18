@@ -9,7 +9,8 @@ export default class Chat extends Component {
     currentUser: "",
     buildSource: "",
     newMessageInput: "",
-    messages: []
+    messages: [],
+    editMsgButtonDisplay: false
   };
 
   read = buildSource => {
@@ -75,7 +76,20 @@ export default class Chat extends Component {
           </button>
         </div>
         <div id="messengerBodyDiv">
-          <div id="messengerBodyContent" />
+          <div id="messengerBodyContent">
+            {this.state.messages.map(message => (
+              <Message
+                key={message.id}
+                message={message}
+                create={this.create}
+                read={this.read}
+                update={this.update}
+                delete={this.delete}
+                currentUser={this.currentUser}
+                editMsgButtonDisplay={this.editMsgButtonDisplay}
+              />
+            ))}
+          </div>
         </div>
         <div id="messageNewDiv">
           <input id="newMessageInput" />

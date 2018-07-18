@@ -91,48 +91,7 @@
       "id": 51
     }
   ],
-  "messages": [
-    // {
-    //   "userId": "1",
-    //   "message": "Hey this is Evan",
-    //   "id": 1
-    // },
-    // {
-    //   "userId": "1",
-    //   "message": "This is also Evan",
-    //   "id": 2
-    // },
-    // {
-    //   "userId": "2",
-    //   "message": "This is the first message from me!",
-    //   "id": 7
-    // },
-    // {
-    //   "userId": "6",
-    //   "message": "THis is my for real first message",
-    //   "id": 8
-    // },
-    // {
-    //   "userId": "4",
-    //   "message": "Hey you guys!",
-    //   "id": 9
-    // },
-    // {
-    //   "userId": "4",
-    //   "message": "Hello everyone",
-    //   "id": 10
-    // },
-    // {
-    //   "userId": "5",
-    //   "message": "hi everyonnnneeee",
-    //   "id": 11
-    // },
-    // {
-    //   "userId": "8",
-    //   "message": "hey leaahhh its ur mom",
-    //   "id": 12
-    // }
-  ],
+  "messages": [],
   "news": [
     {
       "userId": "1",
