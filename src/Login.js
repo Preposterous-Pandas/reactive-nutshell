@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Redirect } from "react-router-dom"
+// import { Redirect } from "react-router-dom"
 import apiController from "./Components/API/apiManager" //was api
 
 // const apiController = new api

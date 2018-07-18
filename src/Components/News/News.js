@@ -3,7 +3,7 @@ import Article from './News-Article'
 import API from '../API/apiManager'
 
 
-export default class articleList extends Component {
+export default class News extends Component {
     state = {
         articles: [],
         newsTitle: "",
@@ -61,11 +61,14 @@ export default class articleList extends Component {
 
 
                     {
-                        this.state.articles.map(article =>
-                            <Article key={article.id}
+                        this.state.articles.map(article => {
+                            this.props.friends.push(sessionStorage.getItem('activeUser'))
+                          return this.props.friends.includes(`${article.id}`) && <Article key={article.id}
                                 article={article}
                                 checkOutarticle={this.checkOutarticle}
                             />
+                        }
+
                         )
                     }
                 </div>
