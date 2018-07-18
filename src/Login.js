@@ -19,6 +19,8 @@ export default class Login extends Component {
     stateToChange[evt.target.id] = evt.target.value
     this.setState(stateToChange)
   }
+
+  //Find state of checkbox
   setRemember = e => {
     console.log(e.target.checked)
     switch (e.target.checked) {
@@ -36,12 +38,13 @@ export default class Login extends Component {
     }
   }
 
-  // Simplistic handler for login submit
-  handleLogin = e => {
-    e.preventDefault()
-    apiController.getField(`users?name=${this.state.username}`).then(user => {
-      console.log(user)
 
+  //Handler for login
+  handleLogin = e => {
+    //prevent page from reloading because of <form> tag submit
+    e.preventDefault()
+    //Find user object by username from API
+    apiController.getField(`users?name=${this.state.username}`).then(user => {
       //Check whether or not user exists by checking the return from ajax call. If return is empty array, or if the username or email dont match throw error
       if (
         user.length === 0 ||
@@ -54,22 +57,29 @@ export default class Login extends Component {
         return
       } else if (
         user[0].email === this.state.email && user[0].name === this.state.username) {
-        sessionStorage.setItem("activeUser", user[0].id)
-        this.setStorageType()
+        //Set session storage ActiveUser to the user ID of who just logged in
+          sessionStorage.setItem("activeUser", user[0].id)
+        //Save credentials to either local or session storage depending on state of checkbox
+          this.setStorageType()
+          //Function to set state of Main page to flag as logged in
         this.props.logUserIn()
       }
     })
   }
 
   registerUser(e){
+        //prevent page from reloading because of <form> tag submit
       e.preventDefault()
+      //Query database for username and email to see if either already exists
       apiController.getField(`users?name=${this.state.username}`).then(nameResponse => {
           apiController.getField(`users?email=${this.state.email}`).then(emailResponse => {
                       //Check to see if username or email are already registered
                       if (nameResponse.length === 0 && emailResponse.length === 0) {
                           //if not, then register the user
                           apiController.postUser(this.state.username, this.state.email).then((response) => {
+                              //Check where to store credentials depending on checkbox
                               this.setStorageType()
+                              //set state to logged in on Main page
                               this.props.logUserIn()
                           })
                       }
@@ -83,6 +93,7 @@ export default class Login extends Component {
           }
 
 setStorageType(){
+  //If box is checked, store credentials in local storage. Otherwise store in session storage
     if (this.state.remember) {
         localStorage.setItem(
             "credentials",
@@ -102,9 +113,6 @@ setStorageType(){
     }
 }
   render() {
-    // if (this.state.redirect) {
-    //     return <Redirect to="/" />
-    // } else {
     return (
       <form>
         <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -135,4 +143,3 @@ setStorageType(){
     )
   }
 }
-// }
