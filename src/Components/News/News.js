@@ -38,12 +38,11 @@ export default class News extends Component {
 
     checkOutarticle = (articleId) => {
         // Delete the specified article from the API
-        API.delNews()
+        API.delNews(articleId)
             .then(API.getField("news"))
             .then(articleList => {
-                this.setState({
-                    articles: articleList
-                })
+                console.log('check out articles list', articleList)
+                this.setState({ articles:  articleList});
             })
     }
 
@@ -62,8 +61,7 @@ export default class News extends Component {
 
                     {
                         this.state.articles.map(article => {
-                            this.props.friends.push(sessionStorage.getItem('activeUser'))
-                          return this.props.friends.includes(`${article.id}`) && <Article key={article.id}
+                          return this.props.friends.concat([sessionStorage.getItem('activeUser')]).includes(`${article.id}`) && <Article key={article.id}
                                 article={article}
                                 checkOutarticle={this.checkOutarticle}
                             />
