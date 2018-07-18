@@ -3,7 +3,15 @@ import Article from './News-Article'
 import API from '../API/apiManager'
 import styled from 'styled-components';
 
+const Red = styled.div`
+    background-color: black;
+    color: white;
+`
 
+
+const Input = styled.input`
+    display: block;
+`
 
 
 export default class News extends Component {
@@ -15,7 +23,7 @@ export default class News extends Component {
     }
 
     componentDidMount() {
-        API.getField("news")
+        API.getField("news?_sort=timestamp&_order=desc")
             .then(articles => this.setState({ articles: articles }))
     }
 
@@ -26,10 +34,10 @@ export default class News extends Component {
     }
 
     checkInarticle = () => {
-        API.postNews(sessionStorage.getItem("activeUser"), this.state.newsTitle, this.state.newsURL, this.state.newsBody, Date.now())
+        API.postNews(sessionStorage.getItem("activeUser"), this.state.newsTitle, this.state.newsURL, this.state.newsBody, new Date)
             .then(result => {
                 console.log('news post result:', result);
-                API.getField("news")
+                API.getField("news?_sort=timestamp&_order=desc")
                     .then(articles => this.setState({ articles: articles }))
                 this.setState({ newsTitle: "" });
                 this.setState({ newsBody: "" });
@@ -44,7 +52,7 @@ export default class News extends Component {
 
         API.delNews(articleId)
             .then(() => {
-                return API.getField("news")
+                return API.getField("news?_sort=timestamp&_order=desc")
             })
             .then(articleList => {
                 console.log('check out articles list', articleList)
@@ -55,14 +63,14 @@ export default class News extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="News">
+                <Red className="News">
                     <h2>News</h2>
                     <label>Title</label>
-                    <input onChange={this.handleFieldChange} value={this.state.newsTitle} type="text" id="newsTitle" required/><br/>
+                    <Input onChange={this.handleFieldChange} value={this.state.newsTitle} type="text" id="newsTitle" required /><br />
                     <label>Body</label>
-                    <input onChange={this.handleFieldChange} value={this.state.newsBody} type="text" id="newsBody" required/><br/>
+                    <Input onChange={this.handleFieldChange} value={this.state.newsBody} type="text" id="newsBody" required /><br />
                     <label>URL</label>
-                    <input onChange={this.handleFieldChange} value={this.state.newsURL} type="text" id="newsURL" required/><br/>
+                    <Input onChange={this.handleFieldChange} value={this.state.newsURL} type="text" id="newsURL" required /><br />
                     <button onClick={this.checkInarticle} id="add-article">New Article</button>
 
 
@@ -76,7 +84,8 @@ export default class News extends Component {
 
                         )
                     }
-                </div>
+                </Red>
+
             </React.Fragment>
         )
     }
