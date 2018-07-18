@@ -20,10 +20,10 @@ export default class Main extends Component {
 
     componentDidMount() {
         API.allFriends()
-        .then(friends => {
-            this.setState({ friendList: friends });
-            console.log("Main all friends", this.state.friendList)
-        })
+            .then(friends => {
+                this.setState({ friendList: friends });
+                console.log("Main all friends", this.state.friendList)
+            })
     }
 
     beFriend = (buddy) => {
