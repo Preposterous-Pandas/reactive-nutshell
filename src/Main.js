@@ -23,10 +23,16 @@ export default class Main extends Component {
     }
 
     beFriend = (buddy) => {
+        if (this.state.friendList.includes(buddy)){
+            alert("You're already friends with that person!")
+            return
+        }
         API.postFriend(buddy, sessionStorage.getItem('activeUser'))
             .then(response => {
                 console.log('post friend response', response)
-                this.setState({ friendList: API.allFriends() });
+                API.allFriends().then(friends => {
+                  this.setState({ friendList: friends })
+                })
             })
     }
     render() {
@@ -35,7 +41,7 @@ export default class Main extends Component {
                 <Header />
                 <News friends={this.state.friendList}/>
                 <Friends beFriend={this.beFriend} friends={this.state.friendList}/>
-                <Chat beFriend={this.befreind}/>
+                <Chat beFriend={this.beFriend}/>
                 <Events friends={this.state.friendList}/>
                 <Tasks />
             </React.Fragment>

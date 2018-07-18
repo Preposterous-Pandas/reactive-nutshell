@@ -36,8 +36,8 @@ export default class Chat extends Component {
   }
 
   update = (msgId, userId, newMessage, messageTimeStamp) => {
-    messagesApi
-      .putMessage(msgId, userId, newMessage, messageTimeStamp)
+    console.log("updating")
+    messagesApi.putMessage(msgId, userId, newMessage, messageTimeStamp)
       .then(() => {
         this.read()
       })
@@ -65,8 +65,15 @@ export default class Chat extends Component {
   }
 
   editModeEnable = () => {
-    this.setState({ editMsgButtonDisplay: true})
-  }
+    switch (this.state.editMsgButtonDisplay){
+        case true:
+          this.setState({ editMsgButtonDisplay: false})
+          break
+        case false:
+          this.setState({ editMsgButtonDisplay: true})
+          break
+      }
+    }
 
   handleFieldChange = evt => {
     const stateToChange = {}
@@ -93,6 +100,7 @@ export default class Chat extends Component {
                 delete={this.delete}
                 currentUser={this.state.currentUser}
                 editMsgButtonDisplay={this.state.editMsgButtonDisplay}
+                beFriend={this.props.beFriend}
               />
             ))}
           </div>
