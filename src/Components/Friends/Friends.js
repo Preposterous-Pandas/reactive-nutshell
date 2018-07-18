@@ -1,47 +1,46 @@
 import React, { Component } from "react";
 import APIManager from "../API/apiManager";
 
-const apiManager = new APIManager();
+const apiManager = APIManager;
 
 export default class Friend extends Component {
   state = {
-    currentUser: "",
+    activeUser: "",
     friends: []
   };
 
-  read = () => {
-    apiManager.getFriendsList().then(friends => {
-      this.setState({
-        friends: friends
-      });
-    });
-  };
+  //   read = activeUser => {
+  //     apiManager.getFriendsList(activeUser).then(friends => {
+  //       this.setState({
+  //         friends: friends
+  //       });
+  //     });
+  //   };
 
-  create = (currentUserId, friendToAddId) => {
-    apiManager.addFriend(currentUserId, friendToAddId).then(() => {
-      this.read();
-    });
-  };
+  //   create = (currentUserId, friendToAddId) => {
+  //     apiManager.addFriend(currentUserId, friendToAddId).then(() => {
+  //       this.read();
+  //     });
+  //   };
 
   delete = relId => {
     apiManager.deleteFriend(relId).then(this.read);
   };
 
-  isAuthenticated = () => {
-    return (
-      sessionStorage.getItem("credentials") ||
-      localStorage.getItem("credentials")
-    );
-  };
+  //   isAuthenticated = () => {
+  //     return (
+  //       sessionStorage.getItem("activeUser") || localStorage.getItem("activeUser")
+  //     );
+  //   };
 
   componentDidMount() {
-    const currentUser = this.isAuthenticated();
-    if (currentUser) {
-      this.setState({
-        currentUser: currentUser
-      });
-      this.read(this.state.currentUser);
-    }
+    // const activeUser = this.isAuthenticated();
+    // if (activeUser) {
+    //   this.setState({
+    //     activeUser: activeUser
+    //   });
+    //   this.read(this.state.activeUser);
+    // }
   }
 
   handleFieldChange = evt => {
@@ -55,7 +54,7 @@ export default class Friend extends Component {
       <div className="friends">
         <button id="add-friend-btn">Add Friend By Name</button>
         <ul>
-          {this.state.friends.map(friend => {
+          {this.props.friends.map(friend => {
             <li>{friend.user.name}</li>;
           })}
         </ul>
