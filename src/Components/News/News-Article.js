@@ -9,8 +9,8 @@ export default props => {
                     {props.article.title}
                 </h5>
                 <p className="card-body">{props.article.synopsis}</p>
-                <p classname="card-body">{props.article.url}</p>
-                <p classname="card-body">{props.article.timestamp}</p>
+                <p className="card-body">{props.article.url}</p>
+                <p className="card-body">{props.article.timestamp}</p>
 
                 <a href="#" onClick={() => props.checkOutArticle(props.article.id)}>Delete</a>
             </div>

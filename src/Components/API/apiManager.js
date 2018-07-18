@@ -12,12 +12,13 @@ class apiManager {
             .then(e => e.json())
             .then(friends => {
                 const fList = [];
-                const User = sessionStorage.getItem("User");
+                const User = sessionStorage.getItem("activeUser");
                 friends.forEach(friend => {
                     if (friend.yourId == User) {
                         fList.push(friend.userId);
                     }
                 });
+                console.log('API friends', fList)
                 return fList;
             })
     }
@@ -177,6 +178,6 @@ class apiManager {
     }
 }
 
-const API = new apiManager;
+const API = new apiManager();
 export default API;
 
