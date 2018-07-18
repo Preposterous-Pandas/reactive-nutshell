@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import apiManager from "../API/apiManager"
 
 
 // This module renders the section of the Tasks pane used for adding new Tasks
@@ -21,9 +22,16 @@ export default class NewTaskSection extends Component {
   addNewTask = (evt) => {
     evt.preventDefault()
 
+    const currentUserId = sessionStorage.getItem("activeUser");
+    const taskName = this.state.newTaskName;
+    const taskDate = this.state.newTaskDate;
 
+    apiManager.postTask(currentUserId, taskName, taskDate)
+      .then(
 
-    this.setState({ addingTask: false })
+        this.setState({ addingTask: false })
+      )
+
   }
 
   render() {

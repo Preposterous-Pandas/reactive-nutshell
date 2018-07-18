@@ -128,7 +128,7 @@ class apiManager {
         })
     }
 
-    postTask(user, task, done, date) {
+    postTask(user, task, date) {
         return fetch("http://localhost:5002/tasks", {
             method: "POST",
             headers: {
@@ -138,7 +138,7 @@ class apiManager {
                 "userId": user,
                 "task": task,
                 "date": date,
-                "completed": done
+                "completed": false
             })
         })
     }
