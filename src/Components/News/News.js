@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Article from './News-Article'
 import API from '../API/apiManager'
+import styled from 'styled-components';
+
 
 
 
