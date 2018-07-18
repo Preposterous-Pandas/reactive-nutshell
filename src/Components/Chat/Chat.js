@@ -3,7 +3,7 @@ import APIManager from "../API/apiManager";
 import "./chat.css";
 import Message from "./Message";
 
-const messagesApi = new APIManager();
+const messagesApi = APIManager;
 
 export default class Chat extends Component {
   state = {

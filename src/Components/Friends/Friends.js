@@ -6,7 +6,10 @@ const apiManager = APIManager;
 export default class Friend extends Component {
   state = {
     activeUser: "",
-    friends: []
+    friends: [],
+    users: [],
+    addFriendMode: false,
+    addFriendInput: ""
   };
 
   //   read = activeUser => {
@@ -27,20 +30,13 @@ export default class Friend extends Component {
     apiManager.deleteFriend(relId).then(this.read);
   };
 
-  //   isAuthenticated = () => {
-  //     return (
-  //       sessionStorage.getItem("activeUser") || localStorage.getItem("activeUser")
-  //     );
-  //   };
-
   componentDidMount() {
-    // const activeUser = this.isAuthenticated();
-    // if (activeUser) {
-    //   this.setState({
-    //     activeUser: activeUser
-    //   });
-    //   this.read(this.state.activeUser);
-    // }
+    apiManager.getUsers().then(users => {
+      console.log(users);
+      this.setState({
+        users: users
+      });
+    });
   }
 
   handleFieldChange = evt => {
@@ -50,12 +46,59 @@ export default class Friend extends Component {
   };
 
   render() {
+    let addFriendInput = null;
+    let listTitle = null;
+    let suggestedFriendsList = null;
+    if (this.state.addFriendMode) {
+      addFriendInput = (
+        <input
+          id="addFriendInput"
+          onChange={this.handleFieldChange}
+          value={this.state.addFriendInput}
+        />
+      );
+
+      let suggestedFriends = [];
+      this.state.users.forEach(user => {
+        if (user.name.includes(this.state.addFriendInput)) {
+          suggestedFriends.push(user);
+        }
+      });
+
+      let suggestedFriendsItems = suggestedFriends.map(friend => {
+        return <li>{friend.name}</li>;
+      });
+
+      suggestedFriendsList = <ul>{suggestedFriendsItems}</ul>;
+      listTitle = <h6>Users</h6>;
+    } else {
+      listTitle = <h6>Friends</h6>;
+    }
+
     return (
       <div className="friends">
-        <button id="add-friend-btn">Add Friend By Name</button>
+        <button
+          id="add-friend-btn"
+          onClick={() => {
+            if (this.state.addFriendMode === false) {
+              this.setState({
+                addFriendMode: true
+              });
+            } else {
+              this.setState({
+                addFriendMode: false
+              });
+            }
+          }}
+        >
+          Add Friend By Name
+        </button>
+        {addFriendInput}
+        {listTitle}
+        {suggestedFriendsList}
         <ul>
           {this.props.friends.map(friend => {
-            <li>{friend.user.name}</li>;
+            return <li>{friend.user.name}</li>;
           })}
         </ul>
       </div>
