@@ -5,7 +5,7 @@ export default class Friends extends Component {
         return (
             <React.Fragment>
                 <div className="friends">
-                    <h4>Friends</h4>
+                    <h4 className="section-headline">Friends</h4>
                 </div>
             </React.Fragment>
         )

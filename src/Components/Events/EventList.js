@@ -6,7 +6,7 @@ export default class EventList extends Component {
     return (
       <React.Fragment>
         <div className="events">
-          <h3>Events</h3>
+          <h3 className="section-headline">Events</h3>
         </div>
       </React.Fragment>
     )

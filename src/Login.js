@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 // import { Redirect } from "react-router-dom"
 import apiController from "./Components/API/apiManager" //was api
+import "./styles/login.css"
 
 // const apiController = new api
 
@@ -107,8 +108,10 @@ setStorageType(){
     //     return <Redirect to="/" />
     // } else {
     return (
+      <div id="login-stuff">
       <form>
-        <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 className="main-headline">Welcome to Reactive Nutshell</h1>
+        <h3 className="secondary-headline">Please Log In</h3>
         <label htmlFor="inputUname">Username</label>
         <input
           onChange={this.handleFieldChange}
@@ -118,6 +121,7 @@ setStorageType(){
           placeholder="Username"
           required=""
           autoFocus=""
+          className="login-input"
         />
         <label htmlFor="inputEmail">E-mail</label>
         <input
@@ -127,12 +131,15 @@ setStorageType(){
           id="email"
           placeholder="E-mail"
           required=""
+          className="login-input"
         />
-        <label htmlFor="rememberMe">Remember Me</label>
-        <input type="checkbox" ref="rememberMe" onChange={this.setRemember} />
-        <button type="submit" onClick={this.handleLogin}>Sign in</button>
-        <button onClick={(e) => this.registerUser(e)}>Register</button>
+        <label htmlFor="rememberMe">Remember Me
+          <input className="input-checkbox" type="checkbox" ref="rememberMe" onChange={this.setRemember} />
+        </label>
+        <button className="login-button" type="submit" onClick={this.handleLogin}>Sign in</button>
+        <button className="login-button register" onClick={(e) => this.registerUser(e)}>Register</button>
       </form>
+      </div>
     )
   }
 }
