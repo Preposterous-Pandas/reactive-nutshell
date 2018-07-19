@@ -75,6 +75,7 @@ export default class Message extends Component {
           return (
             <p id={this.props.message.id} className="msgItem">
             <button className="addFriendButton" onClick={()=>{
+              alert(`You added ${this.props.message.user.name} as a friend!`)
             this.props.beFriend(String(this.props.message.user.id))}}>
               <FontAwesomeIcon icon="user-plus" />
             </button>

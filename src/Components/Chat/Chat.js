@@ -14,6 +14,7 @@ export default class Chat extends Component {
     scrolltopValue: 0
   }
 
+  //call API to get all messages
   read = buildSource => {
     messagesApi.getMessages().then(msgArr => {
       this.setState({
@@ -22,12 +23,13 @@ export default class Chat extends Component {
       this.setState({
         buildSource: buildSource
       })
-      // console.log(this.refs.messengerBody.scrollTop)
+      // Scroll to bottom
       this.refs.chatBottom.scrollIntoView({ behavior: "smooth" })
     })
   }
 
   create = (e, userId, message) => {
+    //prevent form from reloading window
     e.preventDefault()
     if (this.state.newMessageInput === ""){
     alert("Please enter message text")
@@ -36,13 +38,14 @@ export default class Chat extends Component {
     messagesApi.postMessage(userId, message, curTimeStamp).then(() => {
       this.read("createNew")
     })
+    //reset input form
     this.refs.newMessageInput.value = ""
+    //create variable in local storage for storage event listener
     let sS = localStorage.getItem("messageChange");
     localStorage.setItem("messageChange", ++sS);
   }
 
   update = (msgId, userId, newMessage, messageTimeStamp) => {
-    // console.log("updating")
     messagesApi.putMessage(msgId, userId, newMessage, messageTimeStamp)
       .then(() => {
         this.read()
@@ -61,7 +64,7 @@ export default class Chat extends Component {
   }
 
   storageEvent = () => {
-    // alert("fired")
+    //On local storage change get all messages
     this.read()
   }
 
@@ -98,6 +101,7 @@ export default class Chat extends Component {
     return <div className="chat" id="messagesDiv">
         <div id="messengerHeaderDiv">
           {/* <h2 className="messengerHeader" /> */}
+          <p id="chat-head">Nutshell Chat</p>
         <button onClick={this.editModeEnable} id="msgOptionButton">
           <FontAwesomeIcon icon="cog" id="awesome-cog"/>
         </button>

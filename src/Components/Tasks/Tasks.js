@@ -30,7 +30,7 @@ export default class Tasks extends Component {
   render() {
     return (
       <div className="tasks">
-        <h4>Tasks</h4>
+        <h4 className="section-headline">Tasks</h4>
 
         <NewTaskSection loadTasks={() => { this.loadTasks() }} />
 

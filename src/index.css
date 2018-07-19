@@ -1,4 +1,18 @@
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: cornflowerblue;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: cornflowerblue;
+}
+
 body {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -26,4 +40,13 @@ input {
     outline: none;
     display: block;
     align-self: center;
+}
+
+.section-headline {
+  margin-top: 0;
+  width: 100%;
+  background-color: cornflowerblue;
+  color: white;
+  padding: 5px;
+  font-size: 1.3rem;
 }
