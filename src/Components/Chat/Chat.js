@@ -10,7 +10,8 @@ export default class Chat extends Component {
     buildSource: "",
     newMessageInput: "",
     messages: [],
-    editMsgButtonDisplay: false
+    editMsgButtonDisplay: false,
+    scrolltopValue: 0
   }
 
   read = buildSource => {
@@ -21,6 +22,8 @@ export default class Chat extends Component {
       this.setState({
         buildSource: buildSource
       })
+      console.log(this.refs.messengerBody.scrollTop)
+      this.refs.chatBottom.scrollIntoView({ behavior: "smooth" })
     })
   }
 
@@ -89,7 +92,7 @@ export default class Chat extends Component {
         </button>
         </div>
         <div id="messengerBodyDiv">
-          <div id="messengerBodyContent">
+          <div id="messengerBodyContent" ref="messengerBody">
             {this.state.messages.map(message => (
               <Message
                 key={message.id}
@@ -103,6 +106,7 @@ export default class Chat extends Component {
                 beFriend={this.props.beFriend}
               />
             ))}
+            <div ref="chatBottom"></div>
           </div>
         </div>
         <div id="messageNewDiv">
