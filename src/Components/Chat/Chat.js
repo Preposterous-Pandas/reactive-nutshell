@@ -34,6 +34,8 @@ export default class Chat extends Component {
       this.read("createNew")
     })
     this.refs.newMessageInput.value = ""
+    let sS = localStorage.getItem("messageChange");
+    localStorage.setItem("messageChange", ++sS);
   }
 
   update = (msgId, userId, newMessage, messageTimeStamp) => {
@@ -55,6 +57,11 @@ export default class Chat extends Component {
     )
   }
 
+  storageEvent = () => {
+    // alert("fired")
+    this.read()
+  }
+
   componentDidMount = () => {
     const activeUser = this.isAuthenticated()
     if (activeUser) {
@@ -63,6 +70,7 @@ export default class Chat extends Component {
       })
       this.read()
     }
+    window.addEventListener("storage", this.storageEvent)
   }
 
   editModeEnable = () => {
@@ -86,7 +94,7 @@ export default class Chat extends Component {
   render() {
     return <div className="chat" id="messagesDiv">
         <div id="messengerHeaderDiv">
-          <h2 className="messengerHeader" />
+          {/* <h2 className="messengerHeader" /> */}
         <button onClick={this.editModeEnable} id="msgOptionButton">
           <FontAwesomeIcon icon="cog" id="awesome-cog"/>
         </button>

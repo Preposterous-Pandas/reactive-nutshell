@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import APIManager from "../API/apiManager"
 import "./chat.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 

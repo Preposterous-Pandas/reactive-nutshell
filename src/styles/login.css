@@ -46,8 +46,9 @@
     font-size: 1.5rem;
     transition: .5s;
     outline: none;
-    display: block;
+    display: inline-block;
     align-self: center;
+    margin-right: 10px;
 
 
 }
@@ -62,11 +63,15 @@
 }
 
 .register {
-    width: 15vw;
+    width: 10vw;
     margin-bottom: 1000px;
 }
 
 .welcome {
     position: fixed;
     top: 50px;
+}
+
+label {
+    display: block;
 }

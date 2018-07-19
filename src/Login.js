@@ -133,8 +133,9 @@ setStorageType(){
           required=""
           className="login-input"
         />
-        <label htmlFor="rememberMe">Remember Me</label>
-        <input className="input-checkbox" type="checkbox" ref="rememberMe" onChange={this.setRemember} />
+        <label htmlFor="rememberMe">Remember Me
+          <input className="input-checkbox" type="checkbox" ref="rememberMe" onChange={this.setRemember} />
+        </label>
         <button className="login-button" type="submit" onClick={this.handleLogin}>Sign in</button>
         <button className="login-button register" onClick={(e) => this.registerUser(e)}>Register</button>
       </form>
