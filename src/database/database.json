@@ -1,0 +1,129 @@
+{
+  "users": [
+    {
+      "name": "Evan Lusky",
+      "password": "password",
+      "email": "ewlusky@gmail.com",
+      "id": 1
+    },
+    {
+      "name": "Second Person",
+      "password": "password",
+      "email": "person@gmail.com",
+      "id": 2
+    },
+    {
+      "name": "Seth Dana",
+      "email": "seth.dana@gmail.com",
+      "id": 3
+    },
+    {
+      "name": "newGuy",
+      "email": "new@guy.com",
+      "id": 4
+    }
+  ],
+  "friends": [
+    {
+      "userId": "2",
+      "yourId": "1",
+      "id": 25
+    },
+    {
+      "userId": "1",
+      "yourId": "2",
+      "id": 30
+    }
+  ],
+  "messages": [
+    {
+      "userId": "3",
+      "message": "uhiuhiu",
+      "timeStamp": "2018-07-18T19:59:45.553Z",
+      "id": 2
+    },
+    {
+      "userId": "3",
+      "message": "afaf",
+      "timeStamp": "2018-07-18T20:23:10.475Z",
+      "id": 9
+    },
+    {
+      "userId": "3",
+      "message": "yep",
+      "timeStamp": "2018-07-18T20:23:27.540Z",
+      "id": 10
+    },
+    {
+      "userId": "3",
+      "message": "uytguyg",
+      "timeStamp": "2018-07-18T20:34:30.511Z",
+      "id": 11
+    },
+    {
+      "userId": "4",
+      "message": "testing",
+      "timeStamp": "2018-07-18T20:37:04.983Z",
+      "id": 12
+    }
+  ],
+  "news": [
+    {
+      "userId": "1",
+      "title": "Evan's News 4",
+      "url": "www.ewlusky.com",
+      "synopsis": "cubes",
+      "timestamp": "2014-07-18T19:47:49.622Z",
+      "id": 1
+    },
+    {
+      "userId": "2",
+      "title": "Second's News 3",
+      "url": "www.sldkf.com",
+      "synopsis": "some stuff happend",
+      "timestamp": "2015-07-18T19:47:49.622Z",
+      "id": 2
+    },
+    {
+      "userId": "1",
+      "title": "new time test 2",
+      "url": "kdididi",
+      "synopsis": "tirm eoi",
+      "timestamp": "2016-07-18T19:47:49.622Z",
+      "id": 3
+    },
+    {
+      "userId": "1",
+      "title": "Newest",
+      "url": "hi.com",
+      "synopsis": "hi",
+      "timestamp": "2018-07-18T19:47:49.622Z",
+      "id": 5
+    }
+  ],
+  "events": [
+    {
+      "userId": "1",
+      "name": "Evan's Event",
+      "location": "NSS",
+      "date": "2018-07-10T19:30",
+      "id": 1
+    },
+    {
+      "userId": "1",
+      "name": "Go to bed at the correct time.",
+      "location": "Home",
+      "date": "2018-07-10T20:30",
+      "id": 11
+    }
+  ],
+  "tasks": [
+    {
+      "userId": "1",
+      "task": "Evan's task",
+      "date": "2018-07-16T01:23",
+      "completed": "false",
+      "id": 21
+    }
+  ]
+}
