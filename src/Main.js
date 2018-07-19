@@ -23,10 +23,12 @@ export default class Main extends Component {
   };
 
   beFriend = friendToAddId => {
-    API.addFriend(
-      sessionStorage.getItem("activeUser") ||
-        localStorage.getItem("activeUser"),
-      friendToAddId
+    API.postFriend(
+      friendToAddId,
+      String(
+        sessionStorage.getItem("activeUser") ||
+          localStorage.getItem("activeUser")
+      )
     ).then(() => {
       this.readFriends();
     });
@@ -36,21 +38,6 @@ export default class Main extends Component {
     this.readFriends();
   }
 
-  // beFriend = (buddy) => {
-  //     if (this.state.friendList.includes(buddy)){
-  //         alert("You're already friends with this person!")
-  //         return
-  //     }
-  //     API.postFriend(buddy, sessionStorage.getItem('activeUser'))
-  //         .then(response => {
-  //             console.log('post friend response', response)
-  //             API.allFriends()
-  //                 .then(friends => {
-  //                     this.setState({ friendList: friends });
-  //                 })
-  //         })
-  // }
-
   render() {
     return (
       <React.Fragment>
@@ -59,9 +46,9 @@ export default class Main extends Component {
         <Friends
           beFriend={this.beFriend}
           friends={this.state.friendList}
-          readFriends={this.state.readFriends}
+          readFriends={this.readFriends}
         />
-        {/* <Chat beFriend={this.beFriend} /> */}
+        <Chat beFriend={this.beFriend} />
         <Events friends={this.state.friendList} />
         <Tasks />
       </React.Fragment>

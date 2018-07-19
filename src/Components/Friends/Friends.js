@@ -14,7 +14,11 @@ export default class Friends extends Component {
   };
 
   delete = relId => {
-    apiManager.deleteFriend(relId).then(this.props.readFriends);
+    console.log("deleteFired", relId);
+    apiManager.deleteFriend(relId).then(() => {
+      console.log("then");
+      this.props.readFriends();
+    });
   };
 
   searchMatchUsers = () => {
@@ -22,19 +26,28 @@ export default class Friends extends Component {
     const users = this.state.users;
     const newSearchMatchUsers = [];
     users.forEach(user => {
-      this.props.friends.forEach(friend => {
-        if (
-          String(user.id) !== String(friend.user.id) &&
-          String(user.id) !== String(sessionStorage.getItem("activeUser")) &&
-          String(user.id) !== String(localStorage.getItem("activeUser"))
-        ) {
+      if (
+        String(user.id) !== String(sessionStorage.getItem("activeUser")) &&
+        String(user.id) !== String(localStorage.getItem("activeUser"))
+      ) {
+        if (this.props.friends.length > 0) {
+          this.props.friends.forEach(friend => {
+            if (String(user.id) !== String(friend.user.id)) {
+              const lowerUserName = user.name.toLowerCase();
+              if (lowerUserName.includes(searchString.toLowerCase())) {
+                newSearchMatchUsers.push(user);
+              }
+            }
+          });
+        } else {
           const lowerUserName = user.name.toLowerCase();
           if (lowerUserName.includes(searchString.toLowerCase())) {
             newSearchMatchUsers.push(user);
           }
         }
-      });
+      }
     });
+
     return newSearchMatchUsers;
   };
 
@@ -76,18 +89,28 @@ export default class Friends extends Component {
             handleFieldChange={this.handleFieldChange}
             addFriendInput={this.state.addFriendInput}
           />
-          <SearchedFriends searchMatchUsers={this.searchMatchUsers()} />
+          <SearchedFriends
+            addFriendInput={this.state.addFriendInput}
+            searchMatchUsers={this.searchMatchUsers()}
+            beFriend={this.props.beFriend}
+            setAddFriendMode={this.setAddFriendMode}
+          />
         </div>
       );
     } else {
       return (
         <div className="friends">
           <h4>Your Friends</h4>
-          <button id="add-friend-btn" onClick={this.setAddFriendMode}>
+          <button id="search-users-btn" onClick={this.setAddFriendMode}>
             Search Friends By Name
           </button>
           {this.props.friends.map(friend => (
-            <Friend key={friend.id} user={friend.user} />
+            <Friend
+              key={friend.id}
+              friendId={friend.id}
+              user={friend.user}
+              delete={this.delete}
+            />
           ))}
         </div>
       );

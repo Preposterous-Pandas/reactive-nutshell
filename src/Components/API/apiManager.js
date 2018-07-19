@@ -25,19 +25,6 @@ class apiManager {
     ).then(e => e.json());
   }
 
-  addNewFriend(currentUserId, friendToAddId) {
-    return fetch("https://localhost:5002/friends", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: friendToAddId,
-        yourId: currentUserId
-      })
-    });
-  }
-
   deleteFriend(relId) {
     return fetch(`http://localhost:5002/friends/${relId}`, {
       method: "DELETE"

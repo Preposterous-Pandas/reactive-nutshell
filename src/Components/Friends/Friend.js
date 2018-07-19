@@ -1,7 +1,18 @@
 import React from "react";
 
-const Friend = ({ user }) => {
-  return <li>{user.name}</li>;
+const Friend = props => {
+  return (
+    <li>
+      <button
+        onClick={() => {
+          props.delete(props.friendId);
+        }}
+      >
+        Remove
+      </button>
+      {props.user.name}
+    </li>
+  );
 };
 
 export default Friend;

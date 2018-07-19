@@ -1,12 +1,19 @@
 import React from "react";
 
-const SearchedFriend = ({ user }) => {
-  return <li>{user.name}</li>;
+const SearchedFriend = props => {
+  return (
+    <li>
+      <button
+        onClick={() => {
+          props.beFriend(props.user.id);
+          props.setAddFriendMode();
+        }}
+      >
+        Add
+      </button>
+      {props.user.name}
+    </li>
+  );
 };
-
-// Animal.propTypes = {
-//   animal: PropTypes.object.isRequired,
-//   checkOutAnimal: PropTypes.func.isRequired
-// };
 
 export default SearchedFriend;
