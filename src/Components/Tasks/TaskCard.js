@@ -21,7 +21,13 @@ export default class TaskCard extends Component {
   editTask = (evt) => {
     evt.preventDefault();
     const editId = parseInt(evt.target.id);
-    this.setState({ editingTask: true });
+    this.setState(
+      {
+        editingTask: true,
+        taskToEdit: editId,
+        editedTaskName: this.props.currentTask.description
+      }
+    );
     this.setState({ taskToEdit: editId })
   }
 
@@ -35,12 +41,11 @@ export default class TaskCard extends Component {
   // This function takes the new task description and the task's id out of state, passes them to the apiManager, and then reloads all the tasks
   saveTask = (evt) => {
     evt.preventDefault();
-    console.log("Saving...");
     const taskId = this.state.taskToEdit;
     const newDescription = this.state.editedTaskName;
     apiManager.editTask(taskId, newDescription)
-      .then(this.props.loadTasks, this.setState({ editingTask: false })
-      )
+      .then(this.props.loadTasks, this.setState({ editingTask: false }))
+
   }
 
   render() {
@@ -48,13 +53,13 @@ export default class TaskCard extends Component {
       return (
         <form onSubmit={this.saveTask} id={`${this.props.currentTask.id}form`}>
           <label>Edit task description:</label>
-          <input type="text" id="editedTaskName"
+          <input required type="text" id="editedTaskName"
             onChange={this.handleFieldChange}
             defaultValue={this.props.currentTask.description} />
           <button type="submit">Save changes</button>
           <button onClick={() => {
-              this.setState({ editingTask: false })
-            }}>Cancel</button>
+            this.setState({ editingTask: false })
+          }}>Cancel</button>
         </form>
       )
     } else {
