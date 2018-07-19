@@ -15,7 +15,8 @@ export default class Tasks extends Component {
     console.log("loading tasks...");
     const currentUser = sessionStorage.getItem("activeUser");
     const tableToAccess = "tasks";
-    const filteredTable = `${tableToAccess}?_&userId=${currentUser}`;
+    const notCompleted = "completed=false";
+    const filteredTable = `${tableToAccess}?_&userId=${currentUser}&${notCompleted}`;
     apiManager.getField(filteredTable)
       .then(allUserTasks => {
         console.log("All user's tasks: ", allUserTasks);
@@ -39,7 +40,8 @@ export default class Tasks extends Component {
             this.state.allTasks.map(singleTask => {
               return <TaskCard
                 key={singleTask.id.toString()}
-                currentTask={singleTask} />
+                currentTask={singleTask}
+                loadTasks={() => { this.loadTasks() }} />
             })
           }
         </article>

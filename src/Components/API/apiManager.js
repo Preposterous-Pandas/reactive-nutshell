@@ -158,6 +158,18 @@ class apiManager {
         })
     }
 
+    completeTask(taskId) {
+        return fetch(`http://localhost:5002/tasks/${taskId}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "completed": true
+            })
+        })
+    }
+
     postFriend(user, yourid) {
         return fetch("http://localhost:5002/friends", {
             headers: {
