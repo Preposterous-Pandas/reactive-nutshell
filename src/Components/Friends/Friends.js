@@ -81,7 +81,7 @@ export default class Friends extends Component {
     if (this.state.addFriendMode) {
       return (
         <div className="friends">
-          <h4>Enter Name</h4>
+          <h2 className="section-headline">Friends</h2>
           <button id="cancel-add-friend-btn" onClick={this.setAddFriendMode}>
             Cancel
           </button>
@@ -100,9 +100,9 @@ export default class Friends extends Component {
     } else {
       return (
         <div className="friends">
-          <h4>Your Friends</h4>
+          <h2 className="section-headline">Friends</h2>
           <button id="search-users-btn" onClick={this.setAddFriendMode}>
-            Search Friends By Name
+            Search Users
           </button>
           {this.props.friends.map(friend => (
             <Friend
