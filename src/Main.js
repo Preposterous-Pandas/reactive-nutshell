@@ -9,7 +9,7 @@ import API from "./Components/API/apiManager";
 
 export default class Main extends Component {
   state = {
-    friends: []
+    friendList: []
   };
 
   readFriends = () => {
@@ -18,18 +18,18 @@ export default class Main extends Component {
     ).then(friends => {
       console.log("phils test", friends);
       this.setState({
-        friends: friends
+        friends: friendList
       });
     });
   };
 
-  createFriend = friendToAddId => {
+  beFriend = friendToAddId => {
     API.addFriend(
       sessionStorage.getItem("activeUser") ||
         localStorage.getItem("activeUser"),
       friendToAddId
     ).then(() => {
-      this.read();
+      this.readFriends();
     });
   };
 
@@ -37,25 +37,33 @@ export default class Main extends Component {
     this.readFriends();
   }
 
-  //   beFriend = buddy => {
-  //     API.postFriend(buddy, sessionStorage.getItem("activeUser")).then(
-  //       response => {
-  //         console.log("post friend response", response);
-  //         this.setState({ friendList: API.allFriends() });
-  //       }
-  //     );
-  //   };
+  // beFriend = (buddy) => {
+  //     if (this.state.friendList.includes(buddy)){
+  //         alert("You're already friends with this person!")
+  //         return
+  //     }
+  //     API.postFriend(buddy, sessionStorage.getItem('activeUser'))
+  //         .then(response => {
+  //             console.log('post friend response', response)
+  //             API.allFriends()
+  //                 .then(friends => {
+  //                     this.setState({ friendList: friends });
+  //                 })
+  //         })
+  // }
+
   render() {
     return (
       <React.Fragment>
         <Header />
-        <News friends={this.state.friends} />
+        <News friends={this.state.friendList} />
         <Friends
-          createFriend={this.createFriend}
-          friends={this.state.friends}
+          beFriend={this.beFriend}
+          friends={this.state.friendList}
+          readFriends={this.state.readFriends}
         />
-        {/* <Chat beFriend={this.createFriend} /> */}
-        <Events friends={this.state.friends} />
+        <Chat beFriend={this.beFriend} />
+        <Events friends={this.state.friendList} />
         <Tasks />
       </React.Fragment>
     );

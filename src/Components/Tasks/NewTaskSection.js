@@ -9,7 +9,7 @@ export default class NewTaskSection extends Component {
     // This property is used in the render function is to determine whether to show the Add Task button or the New Task form
     // It is toggled to 'true' by clicking the Add Task button and to 'false' by clicking the Save Task button on the form
     addingTask: false,
-    
+
     // These two properties are updated by handleFieldChange() and used in addNewTask() as the properties that get passed to the POST
     newTaskName: "",
     newTaskDate: ""
@@ -32,7 +32,7 @@ export default class NewTaskSection extends Component {
 
     apiManager.postTask(currentUserId, taskName, taskDate)
       .then(
-
+        this.props.loadTasks,
         this.setState({ addingTask: false })
       )
 
