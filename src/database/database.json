@@ -1,0 +1,114 @@
+{
+  "users": [
+    {
+      "name": "Evan Lusky",
+      "password": "password",
+      "email": "ewlusky@gmail.com",
+      "id": 1
+    },
+    {
+      "name": "Second Person",
+      "password": "password",
+      "email": "person@gmail.com",
+      "id": 2
+    },
+    {
+      "name": "phil",
+      "email": "phil@phil.net",
+      "id": 3
+    }
+  ],
+  "friends": [
+    {
+      "userId": "2",
+      "yourId": "1",
+      "id": 25
+    },
+    {
+      "userId": "1",
+      "yourId": "2",
+      "id": 30
+    },
+    {
+      "userId": "1",
+      "yourId": "3",
+      "id": 30
+    }
+  ],
+  "messages": [
+    {
+      "userId": "1",
+      "message": "Hey this is Evan",
+      "id": 1
+    },
+    {
+      "userId": "1",
+      "message": "This is also Evan",
+      "id": 2
+    },
+    {
+      "userId": "2",
+      "message": "This is the first message from me!",
+      "id": 7
+    }
+  ],
+  "news": [
+    {
+      "userId": "1",
+      "title": "Evan's News 4",
+      "url": "www.ewlusky.com",
+      "synopsis": "cubes",
+      "timestamp": "2014-07-18T19:47:49.622Z",
+      "id": 1
+    },
+    {
+      "userId": "2",
+      "title": "Second's News 3",
+      "url": "www.sldkf.com",
+      "synopsis": "some stuff happend",
+      "timestamp": "2015-07-18T19:47:49.622Z",
+      "id": 2
+    },
+    {
+      "userId": "1",
+      "title": "new time test 2",
+      "url": "kdididi",
+      "synopsis": "tirm eoi",
+      "timestamp": "2016-07-18T19:47:49.622Z",
+      "id": 3
+    },
+    {
+      "userId": "1",
+      "title": "Newest",
+      "url": "hi.com",
+      "synopsis": "hi",
+      "timestamp": "2018-07-18T19:47:49.622Z",
+      "id": 5
+    }
+  ],
+  "events": [
+    {
+      "userId": "1",
+      "name": "Evan's Event",
+      "location": "NSS",
+      "date": "2018-07-10T19:30",
+      "id": 1
+    },
+    {
+      "userId": "1",
+      "name": "Go to bed at the correct time.",
+      "location": "Home",
+      "date": "2018-07-10T20:30",
+      "id": 11
+    }
+  ],
+  "tasks": [
+    {
+      "userId": "1",
+      "task": "Evan's task",
+      "date": "2018-07-16T01:23",
+      "completed": "false",
+      "id": 21
+    }
+  ]
+}

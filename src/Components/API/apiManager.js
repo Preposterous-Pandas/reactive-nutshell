@@ -1,24 +1,34 @@
-
-
 class apiManager {
   getField(resource) {
-    return fetch(`http://localhost:5002/${resource}`).then(e => e.json())
+    return fetch(`http://localhost:5002/${resource}`).then(e => e.json());
   }
 
   allFriends() {
     return fetch(`http://localhost:5002/friends`)
       .then(e => e.json())
       .then(friends => {
-        const fList = []
-        const User = sessionStorage.getItem("activeUser")
+        const fList = [];
+        const User = sessionStorage.getItem("activeUser");
         friends.forEach(friend => {
           if (friend.yourId == User) {
-            fList.push(friend.userId)
+            fList.push(friend.userId);
           }
-        })
+        });
         // console.log("API friends", fList)
-        return fList
-      })
+        return fList;
+      });
+  }
+
+  getFriendsList(currentUserId) {
+    return fetch(
+      `http://localhost:5002/friends?_expand=user&yourId=${currentUserId}`
+    ).then(e => e.json());
+  }
+
+  deleteFriend(relId) {
+    return fetch(`http://localhost:5002/friends/${relId}`, {
+      method: "DELETE"
+    });
   }
 
   postUser(name, email) {
@@ -31,72 +41,68 @@ class apiManager {
         name: name,
         email: email
       })
-    })
+    });
   }
-    delEvent(id) {
-        return fetch(`http://localhost:5002/events/${id}`, {
-            method: "DELETE"
-        })
-    }
+  delEvent(id) {
+    return fetch(`http://localhost:5002/events/${id}`, {
+      method: "DELETE"
+    });
+  }
 
-    postNews(user, title, url, syn, time) {
-        
-        return fetch("http://localhost:5002/news", {
-            headers: {
-                'Content-Type': 'application/json'
-            },            method: "POST",
-            body: JSON.stringify({
-                "userId": user,
-                "title": title,
-                "url": url,
-                "synopsis": syn,
-                "timestamp": time
-            })
-        })
-    }
+  postNews(user, title, url, syn, time) {
+    return fetch("http://localhost:5002/news", {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify({
+        userId: user,
+        title: title,
+        url: url,
+        synopsis: syn,
+        timestamp: time
+      })
+    });
+  }
 
+  postTask(user, description, date) {
+    return fetch("http://localhost:5002/tasks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userId: user,
+        description: description,
+        date: date,
+        completed: false
+      })
+    });
+  }
 
+  editTask(taskId, newDescription) {
+    return fetch(`http://localhost:5002/tasks/${taskId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        description: newDescription
+      })
+    });
+  }
 
-    postTask(user, description, date) {
-        return fetch("http://localhost:5002/tasks", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "userId": user,
-                "description": description,
-                "date": date,
-                "completed": false
-            })
-        })
-    }
-
-    editTask(taskId, newDescription) {
-        return fetch(`http://localhost:5002/tasks/${taskId}`, {
-            method: "PATCH",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "description": newDescription
-            })
-        })
-    }
-
-    completeTask(taskId) {
-        return fetch(`http://localhost:5002/tasks/${taskId}`, {
-            method: "PATCH",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "completed": true
-            })
-        })
-    }
-
-  
+  completeTask(taskId) {
+    return fetch(`http://localhost:5002/tasks/${taskId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        completed: true
+      })
+    });
+  }
 
   postEvent(user, name, loc, date) {
     return fetch("http://localhost:5002/events", {
@@ -110,10 +116,8 @@ class apiManager {
         location: loc,
         date: date
       })
-    })
+    });
   }
-
-  
 
   postFriend(user, yourid) {
     return fetch("http://localhost:5002/friends", {
@@ -125,22 +129,22 @@ class apiManager {
         userId: user,
         yourId: yourid
       })
-    })
+    });
   }
 
-
-
- 
-
   getUser(userId) {
-    return fetch(`http://localhost:5002/users/${userId}`).then(e => e.json())
+    return fetch(`http://localhost:5002/users/${userId}`).then(e => e.json());
+  }
+
+  getUsers() {
+    return fetch("http://localhost:5002/users").then(e => e.json());
   }
 
   ///////////////////////////////////MESSAGES API CALLS////////////////////////////////////////////////
   getMessages() {
     return fetch(
       "http://localhost:5002/messages?_expand=user&_sort=timeStamp&_order=asc"
-    ).then(e => e.json())
+    ).then(e => e.json());
   }
 
   postMessage(userId, message, timestamp) {
@@ -154,7 +158,7 @@ class apiManager {
         message: message,
         timeStamp: timestamp
       })
-    })
+    });
   }
 
   putMessage(msgId, userId, newMessage, messageTimeStamp) {
@@ -168,16 +172,15 @@ class apiManager {
         message: newMessage,
         timeStamp: messageTimeStamp
       })
-    })
+    });
   }
 
   delMessage(msgId) {
     return fetch(`http://localhost:5002/messages/${msgId}`, {
       method: "DELETE"
-    })
+    });
   }
   ///////////////////////////////////MESSAGES API CALLS////////////////////////////////////////////////
-
 
   putEvent(user, name, loc, date, id) {
     return fetch(`http://localhost:5002/events/${id}`, {
@@ -191,29 +194,21 @@ class apiManager {
         location: loc,
         date: date
       })
-    })
+    });
   }
-
-  
 
   delNews(id) {
     return fetch(`http://localhost:5002/news/${id}`, {
       method: "DELETE"
-    })
+    });
   }
 
- 
-
-  
-
-  
   delFriend(id) {
     return fetch(`http://localhost:5002/friends/${id}`, {
       method: "DELETE"
-    })
+    });
   }
 }
 
 const API = new apiManager();
 export default API;
-
