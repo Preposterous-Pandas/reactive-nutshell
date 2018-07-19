@@ -4,7 +4,7 @@ import API from '../API/apiManager'
 import styled from 'styled-components';
 
 const Red = styled.div`
-    background-color: black;
+    background-color: blue;
     color: white;
 `
 
