@@ -16,7 +16,7 @@ class apiManager {
             fList.push(friend.userId)
           }
         })
-        console.log("API friends", fList)
+        // console.log("API friends", fList)
         return fList
       })
   }
@@ -55,11 +55,7 @@ class apiManager {
         })
     }
 
-    delNews(id) {
-        return fetch(`http://localhost:5002/news/${id}`, {
-            method: "delete"
-        }).then(e => e.json())
-    }
+
 
     postTask(user, description, date) {
         return fetch("http://localhost:5002/tasks", {
@@ -91,21 +87,7 @@ class apiManager {
         })
     }
 
-    postFriend(user, yourid) {
-        return fetch("http://localhost:5002/friends", {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({
-                "userId": user,
-                "yourId": yourid
-            })
-        })
-    }
-  getUser(userId) {
-    return fetch(`http://localhost:5002/users/${userId}`).then(e => e.json())
-  }
+  
 
   postEvent(user, name, loc, date) {
     return fetch("http://localhost:5002/events", {
@@ -122,78 +104,7 @@ class apiManager {
     })
   }
 
-  putEvent(user, name, loc, date, id) {
-    return fetch(`http://localhost:5002/events/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: user,
-        name: name,
-        location: loc,
-        date: date
-      })
-    })
-  }
-
-  delEvent(id) {
-    return fetch(`http://localhost:5002/events/${id}`, {
-      method: "DELETE"
-    })
-  }
-
-  postNews(user, title, url, syn, time) {
-    return fetch("http://localhost:5002/news", {
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "POST",
-      body: JSON.stringify({
-        userId: user,
-        title: title,
-        url: url,
-        synopsis: syn,
-        timestamp: time
-      })
-    })
-  }
-
-  delNews(id) {
-    return fetch(`http://localhost:5002/news/${id}`, {
-      method: "delete"
-    }).then(e => e.json())
-  }
-
-  postTask(user, task, date) {
-    return fetch("http://localhost:5002/tasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: user,
-        task: task,
-        date: date,
-        completed: false
-      })
-    })
-  }
-
-  putTask(user, task, done, date, id) {
-    return fetch(`http://localhost:5002/tasks/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: user,
-        task: task,
-        date: date,
-        completed: done
-      })
-    })
-  }
+  
 
   postFriend(user, yourid) {
     return fetch("http://localhost:5002/friends", {
@@ -208,24 +119,9 @@ class apiManager {
     })
   }
 
-  delFriend(id) {
-    return fetch(`http://localhost:5002/friends/${id}`, {
-      method: "DELETE"
-    })
-  }
 
-  postUser(name, email) {
-    return fetch("http://localhost:5002/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email
-      })
-    }).then(e => e.json())
-  }
+
+ 
 
   getUser(userId) {
     return fetch(`http://localhost:5002/users/${userId}`).then(e => e.json())
@@ -273,20 +169,6 @@ class apiManager {
   }
   ///////////////////////////////////MESSAGES API CALLS////////////////////////////////////////////////
 
-  postEvent(user, name, loc, date) {
-    return fetch("http://localhost:5002/events", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: user,
-        name: name,
-        location: loc,
-        date: date
-      })
-    })
-  }
 
   putEvent(user, name, loc, date, id) {
     return fetch(`http://localhost:5002/events/${id}`, {
@@ -303,27 +185,7 @@ class apiManager {
     })
   }
 
-  delEvent(id) {
-    return fetch(`http://localhost:5002/events/${id}`, {
-      method: "DELETE"
-    })
-  }
-
-  postNews(user, title, url, syn, time) {
-    return fetch("http://localhost:5002/news", {
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "POST",
-      body: JSON.stringify({
-        userId: user,
-        title: title,
-        url: url,
-        synopsis: syn,
-        timestamp: time
-      })
-    })
-  }
+  
 
   delNews(id) {
     return fetch(`http://localhost:5002/news/${id}`, {
@@ -331,49 +193,11 @@ class apiManager {
     })
   }
 
-  postTask(user, task, done, date) {
-    return fetch("http://localhost:5002/tasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: user,
-        task: task,
-        date: date,
-        completed: done
-      })
-    })
-  }
+ 
 
-  putTask(user, task, done, date, id) {
-    return fetch(`http://localhost:5002/tasks/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: user,
-        task: task,
-        date: date,
-        completed: done
-      })
-    })
-  }
+  
 
-  postFriend(user, yourid) {
-    return fetch("http://localhost:5002/friends", {
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "POST",
-      body: JSON.stringify({
-        userId: user,
-        yourId: yourid
-      })
-    })
-  }
-
+  
   delFriend(id) {
     return fetch(`http://localhost:5002/friends/${id}`, {
       method: "DELETE"

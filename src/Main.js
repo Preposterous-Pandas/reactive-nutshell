@@ -22,7 +22,7 @@ export default class Main extends Component {
         API.allFriends()
             .then(friends => {
                 this.setState({ friendList: friends });
-                console.log("Main all friends", this.state.friendList)
+                // console.log("Main all friends", this.state.friendList)
             })
     }
 
@@ -33,7 +33,7 @@ export default class Main extends Component {
         }
         API.postFriend(buddy, sessionStorage.getItem('activeUser'))
             .then(response => {
-                console.log('post friend response', response)
+                // console.log('post friend response', response)
                 API.allFriends().then(friends => {
                   this.setState({ friendList: friends })
                 })
