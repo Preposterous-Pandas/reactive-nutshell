@@ -6,7 +6,8 @@ export default class TaskCard extends Component {
 
   state = {
     editingTask: false,
-    taskName: ""
+    taskToEdit: 0,
+    editedTaskName: ""
   }
 
   // This function gets the id of the box clicked, parses it into an integer, passes the integer into the completeTask method from the apiManager, and then loads all the tasks
@@ -16,31 +17,41 @@ export default class TaskCard extends Component {
       .then(this.props.loadTasks);
   }
 
-  // This function gets the id of the edit
+  // This function updates state to load the edit form and get the id of the task being edited
   editTask = (evt) => {
     evt.preventDefault();
-    console.log("Edit clicked:");
-    this.setState({ editingTask: true });
     const editId = parseInt(evt.target.id);
-    console.log(editId);
-
+    this.setState({ editingTask: true });
+    this.setState({ taskToEdit: editId })
   }
 
+  // This function keeps track of all the changes to the input field and stores them in state
+  handleFieldChange = (evt) => {
+    const stateToChange = {}
+    stateToChange[evt.target.id] = evt.target.value
+    this.setState(stateToChange)
+  }
+
+  // This function takes the new task description and the task's id out of state, passes them to the apiManager, and then reloads all the tasks
   saveTask = (evt) => {
     evt.preventDefault();
     console.log("Saving...");
-    this.setState({ editingTask: false });
+    const taskId = this.state.taskToEdit;
+    const newDescription = this.state.editedTaskName;
+    apiManager.editTask(taskId, newDescription)
+      .then(this.props.loadTasks, this.setState({ editingTask: false })
+      )
   }
 
   render() {
     if (this.state.editingTask) {
       return (
-        <form onSubmit={this.saveTask}>
-          <label>New task description:</label>
-          <input type="text"
-            id={`${this.props.currentTask.id}input`}
+        <form onSubmit={this.saveTask} id={`${this.props.currentTask.id}form`}>
+          <label>Edit task description:</label>
+          <input type="text" id="editedTaskName"
+            onChange={this.handleFieldChange}
             defaultValue={this.props.currentTask.description} />
-            <button type="submit">Save changes</button>
+          <button type="submit">Save changes</button>
         </form>
       )
     } else {
