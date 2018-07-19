@@ -72,17 +72,26 @@ class apiManager {
         })
     }
 
-    putTask(user, description, done, date, id) {
-        return fetch(`http://localhost:5002/tasks/${id}`, {
-            method: "PUT",
+    editTask(taskId, newDescription) {
+        return fetch(`http://localhost:5002/tasks/${taskId}`, {
+            method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "userId": user,
-                "description": description,
-                "date": date,
-                "completed": done
+                "description": newDescription
+            })
+        })
+    }
+
+    completeTask(taskId) {
+        return fetch(`http://localhost:5002/tasks/${taskId}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "completed": true
             })
         })
     }
