@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import formLogic from "./FormLogic";
-import GetEvents from "./GetEvents";
 
 export default class NewEventButton extends Component {
   state = {
@@ -19,8 +18,7 @@ export default class NewEventButton extends Component {
           <br />
           <button
             onClick={() => {
-              save.addEvent();
-              this.setState({ viewForm: false });
+              save.addEvent().then(this.setState({ viewForm: false }));
             }}
           >
             Save
@@ -30,7 +28,6 @@ export default class NewEventButton extends Component {
     } else {
       return (
         <React.Fragment>
-          <GetEvents />
           <button
             onClick={() => {
               this.setState({ viewForm: true });

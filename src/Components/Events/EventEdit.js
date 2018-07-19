@@ -1,5 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 
-editEvent = event => {
-  const editButton = document.querySelector("event-edit");
-};
+export default class EditForm extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <input type="text" />
+      </React.Fragment>
+    );
+  }
+}

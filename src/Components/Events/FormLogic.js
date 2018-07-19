@@ -7,7 +7,7 @@ export default class stuff {
     const eventLocation = document.querySelector("#eventLocation").value;
     const eventDate = document.querySelector("#eventDate").value;
 
-    apiManager.postEvent(
+    return apiManager.postEvent(
       sessionStorage.getItem("activeUser"),
       eventName,
       eventLocation,
