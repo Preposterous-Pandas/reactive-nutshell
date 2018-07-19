@@ -1,4 +1,5 @@
 import React from "react"
+import Moment from 'react-moment';
 
 
 export default props => {
@@ -10,9 +11,9 @@ export default props => {
                 </h5>
                 <p className="card-body">{props.article.synopsis}</p>
                 <p className="card-body">{props.article.url}</p>
-                <p className="card-body">{props.article.timestamp}</p>
+                <p className="card-body"><Moment>{props.article.timestamp}</Moment></p>
 
-                <a href="#" onClick={() => props.checkOutArticle(props.article.id)}>Delete</a>
+                <a href="#" onClick={() => props.checkOutarticle(props.article.id)}>Delete</a>
             </div>
         </div>
     )

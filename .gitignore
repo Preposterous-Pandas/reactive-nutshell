@@ -20,7 +20,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-package.json
 package-lock.json
 
-database.json
+src/database/database.json

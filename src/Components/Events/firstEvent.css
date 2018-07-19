@@ -1,0 +1,3 @@
+.events > div:first-of-type > * {
+  color: red;
+}

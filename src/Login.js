@@ -20,7 +20,7 @@ export default class Login extends Component {
     this.setState(stateToChange)
   }
   setRemember = e => {
-    console.log(e.target.checked)
+    // console.log(e.target.checked)
     switch (e.target.checked) {
       default:
         this.setState({ remember: false })
@@ -40,7 +40,7 @@ export default class Login extends Component {
   handleLogin = e => {
     e.preventDefault()
     apiController.getField(`users?name=${this.state.username}`).then(user => {
-      console.log(user)
+      // console.log(user)
 
       //Check whether or not user exists by checking the return from ajax call. If return is empty array, or if the username or email dont match throw error
       if (
@@ -69,6 +69,7 @@ export default class Login extends Component {
                       if (nameResponse.length === 0 && emailResponse.length === 0) {
                           //if not, then register the user
                           apiController.postUser(this.state.username, this.state.email).then((response) => {
+                            sessionStorage.setItem("activeUser", response.id)
                               this.setStorageType()
                               this.props.logUserIn()
                           })

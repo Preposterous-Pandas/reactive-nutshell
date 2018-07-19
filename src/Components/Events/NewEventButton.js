@@ -18,7 +18,13 @@ export default class NewEventButton extends Component {
           <br />
           <button
             onClick={() => {
-              save.addEvent().then(this.setState({ viewForm: false }));
+              save
+                .addEvent()
+                .then(
+                  this.setState({ viewForm: false }),
+                  this.props.getEvents()
+                );
+              console.log(this.props);
             }}
           >
             Save
