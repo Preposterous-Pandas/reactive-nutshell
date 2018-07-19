@@ -31,7 +31,7 @@ export default class Message extends Component {
     }
 
     if (!this.props.editMsgButtonDisplay) {
-      console.log("reg mode")
+      // console.log("reg mode")
       return (
         <p id={this.props.message.id} className="msgItem">
               <span className={classNamesForUser}>{this.props.message.user.name}</span>
@@ -92,7 +92,7 @@ export default class Message extends Component {
           <button
             className="saveMsgEditsButton"
             onClick={() => {
-              console.log("clicked!")
+              // console.log("clicked!")
               this.props.update(
                 this.props.message.id,
                 this.props.currentUser,
