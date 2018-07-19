@@ -1,52 +1,52 @@
-/* Track */
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: cornflowerblue;
-}
+@import url("https://fonts.googleapis.com/css?family=Chivo|Julius+Sans+One");
 
-::-webkit-scrollbar-thumb:hover {
-    background: cornflowerblue;
+::-webkit-scrollbar {
+  display: none;
 }
 
 body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "Chivo", sans-serif;
 }
 
 button {
-    /* margin-top: 10px; */
-    /* width: 10vw; */
-    border-radius: 15px;
-    border: none;
-    background-color: cornflowerblue;
-    color: white;
-    font-size: 1.5rem;
-    transition: .5s;
-    outline: none;
-    display: inline-block;
+  /* margin-top: 10px; */
+  /* width: 10vw; */
+  border-radius: 15px;
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  font-size: 1.5rem;
+  transition: 0.5s;
+  outline: none;
+  display: inline-block;
+  margin-left: 5px;
 }
 
 input {
-    width: 20vw;
-    border-radius: 8px;
-    border: 2px cornflowerblue solid;
-    padding: 5px;
-    margin-bottom: 5px;
-    outline: none;
-    display: block;
-    align-self: center;
+  width: 20vw;
+  border-radius: 8px;
+  border: 2px cornflowerblue solid;
+  padding: 5px;
+  margin-bottom: 5px;
+  outline: none;
+  display: block;
+  align-self: center;
 }
 
 .section-headline {
   margin-top: 0;
+  margin-left: 0;
   width: 100%;
   background-color: cornflowerblue;
   color: white;
   padding: 5px;
   font-size: 1.3rem;
+  text-align: center;
+}
+
+.News div {
+  padding-left: 10px;
 }

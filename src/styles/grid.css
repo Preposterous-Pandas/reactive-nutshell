@@ -11,18 +11,25 @@
 }
 
 #main-container > div {
-  border: 1px solid black;
+  border: .5px solid cornflowerblue;
   /* margin: .5em; */
-  padding: .5em;
+  padding-left: 0;
+  /* padding-top: 3px; */
   overflow-y: scroll;
   overflow-x: hidden;
-  border-radius: 5px;
+  border-radius: 0;
 }
 
-.header { /* header */
+#main-container > .News {
+  padding-left: 10px;
+}
+
+.header {
+      font-family: 'Julius Sans One', sans-serif;
+  padding-top: 1.2rem;
+  /* header */
   overflow: hidden;
   margin: 0;
-  padding: 0;
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 1;
@@ -31,7 +38,8 @@
   color: white;
   font-size: 5em;
   text-align: center;
-  text-shadow: 1px 2px 4px grey;
+  text-shadow: 3px 3px 4px rgb(95, 94, 94);
+  border-bottom: 2.5px solid rgb(0, 0, 0);
 }
 .tasks { /* tasks */
   grid-column-start: 3;
