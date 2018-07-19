@@ -29,6 +29,9 @@ export default class Chat extends Component {
 
   create = (e, userId, message) => {
     e.preventDefault()
+    if (this.state.newMessageInput === ""){
+    alert("Please enter message text")
+    return}
     const curTimeStamp = new Date()
     messagesApi.postMessage(userId, message, curTimeStamp).then(() => {
       this.read("createNew")

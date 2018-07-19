@@ -8,10 +8,13 @@ export default class Message extends Component {
     editMode: false
   }
 
+
+
   componentDidMount() {
     this.setState({
       editedMessage: this.props.message.message
     })
+    localStorage.setItem("messageChange", 1)
   }
 
   handleFieldChange = evt => {

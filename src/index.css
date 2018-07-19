@@ -5,8 +5,8 @@ body {
 }
 
 button {
-    margin-top: 10px;
-    width: 10vw;
+    /* margin-top: 10px; */
+    /* width: 10vw; */
     border-radius: 15px;
     border: none;
     background-color: cornflowerblue;
@@ -15,6 +15,15 @@ button {
     transition: .5s;
     outline: none;
     display: inline-block;
+}
+
+input {
+    width: 20vw;
+    border-radius: 8px;
+    border: 2px cornflowerblue solid;
+    padding: 5px;
+    margin-bottom: 5px;
+    outline: none;
+    display: block;
     align-self: center;
-    margin-right: 10px;
 }
