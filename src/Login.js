@@ -111,7 +111,7 @@ setStorageType(){
       <div id="login-stuff">
       <form>
         <h1 className="main-headline">Welcome to Reactive Nutshell</h1>
-          <h3 className="marginLeft secondary-headline">Please Log In</h3>
+          <h3 className="secondary-headline">Please log in or register a new account</h3>
           <label className="marginLeft" htmlFor="inputUname">Username</label>
         <input
           onChange={this.handleFieldChange}

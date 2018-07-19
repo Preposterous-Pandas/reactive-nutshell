@@ -26,6 +26,8 @@ body {
 .secondary-headline {
     font-size: 2.5em;
     margin-bottom: 30px;
+    text-align: center;
+    /* margin-left: 10%; */
 }
 
 .login-input {
