@@ -15,8 +15,8 @@ export default class Main extends Component {
   readFriends = () => {
     API.getFriendsList(
       sessionStorage.getItem("activeUser") || localStorage.getItem("activeUser")
-    ).then(friends => {
-      console.log("phils test", friends);
+    ).then(friendList => {
+      console.log("phils test", friendList);
       this.setState({
         friends: friendList
       });

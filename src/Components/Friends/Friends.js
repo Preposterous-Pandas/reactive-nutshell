@@ -6,7 +6,7 @@ import SearchedFriends from "./SearchedFriends";
 
 const apiManager = APIManager;
 
-export default class Friend extends Component {
+export default class Friends extends Component {
   state = {
     users: [],
     addFriendMode: false,
@@ -33,9 +33,9 @@ export default class Friend extends Component {
   };
 
   searchUsers = searchString => {
-    searchMatchUsers = [];
+    const searchMatchUsers = [];
     this.state.users.forEach(user => {
-      if (user.name.includes(this.state.addFriendInput)) {
+      if (user.name.includes(searchString)) {
         searchMatchUsers.push(user);
       }
     });
@@ -62,7 +62,7 @@ export default class Friend extends Component {
           <button id="cancel-add-friend-btn" onClick={this.setAddFriendMode}>
             Cancel
           </button>
-          <addFriendInput
+          <AddFriendInput
             handleFieldChange={this.handleFieldChange}
             addFriendInput={this.state.addFriendInput}
           />

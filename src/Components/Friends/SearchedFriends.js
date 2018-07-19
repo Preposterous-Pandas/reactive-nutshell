@@ -1,9 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import SearchedFriend from "./SearchedFriend";
 
-export default class SearchedFriends extends Component {
+export default class SearchedFriends extends React.Component {
   state = {
     searchMatchUsers: []
   };
