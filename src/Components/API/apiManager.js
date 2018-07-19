@@ -33,7 +33,76 @@ class apiManager {
       })
     })
   }
+    delEvent(id) {
+        return fetch(`http://localhost:5002/events/${id}`, {
+            method: "DELETE"
+        })
+    }
 
+    postNews(user, title, url, syn, time) {
+        
+        return fetch("http://localhost:5002/news", {
+            headers: {
+                'Content-Type': 'application/json'
+            },            method: "POST",
+            body: JSON.stringify({
+                "userId": user,
+                "title": title,
+                "url": url,
+                "synopsis": syn,
+                "timestamp": time
+            })
+        })
+    }
+
+    delNews(id) {
+        return fetch(`http://localhost:5002/news/${id}`, {
+            method: "delete"
+        }).then(e => e.json())
+    }
+
+    postTask(user, description, date) {
+        return fetch("http://localhost:5002/tasks", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "userId": user,
+                "description": description,
+                "date": date,
+                "completed": false
+            })
+        })
+    }
+
+    putTask(user, description, done, date, id) {
+        return fetch(`http://localhost:5002/tasks/${id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "userId": user,
+                "description": description,
+                "date": date,
+                "completed": done
+            })
+        })
+    }
+
+    postFriend(user, yourid) {
+        return fetch("http://localhost:5002/friends", {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({
+                "userId": user,
+                "yourId": yourid
+            })
+        })
+    }
   getUser(userId) {
     return fetch(`http://localhost:5002/users/${userId}`).then(e => e.json())
   }
