@@ -28,7 +28,6 @@ export default class TaskCard extends Component {
         editedTaskName: this.props.currentTask.description
       }
     );
-    this.setState({ taskToEdit: editId })
   }
 
   // This function keeps track of all the changes to the input field and stores them in state

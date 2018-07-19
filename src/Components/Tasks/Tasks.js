@@ -16,7 +16,8 @@ export default class Tasks extends Component {
     const currentUser = sessionStorage.getItem("activeUser");
     const tableToAccess = "tasks";
     const notCompleted = "completed=false";
-    const filteredTable = `${tableToAccess}?_&userId=${currentUser}&${notCompleted}`;
+    const sortedByDate = "_sort=date&_order=asc";
+    const filteredTable = `${tableToAccess}?_&userId=${currentUser}&${notCompleted}&${sortedByDate}`;
     apiManager.getField(filteredTable)
       .then(allUserTasks => {
         // console.log("All user's tasks: ", allUserTasks);
