@@ -136,6 +136,10 @@ class apiManager {
     return fetch(`http://localhost:5002/users/${userId}`).then(e => e.json());
   }
 
+  getUsers() {
+    return fetch("http://localhost:5002/users").then(e => e.json());
+  }
+
   ///////////////////////////////////MESSAGES API CALLS////////////////////////////////////////////////
   getMessages() {
     return fetch(
