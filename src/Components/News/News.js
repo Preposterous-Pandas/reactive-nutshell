@@ -76,6 +76,7 @@ export default class News extends Component {
 
                     {
                         this.state.articles.map(article => {
+                            console.log("test log", this.props.friends)
                             return this.props.friends.concat([sessionStorage.getItem('activeUser')]).includes(`${article.userId}`) && <Article key={article.id}
                                 article={article}
                                 checkOutarticle={this.checkOutarticle}
