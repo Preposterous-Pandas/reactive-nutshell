@@ -22,7 +22,7 @@ export default class Chat extends Component {
       this.setState({
         buildSource: buildSource
       })
-      console.log(this.refs.messengerBody.scrollTop)
+      // console.log(this.refs.messengerBody.scrollTop)
       this.refs.chatBottom.scrollIntoView({ behavior: "smooth" })
     })
   }
@@ -42,7 +42,7 @@ export default class Chat extends Component {
   }
 
   update = (msgId, userId, newMessage, messageTimeStamp) => {
-    console.log("updating")
+    // console.log("updating")
     messagesApi.putMessage(msgId, userId, newMessage, messageTimeStamp)
       .then(() => {
         this.read()

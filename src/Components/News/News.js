@@ -4,7 +4,7 @@ import API from '../API/apiManager'
 import styled from 'styled-components';
 
 const Red = styled.div`
-    background-color: black;
+    background-color: blue;
     color: white;
 `
 
@@ -36,7 +36,7 @@ export default class News extends Component {
     checkInarticle = () => {
         API.postNews(sessionStorage.getItem("activeUser"), this.state.newsTitle, this.state.newsURL, this.state.newsBody, new Date)
             .then(result => {
-                console.log('news post result:', result);
+                // console.log('news post result:', result);
                 API.getField("news?_sort=timestamp&_order=desc")
                     .then(articles => this.setState({ articles: articles }))
                 this.setState({ newsTitle: "" });
@@ -55,7 +55,7 @@ export default class News extends Component {
                 return API.getField("news?_sort=timestamp&_order=desc")
             })
             .then(articleList => {
-                console.log('check out articles list', articleList)
+                // console.log('check out articles list', articleList)
                 this.setState({ articles: articleList });
             })
     }
@@ -76,7 +76,7 @@ export default class News extends Component {
 
                     {
                         this.state.articles.map(article => {
-                            console.log("test log", this.props.friends)
+                            // console.log("test log", this.props.friends)
                             return this.props.friends.concat([sessionStorage.getItem('activeUser')]).includes(`${article.userId}`) && <Article key={article.id}
                                 article={article}
                                 checkOutarticle={this.checkOutarticle}
