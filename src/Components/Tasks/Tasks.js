@@ -12,13 +12,14 @@ export default class Tasks extends Component {
   // This code will get the active user's id from session storage and then build out the list of tasks
   // It runs after componentDidMount and is passed to the NewTaskSection to run after a new task is saved
   loadTasks = () => {
-    console.log("loading tasks...");
+    // console.log("loading tasks...");
     const currentUser = sessionStorage.getItem("activeUser");
     const tableToAccess = "tasks";
-    const filteredTable = `${tableToAccess}?_&userId=${currentUser}`;
+    const notCompleted = "completed=false";
+    const filteredTable = `${tableToAccess}?_&userId=${currentUser}&${notCompleted}`;
     apiManager.getField(filteredTable)
       .then(allUserTasks => {
-        console.log("All user's tasks: ", allUserTasks);
+        // console.log("All user's tasks: ", allUserTasks);
         this.setState({ allTasks: allUserTasks });
       })
   }
@@ -30,7 +31,7 @@ export default class Tasks extends Component {
   render() {
     return (
       <div className="tasks">
-        <h4>Tasks</h4>
+        <h4 className="section-headline">Tasks</h4>
 
         <NewTaskSection loadTasks={() => { this.loadTasks() }} />
 
@@ -39,7 +40,8 @@ export default class Tasks extends Component {
             this.state.allTasks.map(singleTask => {
               return <TaskCard
                 key={singleTask.id.toString()}
-                currentTask={singleTask} />
+                currentTask={singleTask}
+                loadTasks={() => { this.loadTasks() }} />
             })
           }
         </article>

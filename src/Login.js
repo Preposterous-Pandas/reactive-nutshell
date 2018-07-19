@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 // import { Redirect } from "react-router-dom"
 import apiController from "./Components/API/apiManager" //was api
+import "./styles/login.css"
 
 // const apiController = new api
 
@@ -20,7 +21,7 @@ export default class Login extends Component {
     this.setState(stateToChange)
   }
   setRemember = e => {
-    console.log(e.target.checked)
+    // console.log(e.target.checked)
     switch (e.target.checked) {
       default:
         this.setState({ remember: false })
@@ -40,7 +41,7 @@ export default class Login extends Component {
   handleLogin = e => {
     e.preventDefault()
     apiController.getField(`users?name=${this.state.username}`).then(user => {
-      console.log(user)
+      // console.log(user)
 
       //Check whether or not user exists by checking the return from ajax call. If return is empty array, or if the username or email dont match throw error
       if (
@@ -69,6 +70,7 @@ export default class Login extends Component {
                       if (nameResponse.length === 0 && emailResponse.length === 0) {
                           //if not, then register the user
                           apiController.postUser(this.state.username, this.state.email).then((response) => {
+                            sessionStorage.setItem("activeUser", response.id)
                               this.setStorageType()
                               this.props.logUserIn()
                           })
@@ -106,8 +108,10 @@ setStorageType(){
     //     return <Redirect to="/" />
     // } else {
     return (
+      <div id="login-stuff">
       <form>
-        <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 className="main-headline">Welcome to Reactive Nutshell</h1>
+        <h3 className="secondary-headline">Please Log In</h3>
         <label htmlFor="inputUname">Username</label>
         <input
           onChange={this.handleFieldChange}
@@ -117,6 +121,7 @@ setStorageType(){
           placeholder="Username"
           required=""
           autoFocus=""
+          className="login-input"
         />
         <label htmlFor="inputEmail">E-mail</label>
         <input
@@ -126,12 +131,15 @@ setStorageType(){
           id="email"
           placeholder="E-mail"
           required=""
+          className="login-input"
         />
-        <label htmlFor="rememberMe">Remember Me</label>
-        <input type="checkbox" ref="rememberMe" onChange={this.setRemember} />
-        <button type="submit" onClick={this.handleLogin}>Sign in</button>
-        <button onClick={(e) => this.registerUser(e)}>Register</button>
+        <label htmlFor="rememberMe">Remember Me
+          <input className="input-checkbox" type="checkbox" ref="rememberMe" onChange={this.setRemember} />
+        </label>
+        <button className="login-button" type="submit" onClick={this.handleLogin}>Sign in</button>
+        <button className="login-button register" onClick={(e) => this.registerUser(e)}>Register</button>
       </form>
+      </div>
     )
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import APIManager from "../API/apiManager";
 import "./chat.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class Message extends Component {
   state = {
@@ -11,6 +11,7 @@ export default class Message extends Component {
     this.setState({
       editedMessage: this.props.message.message
     });
+    localStorage.setItem("messageChange", 1);
   }
 
   handleFieldChange = evt => {
@@ -21,25 +22,20 @@ export default class Message extends Component {
 
   render() {
     // Normal Display
+    let classNamesForUser = "";
+    if (this.props.message.user.id == this.props.currentUser) {
+      classNamesForUser = "msgUser msgText me";
+    } else {
+      classNamesForUser = "msgUser msgText other";
+    }
+
     if (!this.props.editMsgButtonDisplay) {
+      // console.log("reg mode")
       return (
         <p id={this.props.message.id} className="msgItem">
-          {() => {
-            if (this.props.message.user.id === this.props.currentUser) {
-              return (
-                <span className="msgUser msgText me">
-                  {this.props.message.user.name}
-                </span>
-              );
-            } else {
-              return (
-                <span className="msgUser msgText other">
-                  {this.props.message.user.name}
-                </span>
-              );
-            }
-          }}
-
+          <span className={classNamesForUser}>
+            {this.props.message.user.name}
+          </span>
           <span className="msgSeperator msgText">:</span>
           <span className="msgContent msgText">
             {this.props.message.message}
@@ -47,88 +43,71 @@ export default class Message extends Component {
         </p>
       );
     }
+
     // Display Edit Options
     else if (this.props.editMsgButtonDisplay && !this.state.editMode) {
-      return (
-        <p id={this.props.message.id} className="msgItem">
-          {() => {
-            if (this.props.message.user.id === this.props.currentUser) {
-              return (
-                <button
-                  className="editMsgButton"
-                  onClick={() => {
-                    this.setState({
-                      editMode: true
-                    });
-                  }}
-                >
-                  <i className="fa fa-pencil" />
-                </button>
-              );
-            } else {
-              return (
-                <button className="addFriendButton">
-                  <i className="fa fa-plus" />
-                </button>
-              );
-            }
-          }}
-
-          {() => {
-            if (this.props.message.user.id === this.props.currentUser) {
-              return (
-                <span className="msgUser msgText me">
-                  {this.props.message.user.name}
-                </span>
-              );
-            } else {
-              return (
-                <span className="msgUser msgText other">
-                  {this.props.message.user.name}
-                </span>
-              );
-            }
-          }}
-
-          <span className="msgSeperator msgText">:</span>
-          <span className="msgContent msgText">
-            {this.props.message.message}
-          </span>
-        </p>
-      );
-    }
-    // Edit Mode
-    // update = (msgId, userId, newMessage, messageTimeStamp) => {
-    //   messagesApi
-    //     .putMessage(msgId, userId, newMessage, messageTimeStamp)
-    //     .then(() => {
-    //       this.read();
-    //     });
-    // };
-
-    // key={message.id}
-    //             message={message}
-    //             create={this.create}
-    //             read={this.read}
-    //             update={this.update}
-    //             delete={this.delete}
-    //             currentUser={this.currentUser}
-    //             editMsgButtonDisplay={this.editMsgButtonDisplay}
-    else {
+      if (this.props.message.user.id == this.props.currentUser) {
+        return (
+          <p id={this.props.message.id} className="msgItem">
+            <button
+              className="editMsgButton"
+              onClick={() => {
+                this.setState({
+                  editMode: true
+                });
+              }}
+            >
+              <FontAwesomeIcon icon="edit" />
+              Edit
+            </button>
+            <span className={classNamesForUser}>
+              {this.props.message.user.name}
+            </span>
+            <span className="msgSeperator msgText">:</span>
+            <span className="msgContent msgText">
+              {this.props.message.message}
+            </span>
+          </p>
+        );
+      } else {
+        return (
+          <p id={this.props.message.id} className="msgItem">
+            <button
+              className="addFriendButton"
+              onClick={() => {
+                alert(`You added ${this.props.message.user.name} as a friend!`);
+                this.props.beFriend(String(this.props.message.user.id));
+              }}
+            >
+              <FontAwesomeIcon icon="user-plus" />
+            </button>
+            <span className={classNamesForUser}>
+              {this.props.message.user.name}
+            </span>
+            <span className="msgSeperator msgText">:</span>
+            <span className="msgContent msgText">
+              {this.props.message.message}
+            </span>
+          </p>
+        );
+      }
+    } else {
       return (
         <p id={this.props.message.id} className="msgItem">
           <button
             className="saveMsgEditsButton"
             onClick={() => {
+              // console.log("clicked!")
               this.props.update(
                 this.props.message.id,
                 this.props.currentUser,
                 this.state.editedMessage,
                 this.props.message.timeStamp
               );
+              this.setState({ editMode: false });
             }}
           >
-            <i className="fa fa-floppy-o" />
+            <FontAwesomeIcon icon="save" />
           </button>
           <button
             className="deleteMsgButton"
@@ -136,7 +115,7 @@ export default class Message extends Component {
               this.props.delete(this.props.message.id);
             }}
           >
-            <i className="fa fa-trash-o" />
+            <FontAwesomeIcon icon="times-circle" />
           </button>
           <button
             className="cancelMsgEditButton"
@@ -146,13 +125,14 @@ export default class Message extends Component {
               });
             }}
           >
-            <i className="fa fa-times" />
+            <FontAwesomeIcon icon="ban" />
           </button>
           <span className="msgUser msgText me">
             {this.props.message.user.name}
           </span>
           <span className="msgSeperator msgText" />
           <input
+            onFocus={e => e.target.select()}
             className="editMsgInput msgText"
             value={this.state.editedMessage}
             onChange={this.handleFieldChange}
