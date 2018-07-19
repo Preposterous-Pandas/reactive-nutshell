@@ -45,6 +45,7 @@ export default class EventList extends Component {
               />
             );
           })}
+          <h3 className="section-headline">Events</h3>
         </div>
       </React.Fragment>
     );

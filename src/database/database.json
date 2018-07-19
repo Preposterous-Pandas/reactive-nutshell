@@ -13,14 +13,9 @@
       "id": 2
     },
     {
-      "name": "Seth Dana",
-      "email": "seth.dana@gmail.com",
+      "name": "phil",
+      "email": "phil@phil.net",
       "id": 3
-    },
-    {
-      "name": "newGuy",
-      "email": "new@guy.com",
-      "id": 4
     }
   ],
   "friends": [
@@ -33,38 +28,28 @@
       "userId": "1",
       "yourId": "2",
       "id": 30
+    },
+    {
+      "userId": "1",
+      "yourId": "3",
+      "id": 30
     }
   ],
   "messages": [
     {
-      "userId": "3",
-      "message": "uhiuhiu",
-      "timeStamp": "2018-07-18T19:59:45.553Z",
+      "userId": "1",
+      "message": "Hey this is Evan",
+      "id": 1
+    },
+    {
+      "userId": "1",
+      "message": "This is also Evan",
       "id": 2
     },
     {
-      "userId": "3",
-      "message": "afaf",
-      "timeStamp": "2018-07-18T20:23:10.475Z",
-      "id": 9
-    },
-    {
-      "userId": "3",
-      "message": "yep",
-      "timeStamp": "2018-07-18T20:23:27.540Z",
-      "id": 10
-    },
-    {
-      "userId": "3",
-      "message": "uytguyg",
-      "timeStamp": "2018-07-18T20:34:30.511Z",
-      "id": 11
-    },
-    {
-      "userId": "4",
-      "message": "testing",
-      "timeStamp": "2018-07-18T20:37:04.983Z",
-      "id": 12
+      "userId": "2",
+      "message": "This is the first message from me!",
+      "id": 7
     }
   ],
   "news": [

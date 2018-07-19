@@ -19,6 +19,18 @@ class apiManager {
       });
   }
 
+  getFriendsList(currentUserId) {
+    return fetch(
+      `http://localhost:5002/friends?_expand=user&yourId=${currentUserId}`
+    ).then(e => e.json());
+  }
+
+  deleteFriend(relId) {
+    return fetch(`http://localhost:5002/friends/${relId}`, {
+      method: "DELETE"
+    });
+  }
+
   postUser(name, email) {
     return fetch("http://localhost:5002/users", {
       method: "POST",
@@ -122,6 +134,10 @@ class apiManager {
 
   getUser(userId) {
     return fetch(`http://localhost:5002/users/${userId}`).then(e => e.json());
+  }
+
+  getUsers() {
+    return fetch("http://localhost:5002/users").then(e => e.json());
   }
 
   ///////////////////////////////////MESSAGES API CALLS////////////////////////////////////////////////

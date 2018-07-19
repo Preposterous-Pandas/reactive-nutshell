@@ -30,7 +30,7 @@ export default class Tasks extends Component {
     const sessionUser = sessionStorage.getItem("activeUser");
     return (
       <div className="tasks">
-        <h2>Tasks</h2>
+        <h4 className="section-headline">Tasks</h4>
 
         <NewTaskSection
           loadTasks={() => {

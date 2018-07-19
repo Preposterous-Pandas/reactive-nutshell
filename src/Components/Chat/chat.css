@@ -15,7 +15,7 @@
     background-color: cornflowerblue;
     justify-content: space-between;
     align-items: center;
-    padding:3%;
+    padding: 0;
 }
 
 #messengerHeaderDiv h2 {
@@ -182,5 +182,26 @@
     color: white;
     font-size: 2rem;
     display: inline-block;
-    text-align: end;
+    text-align: right;
+    width: 30px;
+}
+
+#newMessageInput {
+    display: inline-block;
+}
+
+#chat-head {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: oblique;
+}
+
+#messengerBodyContent {
+    width: 85%;
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
