@@ -35,9 +35,19 @@ export default class Friends extends Component {
   searchUsers = searchString => {
     const searchMatchUsers = [];
     this.state.users.forEach(user => {
-      if (user.name.includes(searchString)) {
-        searchMatchUsers.push(user);
-      }
+      this.props.friends.forEach(friend => {
+        if (
+          user.id !== friend.user.id &&
+          user.id !==
+            (sessionStorage.getItem("activeUser") ||
+              localStorage.getItem("activeUser"))
+        ) {
+          const lowerUserName = user.name.toLowerCase();
+          if (lowerUserName.includes(searchString.toLowerCase())) {
+            searchMatchUsers.push(user);
+          }
+        }
+      });
     });
     return searchMatchUsers;
   };
@@ -79,7 +89,7 @@ export default class Friends extends Component {
           <button id="add-friend-btn" onClick={this.setAddFriendMode}>
             Search Friends By Name
           </button>
-          {this.state.friends.map(user => <Friend key={user.id} user={user} />)}
+          {this.props.friends.map(user => <Friend key={user.id} user={user} />)}
         </div>
       );
     }
