@@ -52,6 +52,9 @@ export default class TaskCard extends Component {
             onChange={this.handleFieldChange}
             defaultValue={this.props.currentTask.description} />
           <button type="submit">Save changes</button>
+          <button onClick={() => {
+              this.setState({ editingTask: false })
+            }}>Cancel</button>
         </form>
       )
     } else {

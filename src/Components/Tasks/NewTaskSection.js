@@ -57,6 +57,9 @@ export default class NewTaskSection extends Component {
 
           <section>
             <button type="submit">Save task</button>
+            <button onClick={() => {
+              this.setState({ addingTask: false })
+            }}>Cancel</button>
           </section>
         </form>
       )
