@@ -17,9 +17,29 @@ export default class Friends extends Component {
     apiManager.deleteFriend(relId).then(this.props.readFriends);
   };
 
+  searchMatchUsers = () => {
+    const searchString = this.state.addFriendInput;
+    const users = this.state.users;
+    const newSearchMatchUsers = [];
+    users.forEach(user => {
+      this.props.friends.forEach(friend => {
+        if (
+          String(user.id) !== String(friend.user.id) &&
+          String(user.id) !== String(sessionStorage.getItem("activeUser")) &&
+          String(user.id) !== String(localStorage.getItem("activeUser"))
+        ) {
+          const lowerUserName = user.name.toLowerCase();
+          if (lowerUserName.includes(searchString.toLowerCase())) {
+            newSearchMatchUsers.push(user);
+          }
+        }
+      });
+    });
+    return newSearchMatchUsers;
+  };
+
   componentDidMount() {
     apiManager.getUsers().then(users => {
-      console.log(users);
       this.setState({
         users: users
       });
@@ -30,26 +50,6 @@ export default class Friends extends Component {
     const stateToChange = {};
     stateToChange[evt.target.id] = evt.target.value;
     this.setState(stateToChange);
-  };
-
-  searchUsers = searchString => {
-    const searchMatchUsers = [];
-    this.state.users.forEach(user => {
-      this.props.friends.forEach(friend => {
-        if (
-          user.id !== friend.user.id &&
-          user.id !==
-            (sessionStorage.getItem("activeUser") ||
-              localStorage.getItem("activeUser"))
-        ) {
-          const lowerUserName = user.name.toLowerCase();
-          if (lowerUserName.includes(searchString.toLowerCase())) {
-            searchMatchUsers.push(user);
-          }
-        }
-      });
-    });
-    return searchMatchUsers;
   };
 
   setAddFriendMode = () => {
@@ -76,10 +76,7 @@ export default class Friends extends Component {
             handleFieldChange={this.handleFieldChange}
             addFriendInput={this.state.addFriendInput}
           />
-          <SearchedFriends
-            searchUsers={this.searchUsers}
-            addFriendInput={this.state.addFriendInput}
-          />
+          <SearchedFriends searchMatchUsers={this.searchMatchUsers()} />
         </div>
       );
     } else {
@@ -89,7 +86,9 @@ export default class Friends extends Component {
           <button id="add-friend-btn" onClick={this.setAddFriendMode}>
             Search Friends By Name
           </button>
-          {this.props.friends.map(user => <Friend key={user.id} user={user} />)}
+          {this.props.friends.map(friend => (
+            <Friend key={friend.id} user={friend.user} />
+          ))}
         </div>
       );
     }

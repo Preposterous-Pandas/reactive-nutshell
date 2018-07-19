@@ -16,9 +16,8 @@ export default class Main extends Component {
     API.getFriendsList(
       sessionStorage.getItem("activeUser") || localStorage.getItem("activeUser")
     ).then(friendList => {
-      console.log("phils test", friendList);
       this.setState({
-        friends: friendList
+        friendList: friendList
       });
     });
   };
@@ -62,7 +61,7 @@ export default class Main extends Component {
           friends={this.state.friendList}
           readFriends={this.state.readFriends}
         />
-        <Chat beFriend={this.beFriend} />
+        {/* <Chat beFriend={this.beFriend} /> */}
         <Events friends={this.state.friendList} />
         <Tasks />
       </React.Fragment>
