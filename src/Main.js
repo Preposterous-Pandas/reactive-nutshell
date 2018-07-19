@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import "./styles/grid.css"
 import News from './Components/News/News';
 import Tasks from "./Components/Tasks/Tasks"
 import Chat from "./Components/Chat/Chat"
@@ -42,12 +43,14 @@ export default class Main extends Component {
     render() {
         return (
             <React.Fragment>
+            <div id="main-container">
                 <Header />
                 <News friends={this.state.friendList}/>
                 <Friends beFriend={this.beFriend} friends={this.state.friendList}/>
                 <Chat beFriend={this.beFriend}/>
                 <Events friends={this.state.friendList}/>
                 <Tasks />
+            </div>
             </React.Fragment>
 
 
