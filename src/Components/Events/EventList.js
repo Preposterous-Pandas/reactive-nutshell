@@ -9,46 +9,11 @@ export default class EventList extends Component {
   };
 
   getEvents = () => {
-    const currentUser = sessionStorage.getItem("activeUser");
-    let allFriendsString;
-    apiManager
-      .getFriendsList(currentUser)
-      .then(allFriends => {
-        console.log("gettingfriendlist");
-
-        let allFriendsArray = [];
-        allFriends.forEach(friend => {
-          const friendId = friend.user.id;
-          allFriendsArray.push(friendId);
-        });
-        // allFriendsArray = allFriendsArray.map(friendIdNumber => {
-        //   return `userId=${friendIdNumber}&`;
-        // });
-        console.log(allFriendsArray);
-
-        allFriendsString = allFriendsArray.join("");
-        allFriendsString;
-        // console.log(allFriendsString);
-      })
-      .then(() => {
-        // apiManager
-        //   .getField("events")
-        //   .then(events => this.setState({ events: events }));
-        return fetch(
-          // ?userId=${currentUser}&${friendString}_sort=date&_order=asc`
-          `http://localhost:5002/events/?userId=${currentUser}&userId=${allFriendsString}&_sort=date&_order=asc`
-          // "http://localhost:5002/events/?userId=2&userId=1&_sort=date&_order=asc"
-        );
-      })
-      .then(e => e.json())
+    apiManager.getField('events')
       .then(events => {
-        console.log(currentUser);
-
-        console.log(allFriendsString);
-        console.log(events);
-
         this.setState({ events: events });
-      });
+      })
+      
   };
 
   componentDidMount() {
@@ -66,8 +31,8 @@ export default class EventList extends Component {
             }}
           />
           {this.state.events.map(event => {
-            return (
-              <Event
+            return this.props.friends.concat([sessionStorage.getItem('activeUser')]).includes(`${event.userId}`) &&
+            (<Event
                 key={event.id}
                 styling={
                   event.userId == sessionStorage.getItem("activeUser")
