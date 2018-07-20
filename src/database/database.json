@@ -33,6 +33,11 @@
       "userId": "1",
       "yourId": "3",
       "id": 30
+    },
+    {
+      "userId": "2",
+      "yourId": "1",
+      "id": 31
     }
   ],
   "messages": [
@@ -80,14 +85,14 @@
   "events": [
     {
       "userId": "1",
-      "name": "Evan's Event",
+      "name": "Evan's Event 2",
       "location": "NSS",
       "date": "2018-07-10T19:30",
       "id": 1
     },
     {
       "userId": "2",
-      "name": "Second's event",
+      "name": "Second's event edited again",
       "location": "Home",
       "date": "2018-07-10T20:30",
       "id": 11

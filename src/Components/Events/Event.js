@@ -31,7 +31,7 @@ export default class Events extends Component {
   saveEvent = e => {
     e.preventDefault();
     console.log("Saving...");
-    const currentUser = sessionStorage.getItem("activeUser");
+    const currentUser = this.props.event.userId;
     const eventId = this.state.eventId;
     const newName = this.state.eventName;
     const newLocation = this.state.eventLocation;
