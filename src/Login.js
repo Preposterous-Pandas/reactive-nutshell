@@ -71,6 +71,7 @@ export default class Login extends Component {
                           //if not, then register the user
                           apiController.postUser(this.state.username, this.state.email).then((response) => {
                             sessionStorage.setItem("activeUser", response.id)
+                            console.log(response)
                               this.setStorageType()
                               this.props.logUserIn()
                           })

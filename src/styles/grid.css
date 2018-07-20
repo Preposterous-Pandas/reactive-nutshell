@@ -8,6 +8,11 @@
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   min-height: 100vh;
   max-height: 100vh;
+  min-width: 100vw;
+  max-width: 100vw;
+}
+#main-image-container {
+  overflow: hidden !important;
 }
 
 #main-container > div {
@@ -18,11 +23,13 @@
   overflow-y: scroll;
   overflow-x: hidden;
   border-radius: 0;
+  max-width: 100%;
 }
 
 #main-container > .News {
   /* padding-left: 10px; */
   background-color: rgb(245, 245, 245);
+  overflow-x: hidden !important;
 }
 
 .News input, .News label {
@@ -32,7 +39,6 @@
 .header {
   font-family: 'Julius Sans One', sans-serif;
   padding-top: 1.2rem;
-  /* header */
   overflow: hidden;
   margin: 0;
   grid-column-start: 1;
@@ -46,6 +52,8 @@
   text-shadow: 3px 3px 4px rgb(95, 94, 94);
   border-bottom: 2.5px solid rgb(0, 0, 0);
 }
+
+
 .tasks { /* tasks */
   grid-column-start: 3;
   grid-column-end: 4;
