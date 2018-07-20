@@ -25,11 +25,6 @@
   ],
   "friends": [
     {
-      "userId": "2",
-      "yourId": "1",
-      "id": 25
-    },
-    {
       "userId": "1",
       "yourId": "2",
       "id": 30
@@ -38,9 +33,21 @@
       "userId": "1",
       "yourId": "3",
       "id": 30
+    },
+    {
+      "userId": 4,
+      "yourId": "1",
+      "id": 31
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "userId": "1",
+      "message": "Butts",
+      "timeStamp": "2018-07-20T16:03:40.763Z",
+      "id": 1
+    }
+  ],
   "news": [
     {
       "userId": "1",
