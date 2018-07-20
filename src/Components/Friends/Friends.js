@@ -78,7 +78,7 @@ export default class Friends extends Component {
     if (this.state.addFriendMode) {
       return (
         <div className="friends">
-          <h2 className="section-headline">Friends</h2>
+          <h4 className="section-headline">Friends</h4>
           <button id="cancel-add-friend-btn" onClick={this.setAddFriendMode}>
             Cancel
           </button>
