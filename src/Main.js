@@ -32,7 +32,9 @@ library.add(
 
 export default class Main extends Component {
   state = {
-    friendList: []
+    friendList: [],
+    friends: []
+
   };
 
   componentDidMount() {
@@ -47,7 +49,13 @@ export default class Main extends Component {
         friendList: friendList
       });
     });
+    API.allFriends()
+      .then(friends => {
+        this.setState({ friends: friends });
+      })
   };
+
+
 
   beFriend = buddy => {
     if (this.state.friendList.includes(buddy)) {
@@ -70,7 +78,7 @@ export default class Main extends Component {
       <React.Fragment>
         <div id="main-container">
           <Header />
-          <News friends={this.state.friendList} />
+          <News friends={this.state.friends} />
           <Friends
             beFriend={this.beFriend}
             friends={this.state.friendList}

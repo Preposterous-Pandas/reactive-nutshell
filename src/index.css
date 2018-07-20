@@ -38,7 +38,7 @@ input {
   margin-right: 10px;
 }
 
-.italics > div {
+.italics {
   background-color: cornsilk;
   font-style: italic;
 }
@@ -82,20 +82,21 @@ input {
   list-style: none;
 }
 
-.friends > button, .add-btn {
+.friends > button,
+.add-btn {
   margin-bottom: 5px;
 }
 
 .add-btn {
   margin-right: 5px;
   padding: 3px 20px;
-  font-size: .7rem;
+  font-size: 0.7rem;
 }
 
 .remove-btn {
   margin-right: 5px;
   padding: 3px 10px;
-  font-size: .7rem;
+  font-size: 0.7rem;
   margin-bottom: 5px;
 }
 
