@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./chat.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import api from "../API/apiManager"
 
 export default class Message extends Component {
   state = {
@@ -21,16 +22,15 @@ export default class Message extends Component {
   };
 
   render() {
-    // Normal Display
     let classNamesForUser = "";
+    //Set className variables for displaying user name colors
     if (this.props.message.user.id == this.props.currentUser) {
       classNamesForUser = "msgUser msgText me";
     } else {
       classNamesForUser = "msgUser msgText other";
     }
-
+    // Normal Display
     if (!this.props.editMsgButtonDisplay) {
-      // console.log("reg mode")
       return (
         <p id={this.props.message.id} className="msgItem">
           <span className={classNamesForUser}>
@@ -46,7 +46,9 @@ export default class Message extends Component {
 
     // Display Edit Options
     else if (this.props.editMsgButtonDisplay && !this.state.editMode) {
+      //Check to see if the message belongs to the active user
       if (this.props.message.user.id == this.props.currentUser) {
+        //If message belongs to active user display edit button
         return (
           <p id={this.props.message.id} className="msgItem">
             <button
@@ -70,14 +72,28 @@ export default class Message extends Component {
           </p>
         );
       } else {
+        //If message does not belong to current user display add friend button
         return (
           <p id={this.props.message.id} className="msgItem">
             <button
               className="addFriendButton"
               onClick={() => {
-                alert(`You added ${this.props.message.user.name} as a friend!`);
-                this.props.beFriend(String(this.props.message.user.id));
-              }}
+                // alert(`You added ${this.props.message.user.name} as a friend!`);
+                api.allFriends().then(response => {
+                  console.log(response)
+                  if (response.includes(String(this.props.message.user.id))){
+                    alert("You're already friends with...")
+                  }
+                  else {
+                  if (window.confirm(`Are you sure you wan to add ${this.props.message.user.name} as a friend?`))
+                    this.props.beFriend(String(this.props.message.user.id))
+                  }
+                })
+                }
+                // else {
+                //   return
+                // }
+              }
             >
               <FontAwesomeIcon icon="user-plus" />
             </button>

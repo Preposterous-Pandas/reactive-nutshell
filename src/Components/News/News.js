@@ -66,6 +66,7 @@ export default class News extends Component {
         return (
             <React.Fragment>
                 <Red className="News">
+                <div className="News">
                     <h2>News</h2>
                     <label>Title</label>
                     <Input onChange={this.handleFieldChange} value={this.state.newsTitle} type="text" id="newsTitle" required /><br />
@@ -88,6 +89,7 @@ export default class News extends Component {
 
                         )
                     }
+                    </div>
                 </Red>
 
             </React.Fragment>

@@ -1,9 +1,7 @@
 import React, { Component } from "react"
-// import { Redirect } from "react-router-dom"
 import apiController from "./Components/API/apiManager" //was api
 import "./styles/login.css"
 
-// const apiController = new api
 
 export default class Login extends Component {
   // Set initial state
@@ -20,29 +18,11 @@ export default class Login extends Component {
     stateToChange[evt.target.id] = evt.target.value
     this.setState(stateToChange)
   }
-  setRemember = e => {
-    // console.log(e.target.checked)
-    switch (e.target.checked) {
-      default:
-        this.setState({ remember: false })
-        break
 
-      case true:
-        this.setState({ remember: true })
-        break
-
-      case false:
-        this.setState({ remember: false })
-        break
-    }
-  }
-
-  // Simplistic handler for login submit
+  //Login Handler
   handleLogin = e => {
     e.preventDefault()
     apiController.getField(`users?name=${this.state.username}`).then(user => {
-      // console.log(user)
-
       //Check whether or not user exists by checking the return from ajax call. If return is empty array, or if the username or email dont match throw error
       if (
         user.length === 0 ||
@@ -56,14 +36,16 @@ export default class Login extends Component {
       } else if (
         user[0].email === this.state.email && user[0].name === this.state.username) {
         sessionStorage.setItem("activeUser", user[0].id)
-        this.setStorageType()
+        //Set state for parent component to show user is logged in
         this.props.logUserIn()
       }
     })
   }
 
   registerUser(e){
+    //Prevent page reload from form element submit
       e.preventDefault()
+      //Get users name and email
       apiController.getField(`users?name=${this.state.username}`).then(nameResponse => {
           apiController.getField(`users?email=${this.state.email}`).then(emailResponse => {
                       //Check to see if username or email are already registered
@@ -71,7 +53,7 @@ export default class Login extends Component {
                           //if not, then register the user
                           apiController.postUser(this.state.username, this.state.email).then((response) => {
                             sessionStorage.setItem("activeUser", response.id)
-                              this.setStorageType()
+                            //Call login function to set state in parent component
                               this.props.logUserIn()
                           })
                       }
@@ -83,34 +65,10 @@ export default class Login extends Component {
                   })
               })
           }
-
-setStorageType(){
-    if (this.state.remember) {
-        localStorage.setItem(
-            "credentials",
-            JSON.stringify({
-                username: this.state.username,
-                email: this.state.email
-            })
-        )
-    } else {
-        sessionStorage.setItem(
-            "credentials",
-            JSON.stringify({
-                username: this.state.username,
-                email: this.state.email
-            })
-        )
-    }
-}
   render() {
-    // if (this.state.redirect) {
-    //     return <Redirect to="/" />
-    // } else {
     return (
       <div id="login-stuff">
       <form>
-        {/* <h1 className="main-headline">Welcome to Reactive Nutshell</h1> */}
           <img id="headline-image" src="https://downloads.intercomcdn.com/i/o/2702/25ce9574b3a1dc309da496fc/Nutshell-logo-white%402x.png" />
           <h3 className="secondary-headline">Please log in or register a new account</h3>
           <label className="marginLeft" htmlFor="inputUname">Username</label>
@@ -134,9 +92,6 @@ setStorageType(){
           required=""
           className="marginLeft login-input"
         />
-        {/* <label htmlFor="rememberMe">Remember Me
-          <input className="input-checkbox" type="checkbox" ref="rememberMe" onChange={this.setRemember} />
-        </label> */}
         <button className="marginLeft login-button" type="submit" onClick={this.handleLogin}>Sign in</button>
         <button id="register" className="marginLeft login-button" onClick={(e) => this.registerUser(e)}>Register</button>
       </form>

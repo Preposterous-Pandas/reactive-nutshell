@@ -9,7 +9,7 @@ export default class ApplicationViews extends Component {
         loggedIn: false
     }
     isAuthenticated = () => {
-        return sessionStorage.getItem("credentials") || localStorage.getItem("credentials")
+        return sessionStorage.getItem("activeUser")
     }
 
     logUserIn = () => {

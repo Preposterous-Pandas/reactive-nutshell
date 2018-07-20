@@ -40,23 +40,7 @@
       "id": 30
     }
   ],
-  "messages": [
-    {
-      "userId": "1",
-      "message": "Hey this is Evan",
-      "id": 1
-    },
-    {
-      "userId": "1",
-      "message": "This is also Evan",
-      "id": 2
-    },
-    {
-      "userId": "2",
-      "message": "This is the first message from me!",
-      "id": 7
-    }
-  ],
+  "messages": [],
   "news": [
     {
       "userId": "1",
