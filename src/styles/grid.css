@@ -11,6 +11,9 @@
   min-width: 100vw;
   max-width: 100vw;
 }
+#main-image-container {
+  overflow: hidden !important;
+}
 
 #main-container > div {
   border: .5px solid cornflowerblue;
@@ -36,7 +39,6 @@
 .header {
   font-family: 'Julius Sans One', sans-serif;
   padding-top: 1.2rem;
-  /* header */
   overflow: hidden;
   margin: 0;
   grid-column-start: 1;
@@ -50,6 +52,8 @@
   text-shadow: 3px 3px 4px rgb(95, 94, 94);
   border-bottom: 2.5px solid rgb(0, 0, 0);
 }
+
+
 .tasks { /* tasks */
   grid-column-start: 3;
   grid-column-end: 4;
