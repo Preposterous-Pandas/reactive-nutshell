@@ -136,7 +136,7 @@ export default class Chat extends Component {
               );
             }}
           >
-            <input
+            <input autoComplete="off"
               onChange={evt => {
                 this.handleFieldChange(evt);
               }}

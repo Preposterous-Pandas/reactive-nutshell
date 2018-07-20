@@ -82,7 +82,7 @@ export default class Message extends Component {
                 api.allFriends().then(response => {
                   console.log(response)
                   if (response.includes(String(this.props.message.user.id))){
-                    alert("You're already friends with...")
+                    alert(`You're already friends with ${this.props.message.user.name}`)
                   }
                   else {
                   if (window.confirm(`Are you sure you wan to add ${this.props.message.user.name} as a friend?`))
