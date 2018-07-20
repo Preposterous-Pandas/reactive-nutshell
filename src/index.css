@@ -36,6 +36,11 @@ input {
   align-self: center;
 }
 
+.italics > div {
+  background-color: cornsilk;
+  font-style: italic;
+}
+
 .section-headline {
   margin-top: 0;
   margin-left: 0;
