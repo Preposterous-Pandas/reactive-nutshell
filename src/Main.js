@@ -82,7 +82,7 @@ export default class Main extends Component {
             readFriends={this.readFriends}
           />
           <Chat beFriend={this.beFriend} />
-          <Events friends={this.state.friendList} />
+          <Events friends={this.state.friends} />
           <Tasks />
         </div>
       </React.Fragment>
