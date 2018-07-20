@@ -1,6 +1,5 @@
 import React, { Component } from "react"
-import apiManager from "../API/apiManager"
-
+import TaskForm from "./TaskForm"
 
 // This module renders the section of the Tasks pane used for adding new Tasks
 export default class NewTaskSection extends Component {
@@ -10,37 +9,11 @@ export default class NewTaskSection extends Component {
     // It is toggled to 'true' by clicking the Add Task button and to 'false' by clicking the Save Task button on the form
     addingTask: false,
 
-    // These two properties are updated by handleFieldChange() and used in addNewTask() as the properties that get passed to the POST
-    newTaskName: "",
-    newTaskDate: ""
+
   }
 
-  // Updates state whenever an input field is edited
-  handleFieldChange = (evt) => {
-    const stateToChange = {}
-    stateToChange[evt.target.id] = evt.target.value
-    this.setState(stateToChange)
-  }
-
-  // Handles the submit event for the task form
-  addNewTask = (evt) => {
-    evt.preventDefault()
-
-    const currentUserId = sessionStorage.getItem("activeUser");
-    const taskName = this.state.newTaskName;
-    const taskDate = this.state.newTaskDate;
-
-    // Posts the task, loads all the tasks, resets state so new events can be added
-    apiManager.postTask(currentUserId, taskName, taskDate)
-      .then(this.props.loadTasks, this.setState(
-        {
-          addingTask: false,
-          newTaskName: "",
-          newTaskDate: ""
-        }
-      ))
-
-
+  hideNewTaskForm = () => {
+    this.setState({ addingTask: false })
   }
 
   render() {
@@ -48,29 +21,12 @@ export default class NewTaskSection extends Component {
     // This conditional checks if you are adding a new task. If so, it prints the form to add the task; if not, it prints the button which, when clicked, will open the form by changing state
     if (this.state.addingTask) {
       return (
-        <form onSubmit={this.addNewTask}>
-          <section>
-            <label htmlFor="newTaskName">Task name:</label>
-            <input required type="text" id="newTaskName"
-              onChange={this.handleFieldChange}>
-            </input>
-          </section>
-
-          <section>
-            <label htmlFor="newTaskDate">Date due:</label>
-            <input required type="date" id="newTaskDate"
-              min={this.props.today}
-              onChange={this.handleFieldChange}>
-            </input>
-          </section>
-
-          <section>
-            <button type="submit">Save task</button>
-            <button onClick={() => {
-              this.setState({ addingTask: false })
-            }}>Cancel</button>
-          </section>
-        </form>
+        <TaskForm
+          currentTask={{}}
+          today={this.props.today}
+          hideForm={this.hideNewTaskForm}
+          loadTasks={this.props.loadTasks}
+        />
       )
     } else {
       return (

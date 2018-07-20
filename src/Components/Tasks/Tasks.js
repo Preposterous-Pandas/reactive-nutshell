@@ -33,7 +33,6 @@ export default class Tasks extends Component {
   }
 
   render() {
-    const sessionUser = sessionStorage.getItem("activeUser");
     return (
       <div className="tasks">
         <h4 className="section-headline">Tasks</h4>
