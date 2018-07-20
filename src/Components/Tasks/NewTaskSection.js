@@ -59,6 +59,7 @@ export default class NewTaskSection extends Component {
           <section>
             <label htmlFor="newTaskDate">Date due:</label>
             <input required type="date" id="newTaskDate"
+              min={this.props.today}
               onChange={this.handleFieldChange}>
             </input>
           </section>

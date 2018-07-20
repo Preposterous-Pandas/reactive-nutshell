@@ -80,14 +80,17 @@ class apiManager {
     });
   }
 
-  editTask(taskId, newDescription) {
+  editTask(currentUser, taskId, newDescription, newDate) {
     return fetch(`http://localhost:5002/tasks/${taskId}`, {
-      method: "PATCH",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        description: newDescription
+        userId: currentUser,
+        description: newDescription,
+        date: newDate,
+        completed: false
       })
     });
   }
