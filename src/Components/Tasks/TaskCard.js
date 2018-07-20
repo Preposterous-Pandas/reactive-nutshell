@@ -72,11 +72,17 @@ export default class TaskCard extends Component {
     } else {
       return (
         <section className="task__card">
-          <h3>{this.props.currentTask.description}</h3>
 
-          <a href=""
+          <h3
             id={`${this.props.currentTask.id}edit`}
-            onClick={this.editTask}>(edit)</a>
+            onClick={this.editTask}>
+            {this.props.currentTask.description} (click to edit)
+            </h3>
+
+          {/* Clicking the header allows you to edit, so I commented out this code */}
+          {/* <a href=""
+            id={`${this.props.currentTask.id}edit`}
+            onClick={this.editTask}>(edit)</a> */}
 
           <p>Due: <Moment format="ddd, MMM Do, YYYY">
             {this.props.currentTask.date}
