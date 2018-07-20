@@ -97,7 +97,7 @@ export default class Friends extends Component {
     } else {
       return (
         <div className="friends">
-          <h2 className="section-headline">Friends</h2>
+          <h4 className="section-headline">Your Friends</h4>
           <button id="search-users-btn" onClick={this.setAddFriendMode}>
             Search Users
           </button>

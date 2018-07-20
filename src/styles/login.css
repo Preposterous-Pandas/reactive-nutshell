@@ -83,3 +83,8 @@ body {
 form > .marginLeft {
     margin-left: 37% !important;
 }
+
+#headline-image {
+    width: 70vw;
+    height: auto;
+}

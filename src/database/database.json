@@ -16,6 +16,11 @@
       "name": "phil",
       "email": "phil@phil.net",
       "id": 3
+    },
+    {
+      "name": "Seth Dana",
+      "email": "seth.dana@gmail.com",
+      "id": 4
     }
   ],
   "friends": [

@@ -41,7 +41,7 @@ class apiManager {
         name: name,
         email: email
       })
-    });
+    }).then(e => e.json());
   }
   delEvent(id) {
     return fetch(`http://localhost:5002/events/${id}`, {

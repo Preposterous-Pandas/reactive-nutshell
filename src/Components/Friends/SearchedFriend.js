@@ -3,7 +3,7 @@ import React from "react";
 const SearchedFriend = props => {
   return (
     <li>
-      <button
+      <button className="add-btn"
         onClick={() => {
           props.beFriend(props.user.id);
           props.setAddFriendMode();
