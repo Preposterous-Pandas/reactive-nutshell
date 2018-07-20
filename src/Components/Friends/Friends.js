@@ -26,28 +26,25 @@ export default class Friends extends Component {
     const users = this.state.users;
     const newSearchMatchUsers = [];
     users.forEach(user => {
+      let alreadyFriend = false;
+      if (this.props.friends.length > 0) {
+        this.props.friends.forEach(friend => {
+          if (String(user.id) === String(friend.user.id)) {
+            alreadyFriend = true;
+          }
+        });
+      }
+
+      const lowerUserName = user.name.toLowerCase();
       if (
         String(user.id) !== String(sessionStorage.getItem("activeUser")) &&
-        String(user.id) !== String(localStorage.getItem("activeUser"))
+        String(user.id) !== String(localStorage.getItem("activeUser")) &&
+        lowerUserName.includes(searchString.toLowerCase()) &&
+        alreadyFriend === false
       ) {
-        if (this.props.friends.length > 0) {
-          this.props.friends.forEach(friend => {
-            if (String(user.id) !== String(friend.user.id)) {
-              const lowerUserName = user.name.toLowerCase();
-              if (lowerUserName.includes(searchString.toLowerCase())) {
-                newSearchMatchUsers.push(user);
-              }
-            }
-          });
-        } else {
-          const lowerUserName = user.name.toLowerCase();
-          if (lowerUserName.includes(searchString.toLowerCase())) {
-            newSearchMatchUsers.push(user);
-          }
-        }
+        newSearchMatchUsers.push(user);
       }
     });
-
     return newSearchMatchUsers;
   };
 
