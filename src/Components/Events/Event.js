@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./firstEvent.css";
 import apiManager from "./../API/apiManager";
+import Moment from "react-moment";
 export default class Events extends Component {
   state = {
     edit: false,
@@ -74,11 +75,13 @@ export default class Events extends Component {
           <div className={this.props.styling} key={this.props.event.id}>
             <h5>{this.props.event.name}</h5>
             <p>{this.props.event.location}</p>
-            <p>{this.props.event.date}</p>
+            <p>
+              <Moment>{this.props.event.date}</Moment>
+            </p>
+            <button id={this.props.event.id} onClick={this.editEvent}>
+              Edit
+            </button>
           </div>
-          <button id={this.props.event.id} onClick={this.editEvent}>
-            Edit
-          </button>
         </React.Fragment>
       );
     }
