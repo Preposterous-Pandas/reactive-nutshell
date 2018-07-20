@@ -33,11 +33,6 @@
       "userId": "1",
       "yourId": "3",
       "id": 30
-    },
-    {
-      "userId": 4,
-      "yourId": "1",
-      "id": 31
     }
   ],
   "messages": [
@@ -74,8 +69,8 @@
       "id": 3
     },
     {
-      "userId": "1",
-      "title": "Newest Evan",
+      "userId": "4",
+      "title": "Newest seth",
       "url": "hi.com",
       "synopsis": "hi",
       "timestamp": "2018-07-18T19:47:49.622Z",
@@ -91,8 +86,8 @@
       "id": 1
     },
     {
-      "userId": "1",
-      "name": "Go to bed at the correct time.",
+      "userId": "2",
+      "name": "Second's event",
       "location": "Home",
       "date": "2018-07-10T20:30",
       "id": 11

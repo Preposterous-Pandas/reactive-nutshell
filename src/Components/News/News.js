@@ -17,7 +17,6 @@ const Input = styled.input`
 export default class News extends Component {
     state = {
         articles: [],
-        friends: [],
         newsTitle: "",
         newsBody: "",
         newsURL: ""
@@ -79,7 +78,7 @@ export default class News extends Component {
 
                     {
                         this.state.articles.map(article => {
-                            // console.log("test log", this.props.friends)
+                            console.log("test log", article.id, this.props.friends.concat([sessionStorage.getItem('activeUser')]).includes(`${article.userId}`))
                             return this.props.friends.concat([sessionStorage.getItem('activeUser')]).includes(`${article.userId}`) && <Article key={article.id}
                                 article={article}
                                 styling={sessionStorage.getItem('activeUser') == article.userId ? "normal" : "italics"}

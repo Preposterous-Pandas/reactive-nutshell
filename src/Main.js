@@ -63,7 +63,7 @@ export default class Main extends Component {
       return;
     }
     API.postFriend(
-      buddy,
+      String(buddy),
       String(
         sessionStorage.getItem("activeUser") ||
           localStorage.getItem("activeUser")
@@ -85,7 +85,7 @@ export default class Main extends Component {
             readFriends={this.readFriends}
           />
           <Chat beFriend={this.beFriend} />
-          <Events friends={this.state.friendList} />
+          <Events friends={this.state.friends} />
           <Tasks />
         </div>
       </React.Fragment>
