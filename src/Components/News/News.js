@@ -26,8 +26,7 @@ export default class News extends Component {
     componentDidMount() {
         API.getField("news?_sort=timestamp&_order=desc")
             .then(articles => this.setState({ articles: articles }))
-        API.allFriends()
-            .then(friends => this.setState({ friends: friends }))
+        
     }
 
     handleFieldChange = (evt) => {
@@ -80,7 +79,7 @@ export default class News extends Component {
                     {
                         this.state.articles.map(article => {
                             // console.log("test log", this.props.friends)
-                            return this.state.friends.concat([sessionStorage.getItem('activeUser')]).includes(`${article.userId}`) && <Article key={article.id}
+                            return this.props.friends.concat([sessionStorage.getItem('activeUser')]).includes(`${article.userId}`) && <Article key={article.id}
                                 article={article}
                                 styling={sessionStorage.getItem('activeUser') == article.userId ? "normal" : "italics"}
                                 checkOutarticle={this.checkOutarticle}
