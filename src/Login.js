@@ -71,6 +71,7 @@ export default class Login extends Component {
                           //if not, then register the user
                           apiController.postUser(this.state.username, this.state.email).then((response) => {
                             sessionStorage.setItem("activeUser", response.id)
+                            console.log(response)
                               this.setStorageType()
                               this.props.logUserIn()
                           })
@@ -110,9 +111,10 @@ setStorageType(){
     return (
       <div id="login-stuff">
       <form>
-        <h1 className="main-headline">Welcome to Reactive Nutshell</h1>
-        <h3 className="secondary-headline">Please Log In</h3>
-        <label htmlFor="inputUname">Username</label>
+        {/* <h1 className="main-headline">Welcome to Reactive Nutshell</h1> */}
+          <img id="headline-image" src="https://downloads.intercomcdn.com/i/o/2702/25ce9574b3a1dc309da496fc/Nutshell-logo-white%402x.png" />
+          <h3 className="secondary-headline">Please log in or register a new account</h3>
+          <label className="marginLeft" htmlFor="inputUname">Username</label>
         <input
           onChange={this.handleFieldChange}
           type="text"
@@ -121,9 +123,9 @@ setStorageType(){
           placeholder="Username"
           required=""
           autoFocus=""
-          className="login-input"
+            className="marginLeft login-input"
         />
-        <label htmlFor="inputEmail">E-mail</label>
+        <label className="marginLeft" htmlFor="inputEmail">E-mail</label>
         <input
           onChange={this.handleFieldChange}
           type="email"
@@ -131,13 +133,13 @@ setStorageType(){
           id="email"
           placeholder="E-mail"
           required=""
-          className="login-input"
+          className="marginLeft login-input"
         />
-        <label htmlFor="rememberMe">Remember Me
+        {/* <label htmlFor="rememberMe">Remember Me
           <input className="input-checkbox" type="checkbox" ref="rememberMe" onChange={this.setRemember} />
-        </label>
-        <button className="login-button" type="submit" onClick={this.handleLogin}>Sign in</button>
-        <button className="login-button register" onClick={(e) => this.registerUser(e)}>Register</button>
+        </label> */}
+        <button className="marginLeft login-button" type="submit" onClick={this.handleLogin}>Sign in</button>
+        <button id="register" className="marginLeft login-button" onClick={(e) => this.registerUser(e)}>Register</button>
       </form>
       </div>
     )

@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One|Quicksand');
+
+body {
+    background-color: rgb(245, 245, 245);
+}
+
 #login-stuff {
     display: flex;
     flex-direction: column;
@@ -7,10 +13,11 @@
 }
 
 .main-headline {
+    font-family: 'Julius Sans One', sans-serif;
     font-size: 6em;
     text-shadow: .5px .5px 1px black;
     /* text-shadow: -.5px -1px 2px black; */
-    width: 80vw;
+    width: 95vw;
     border-bottom: solid 1px cornflowerblue;
     text-align: center;
     font-weight: bolder;
@@ -19,6 +26,8 @@
 .secondary-headline {
     font-size: 2.5em;
     margin-bottom: 30px;
+    text-align: center;
+    /* margin-left: 10%; */
 }
 
 .login-input {
@@ -60,9 +69,10 @@
     outline: none;
 }
 
-.register {
+#register {
     width: 10vw;
     margin-bottom: 1000px;
+    margin-left: 10px !important;
 }
 
 .welcome {
@@ -70,6 +80,11 @@
     top: 50px;
 }
 
-label {
-    display: block;
+form > .marginLeft {
+    margin-left: 37% !important;
+}
+
+#headline-image {
+    width: 70vw;
+    height: auto;
 }
