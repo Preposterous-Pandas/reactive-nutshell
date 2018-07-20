@@ -13,8 +13,6 @@ export default class Events extends Component {
   editEvent = e => {
     e.preventDefault();
     const editId = parseInt(e.target.id);
-    this.setState({});
-    this.setState({});
     this.setState({
       edit: true,
       eventId: editId,
@@ -40,7 +38,7 @@ export default class Events extends Component {
     const newDate = this.state.eventDate;
     apiManager
       .putEvent(currentUser, newName, newLocation, newDate, eventId)
-      .then(this.props.loadEvent, this.setState({ edit: false }));
+      .then(this.props.getEvents, this.setState({ edit: false }));
   };
 
   render() {
@@ -73,7 +71,7 @@ export default class Events extends Component {
     } else {
       return (
         <React.Fragment>
-          <div key={this.props.event.id}>
+          <div className={this.props.styling} key={this.props.event.id}>
             <h5>{this.props.event.name}</h5>
             <p>{this.props.event.location}</p>
             <p>{this.props.event.date}</p>

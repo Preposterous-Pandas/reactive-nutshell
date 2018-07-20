@@ -1,12 +1,24 @@
 import React, { Component } from "react";
-import formLogic from "./FormLogic";
-
+import apiManager from "./../API/apiManager";
 export default class NewEventButton extends Component {
   state = {
     viewForm: false
   };
+  addEvent = () => {
+    const eventName = document.querySelector("#eventName").value;
+    const eventLocation = document.querySelector("#eventLocation").value;
+    const eventDate = document.querySelector("#eventDate").value;
+
+    return apiManager
+      .postEvent(
+        sessionStorage.getItem("activeUser"),
+        eventName,
+        eventLocation,
+        eventDate
+      )
+      .then(this.props.getEvents);
+  };
   render() {
-    const save = new formLogic();
     if (this.state.viewForm) {
       return (
         <React.Fragment>
@@ -18,12 +30,10 @@ export default class NewEventButton extends Component {
           <br />
           <button
             onClick={() => {
-              save
-                .addEvent()
-                .then(
-                  this.setState({ viewForm: false }),
-                  this.props.getEvents()
-                );
+              this.addEvent().then(
+                console.log("got there"),
+                this.setState({ viewForm: false })
+              );
               console.log(this.props);
             }}
           >

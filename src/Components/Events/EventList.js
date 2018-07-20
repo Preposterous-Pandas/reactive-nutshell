@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import apiManager from "./../API/apiManager";
 import NewEventButton from "./NewEventButton";
 import Event from "./Event";
 
@@ -8,15 +9,46 @@ export default class EventList extends Component {
   };
 
   getEvents = () => {
-    console.log("hello");
-    return fetch(
-      // ?userId=${currentUser}&${friendString}_sort=date&_order=asc`
-      `http://localhost:5002/events/?userId=${sessionStorage.getItem(
-        "activeUser"
-      )}&_sort=date&_order=asc`
-    )
+    const currentUser = sessionStorage.getItem("activeUser");
+    let allFriendsString;
+    apiManager
+      .getFriendsList(currentUser)
+      .then(allFriends => {
+        console.log("gettingfriendlist");
+
+        let allFriendsArray = [];
+        allFriends.forEach(friend => {
+          const friendId = friend.user.id;
+          allFriendsArray.push(friendId);
+        });
+        // allFriendsArray = allFriendsArray.map(friendIdNumber => {
+        //   return `userId=${friendIdNumber}&`;
+        // });
+        console.log(allFriendsArray);
+
+        allFriendsString = allFriendsArray.join("");
+        allFriendsString;
+        // console.log(allFriendsString);
+      })
+      .then(() => {
+        // apiManager
+        //   .getField("events")
+        //   .then(events => this.setState({ events: events }));
+        return fetch(
+          // ?userId=${currentUser}&${friendString}_sort=date&_order=asc`
+          `http://localhost:5002/events/?userId=${currentUser}&userId=${allFriendsString}&_sort=date&_order=asc`
+          // "http://localhost:5002/events/?userId=2&userId=1&_sort=date&_order=asc"
+        );
+      })
       .then(e => e.json())
-      .then(events => this.setState({ events: events }));
+      .then(events => {
+        console.log(currentUser);
+
+        console.log(allFriendsString);
+        console.log(events);
+
+        this.setState({ events: events });
+      });
   };
 
   componentDidMount() {
@@ -27,6 +59,7 @@ export default class EventList extends Component {
     return (
       <React.Fragment>
         <div className="events">
+          <h3 className="section-headline">Events</h3>
           <NewEventButton
             getEvents={() => {
               this.getEvents();
@@ -36,16 +69,16 @@ export default class EventList extends Component {
             return (
               <Event
                 key={event.id}
+                styling={
+                  event.userId == sessionStorage.getItem("activeUser")
+                    ? "normal"
+                    : "italics"
+                }
                 event={event}
-                getEvents={() => {
-                  this.getEvents().then(events =>
-                    this.setState({ events: events })
-                  );
-                }}
+                getEvents={this.getEvents}
               />
             );
           })}
-          <h3 className="section-headline">Events</h3>
         </div>
       </React.Fragment>
     );
