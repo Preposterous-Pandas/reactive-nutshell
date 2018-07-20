@@ -50,11 +50,6 @@
   ],
   "friends": [
     {
-      "userId": "2",
-      "yourId": "1",
-      "id": 25
-    },
-    {
       "userId": "1",
       "yourId": "2",
       "id": 30
@@ -64,133 +59,17 @@
       "yourId": "3",
       "id": 30
     },
-    {
-      "userId": 1,
-      "yourId": "8",
-      "id": 35
-    },
-    {
-      "userId": 4,
-      "yourId": "8",
-      "id": 36
-    },
-    {
-      "userId": "7",
-      "yourId": "8",
-      "id": 37
-    },
-    {
-      "userId": "2",
-      "yourId": "8",
-      "id": 38
-    },
-    {
-      "userId": "7",
-      "yourId": "4",
-      "id": 39
-    },
-    {
-      "userId": 8,
-      "yourId": "4",
-      "id": 40
+    { "userId": 4,
+      "yourId": "1",
+      "id": 31
     }
   ],
   "messages": [
     {
-      "userId": "4",
-      "message": "ts",
-      "timeStamp": "2018-07-20T16:14:15.675Z",
+      "userId": "1",
+      "message": "Butts",
+      "timeStamp": "2018-07-20T16:03:40.763Z",
       "id": 1
-    },
-    {
-      "userId": "4",
-      "message": "ioaje",
-      "timeStamp": "2018-07-20T16:14:17.011Z",
-      "id": 2
-    },
-    {
-      "userId": "4",
-      "message": "iuhiuhuih",
-      "timeStamp": "2018-07-20T16:16:34.799Z",
-      "id": 3
-    },
-    {
-      "userId": "4",
-      "message": "iuhiuhuih",
-      "timeStamp": "2018-07-20T16:16:36.602Z",
-      "id": 4
-    },
-    {
-      "userId": "4",
-      "message": "iuhiuhuih",
-      "timeStamp": "2018-07-20T16:16:37.239Z",
-      "id": 5
-    },
-    {
-      "userId": "4",
-      "message": "iuhiuhuih",
-      "timeStamp": "2018-07-20T16:16:37.768Z",
-      "id": 6
-    },
-    {
-      "userId": "4",
-      "message": "iuhiuhuih",
-      "timeStamp": "2018-07-20T16:16:42.281Z",
-      "id": 7
-    },
-    {
-      "userId": "4",
-      "message": "iuhiuhuih",
-      "timeStamp": "2018-07-20T16:16:43.467Z",
-      "id": 8
-    },
-    {
-      "userId": "4",
-      "message": "iuhiuhuih",
-      "timeStamp": "2018-07-20T16:16:43.659Z",
-      "id": 9
-    },
-    {
-      "userId": "4",
-      "message": "iuhiuhuih",
-      "timeStamp": "2018-07-20T16:16:43.887Z",
-      "id": 10
-    },
-    {
-      "userId": "4",
-      "message": "iuhiuhuih",
-      "timeStamp": "2018-07-20T16:16:44.303Z",
-      "id": 11
-    },
-    {
-      "userId": "4",
-      "message": "iuhiuhuih",
-      "timeStamp": "2018-07-20T16:16:44.603Z",
-      "id": 12
-    },
-    {
-      "userId": "4",
-      "message": "iuhiuhuih",
-      "timeStamp": "2018-07-20T16:16:44.801Z",
-      "id": 13
-    },
-    {
-      "userId": "4",
-      "message": "testing",
-      "timeStamp": "2018-07-20T16:18:27.392Z",
-      "id": 14
-    },
-    {
-      "userId": "4",
-      "message": "testing again",
-      "timeStamp": "2018-07-20T16:18:30.042Z",
-      "id": 15
-    },
-    {
-      "userId": "4",
-      "message": "testing again and again",
-      "timeStamp": "2018-07-20T16:18:33.058Z",
-      "id": 16
     }
   ],
   "news": [
