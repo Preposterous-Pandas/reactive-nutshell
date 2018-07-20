@@ -16,6 +16,11 @@
       "name": "phil",
       "email": "phil@phil.net",
       "id": 3
+    },
+    {
+      "name": "Seth Dana",
+      "email": "seth.dana@gmail.com",
+      "id": 4
     }
   ],
   "friends": [
@@ -35,23 +40,7 @@
       "id": 30
     }
   ],
-  "messages": [
-    {
-      "userId": "1",
-      "message": "Hey this is Evan",
-      "id": 1
-    },
-    {
-      "userId": "1",
-      "message": "This is also Evan",
-      "id": 2
-    },
-    {
-      "userId": "2",
-      "message": "This is the first message from me!",
-      "id": 7
-    }
-  ],
+  "messages": [],
   "news": [
     {
       "userId": "1",
@@ -71,7 +60,7 @@
     },
     {
       "userId": "1",
-      "title": "new time test 2",
+      "title": "Evan time test 2",
       "url": "kdididi",
       "synopsis": "tirm eoi",
       "timestamp": "2016-07-18T19:47:49.622Z",
@@ -79,7 +68,7 @@
     },
     {
       "userId": "1",
-      "title": "Newest",
+      "title": "Newest Evan",
       "url": "hi.com",
       "synopsis": "hi",
       "timestamp": "2018-07-18T19:47:49.622Z",

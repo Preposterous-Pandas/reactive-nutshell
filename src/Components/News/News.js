@@ -17,6 +17,7 @@ const Input = styled.input`
 export default class News extends Component {
     state = {
         articles: [],
+        friends: [],
         newsTitle: "",
         newsBody: "",
         newsURL: ""
@@ -25,6 +26,8 @@ export default class News extends Component {
     componentDidMount() {
         API.getField("news?_sort=timestamp&_order=desc")
             .then(articles => this.setState({ articles: articles }))
+        API.allFriends()
+            .then(friends => this.setState({ friends: friends }))
     }
 
     handleFieldChange = (evt) => {
@@ -64,6 +67,7 @@ export default class News extends Component {
         return (
             <React.Fragment>
                 <Red className="News">
+                <div className="News">
                     <h2>News</h2>
                     <label>Title</label>
                     <Input onChange={this.handleFieldChange} value={this.state.newsTitle} type="text" id="newsTitle" required /><br />
@@ -77,14 +81,16 @@ export default class News extends Component {
                     {
                         this.state.articles.map(article => {
                             // console.log("test log", this.props.friends)
-                            return this.props.friends.concat([sessionStorage.getItem('activeUser')]).includes(`${article.userId}`) && <Article key={article.id}
+                            return this.state.friends.concat([sessionStorage.getItem('activeUser')]).includes(`${article.userId}`) && <Article key={article.id}
                                 article={article}
+                                styling={sessionStorage.getItem('activeUser') == article.userId ? "normal" : "italics"}
                                 checkOutarticle={this.checkOutarticle}
                             />
                         }
 
                         )
                     }
+                    </div>
                 </Red>
 
             </React.Fragment>

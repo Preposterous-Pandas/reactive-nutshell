@@ -26,28 +26,25 @@ export default class Friends extends Component {
     const users = this.state.users;
     const newSearchMatchUsers = [];
     users.forEach(user => {
+      let alreadyFriend = false;
+      if (this.props.friends.length > 0) {
+        this.props.friends.forEach(friend => {
+          if (String(user.id) === String(friend.user.id)) {
+            alreadyFriend = true;
+          }
+        });
+      }
+
+      const lowerUserName = user.name.toLowerCase();
       if (
         String(user.id) !== String(sessionStorage.getItem("activeUser")) &&
-        String(user.id) !== String(localStorage.getItem("activeUser"))
+        String(user.id) !== String(localStorage.getItem("activeUser")) &&
+        lowerUserName.includes(searchString.toLowerCase()) &&
+        alreadyFriend === false
       ) {
-        if (this.props.friends.length > 0) {
-          this.props.friends.forEach(friend => {
-            if (String(user.id) !== String(friend.user.id)) {
-              const lowerUserName = user.name.toLowerCase();
-              if (lowerUserName.includes(searchString.toLowerCase())) {
-                newSearchMatchUsers.push(user);
-              }
-            }
-          });
-        } else {
-          const lowerUserName = user.name.toLowerCase();
-          if (lowerUserName.includes(searchString.toLowerCase())) {
-            newSearchMatchUsers.push(user);
-          }
-        }
+        newSearchMatchUsers.push(user);
       }
     });
-
     return newSearchMatchUsers;
   };
 
@@ -81,7 +78,7 @@ export default class Friends extends Component {
     if (this.state.addFriendMode) {
       return (
         <div className="friends">
-          <h4>Enter Name</h4>
+          <h4 className="section-headline">Friends</h4>
           <button id="cancel-add-friend-btn" onClick={this.setAddFriendMode}>
             Cancel
           </button>
@@ -100,9 +97,9 @@ export default class Friends extends Component {
     } else {
       return (
         <div className="friends">
-          <h4>Your Friends</h4>
+          <h4 className="section-headline">Your Friends</h4>
           <button id="search-users-btn" onClick={this.setAddFriendMode}>
-            Search Friends By Name
+            Search Users
           </button>
           {this.props.friends.map(friend => (
             <Friend
