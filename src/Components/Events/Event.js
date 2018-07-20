@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./firstEvent.css";
 import apiManager from "./../API/apiManager";
 import Moment from "react-moment";
 export default class Events extends Component {
