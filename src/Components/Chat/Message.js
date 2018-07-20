@@ -81,15 +81,15 @@ export default class Message extends Component {
                 // alert(`You added ${this.props.message.user.name} as a friend!`);
                 api.allFriends().then(response => {
                   console.log(response)
-                  if (response.includes(String(this.props.message.user.id))){
+                  if (response.includes(String(this.props.message.user.id))) {
                     alert(`You're already friends with ${this.props.message.user.name}`)
                   }
                   else {
-                  if (window.confirm(`Are you sure you wan to add ${this.props.message.user.name} as a friend?`))
-                    this.props.beFriend(String(this.props.message.user.id))
+                    if (window.confirm(`Are you sure you wan to add ${this.props.message.user.name} as a friend?`))
+                      this.props.beFriend(String(this.props.message.user.id))
                   }
                 })
-                }
+              }
                 // else {
                 //   return
                 // }
