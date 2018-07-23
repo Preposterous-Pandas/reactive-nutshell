@@ -30,8 +30,16 @@ export default class NewTaskSection extends Component {
     const taskName = this.state.newTaskName;
     const taskDate = this.state.newTaskDate;
 
+    // Posts the task, loads all the tasks, resets state so new events can be added
     apiManager.postTask(currentUserId, taskName, taskDate)
-      .then(this.props.loadTasks, this.setState({ addingTask: false }))
+      .then(this.props.loadTasks, this.setState(
+        {
+          addingTask: false,
+          newTaskName: "",
+          newTaskDate: ""
+        }
+      ))
+
 
   }
 
@@ -43,20 +51,24 @@ export default class NewTaskSection extends Component {
         <form onSubmit={this.addNewTask}>
           <section>
             <label htmlFor="newTaskName">Task name:</label>
-            <input type="text" id="newTaskName"
+            <input required type="text" id="newTaskName"
               onChange={this.handleFieldChange}>
             </input>
           </section>
 
           <section>
             <label htmlFor="newTaskDate">Date due:</label>
-            <input type="date" id="newTaskDate"
+            <input required type="date" id="newTaskDate"
+              min={this.props.today}
               onChange={this.handleFieldChange}>
             </input>
           </section>
 
           <section>
             <button type="submit">Save task</button>
+            <button onClick={() => {
+              this.setState({ addingTask: false })
+            }}>Cancel</button>
           </section>
         </form>
       )
