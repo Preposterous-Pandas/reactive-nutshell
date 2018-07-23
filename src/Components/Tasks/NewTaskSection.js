@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import TaskForm from "./TaskForm"
 
 // This module renders the section of the Tasks pane used for adding new Tasks
+// Author: Elliot Huck
 export default class NewTaskSection extends Component {
 
   state = {

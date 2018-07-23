@@ -3,16 +3,19 @@ import Moment from "react-moment"
 import apiManager from "../API/apiManager"
 import TaskForm from "./TaskForm"
 
-
+// This component represents a single task card
+// Author: Elliot Huck
 export default class TaskCard extends Component {
 
   state = {
+    // This property is used in the render function is to determine whether to show the Task Card button or the Edit Task form
+    // It is toggled to 'true' by clicking the Task title  and to 'false' by clicking the Save Task button on the form
     editingTask: false,
   }
 
-  // This function gets the id of the box clicked, parses it into an integer, passes the integer into the completeTask method from the apiManager, and then loads all the tasks
-  completeTask = (evt) => {
-    const taskId = parseInt(evt.target.id);
+  // This function gets the id of the task from props, passes it into the completeTask method from the apiManager, and then loads all the tasks
+  completeTask = () => {
+    const taskId = this.props.currentTask.id;
     apiManager.completeTask(taskId)
       .then(this.props.loadTasks);
   }

@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import apiManager from "../API/apiManager"
 
-
+// This component represents the form that is used when adding a new task and when editing a current task
+// Author: Elliot Huck
 export default class TaskForm extends Component {
 
   state = {
@@ -28,7 +29,7 @@ export default class TaskForm extends Component {
     const taskDate = this.state.currentTaskDate;
 
     // Checks if the user is editing (the task has an id) or creating a new task
-    if (this.props.currentTask.id > 0) {
+    if (this.props.currentTask.id) {
       // Puts the edited task
       apiManager.editTask(currentUserId, taskId, taskName, taskDate)
         .then(
