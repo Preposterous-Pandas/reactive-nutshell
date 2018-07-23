@@ -78,23 +78,18 @@ export default class Message extends Component {
             <button
               className="addFriendButton"
               onClick={() => {
-                // alert(`You added ${this.props.message.user.name} as a friend!`);
                 api.allFriends().then(response => {
-                  console.log(response)
-                  if (response.includes(String(this.props.message.user.id))){
-                    alert("You're already friends with...")
+                  if (response.includes(String(this.props.message.user.id))) {
+                    alert(`You're already friends with ${this.props.message.user.name}`)
                   }
                   else {
-                  if (window.confirm(`Are you sure you wan to add ${this.props.message.user.name} as a friend?`))
-                    this.props.beFriend(String(this.props.message.user.id))
+                    if (window.confirm(`Are you sure you wan to add ${this.props.message.user.name} as a friend?`))
+                      this.props.beFriend(String(this.props.message.user.id))
                   }
                 })
-                }
-                // else {
-                //   return
-                // }
               }
-            >
+            }
+          >
               <FontAwesomeIcon icon="user-plus" />
             </button>
             <span className={classNamesForUser}>
@@ -113,7 +108,6 @@ export default class Message extends Component {
           <button
             className="saveMsgEditsButton"
             onClick={() => {
-              // console.log("clicked!")
               this.props.update(
                 this.props.message.id,
                 this.props.currentUser,

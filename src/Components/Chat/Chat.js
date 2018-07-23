@@ -37,6 +37,7 @@ export default class Chat extends Component {
     });
     //reset input form
     this.refs.newMessageInput.value = "";
+    this.setState({ newMessageInput: ""})
     //create variable in local storage for storage event listener
     let sS = localStorage.getItem("messageChange");
     //Increment variable to fire local storage change event
@@ -135,7 +136,7 @@ export default class Chat extends Component {
               );
             }}
           >
-            <input
+            <input autoComplete="off"
               onChange={evt => {
                 this.handleFieldChange(evt);
               }}
