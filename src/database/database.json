@@ -71,6 +71,18 @@
       "message": "Butts",
       "timeStamp": "2018-07-20T16:03:40.763Z",
       "id": 1
+    },
+    {
+      "userId": "1",
+      "message": "chatz",
+      "timeStamp": "2018-07-23T20:28:50.312Z",
+      "id": 2
+    },
+    {
+      "userId": "2",
+      "message": "hi",
+      "timeStamp": "2018-07-24T14:22:45.692Z",
+      "id": 3
     }
   ],
   "news": [
@@ -107,28 +119,20 @@
       "id": 5
     },
     {
-      "userId": "4",
-      "title": "iuyiug",
-      "url": "kjgkgg",
-      "synopsis": "yjgugug",
-      "timestamp": "2018-07-20T13:51:07.519Z",
+      "userId": "1",
+      "title": "Federal Jury Convicts Lawyer and Coal Company Executive for Bribing State Legislator",
+      "url": "https://www.justice.gov/usao-ndal/pr/federal-jury-convicts-lawyer-and-coal-company-executive-bribing-state-legislator",
+      "synopsis": "https://i.redditmedia.com/ofdsJLUsElTsNzEjwXzaPJeep0rK2cX6QZehihQKCUs.jpg?s=06ecda2f8406e75dc4500337ba4aa15e",
+      "timestamp": "2018-07-23T20:02:19.608Z",
       "id": 6
     },
     {
-      "userId": "8",
-      "title": "Today I Shit my Pants",
-      "url": "www.poopy.com",
-      "synopsis": "In my Pants",
-      "timestamp": "2018-07-20T15:06:46.873Z",
+      "userId": "1",
+      "title": "The greatest roast of all time.",
+      "url": "https://i.redd.it/qfdxx3j2jqb11.jpg",
+      "synopsis": "https://i.redditmedia.com/G4zmQqr_RXUDaGhDMG2ruTxcDKZh_tp8DKOuGi_jGxQ.jpg?s=4f7d668922635077d9c720afdef77be9",
+      "timestamp": "2018-07-23T20:46:21.625Z",
       "id": 7
-    },
-    {
-      "userId": "4",
-      "title": "aoejfaejioj",
-      "url": "aiowejgaoiejg",
-      "synopsis": "oaisejfioaegj",
-      "timestamp": "2018-07-20T16:14:47.651Z",
-      "id": 9
     }
   ],
   "events": [
