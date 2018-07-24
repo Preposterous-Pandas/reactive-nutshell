@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 
 export default props => {
     return (
-        <div className={props.styling} style={{ width: `18rem` }}>
+        <div className={props.styling}>
             <div className="card-body">
                 <h5 className="card-title">
                     {props.article.title}
