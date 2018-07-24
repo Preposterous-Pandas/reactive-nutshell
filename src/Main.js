@@ -18,6 +18,7 @@ import {
   faSave,
   faUserPlus
 } from "@fortawesome/free-solid-svg-icons";
+import UserContext from "./Components/UserContext";
 
 library.add(
   faEnvelope,
@@ -32,13 +33,26 @@ library.add(
 
 export default class Main extends Component {
   state = {
+    userName: "",
     friendList: [],
     friends: []
 
   };
 
   componentDidMount() {
+    this.getUserName();
     this.readFriends();
+  }
+
+  getUserName = () => {
+    const userId = sessionStorage.getItem("activeUser");
+    API.getField(`users/${userId}`)
+      .then(currentUser => {
+        const userName = currentUser.name;
+        const userFirstName = userName.split(" ")[0];
+        const capitalFirstName = userFirstName.charAt(0).toUpperCase() + userFirstName.slice(1);
+        this.setState({userName: capitalFirstName});
+      })
   }
 
   readFriends = () => {
@@ -72,7 +86,7 @@ export default class Main extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <UserContext.Provider value={this.state.userName}>
         <div id="main-container">
           <Header />
           <News friends={this.state.friends} />
@@ -85,7 +99,7 @@ export default class Main extends Component {
           <Events friends={this.state.friends} />
           <Tasks />
         </div>
-      </React.Fragment>
+      </UserContext.Provider>
     );
   }
 }
