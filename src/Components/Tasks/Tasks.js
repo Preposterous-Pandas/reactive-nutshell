@@ -3,6 +3,7 @@ import NewTaskSection from "./NewTaskSection";
 import TaskCard from "./TaskCard";
 import apiManager from "../API/apiManager";
 import moment from "moment";
+import UserContext from "../UserContext";
 
 // This component represents the entire Tasks section of the main page
 // Author: Elliot Huck
@@ -36,28 +37,38 @@ export default class Tasks extends Component {
   // Renders the Tasks header, the NewTaskSection component, and the list of TaskCard components
   render() {
     return (
-      <div className="tasks">
-        <h4 className="section-headline">Tasks</h4>
-
-        <NewTaskSection
-          today={this.state.today}
-          loadTasks={() => { this.loadTasks(); }} />
-
-        <article id="task__list">
-          {this.state.allTasks.map(singleTask => {
+      <UserContext.Consumer>
+        {
+          contextUserName => {
             return (
-              <TaskCard
-                key={singleTask.id.toString()}
-                today={this.state.today}
-                currentTask={singleTask}
-                loadTasks={() => {
-                  this.loadTasks();
-                }}
-              />
-            );
-          })}
-        </article>
-      </div>
+              <div className="tasks">
+                <h4 className="section-headline">{`${contextUserName}'s Tasks`}</h4>
+
+                <NewTaskSection
+                  today={this.state.today}
+                  loadTasks={() => { this.loadTasks(); }} />
+
+                <article id="task__list">
+                  {this.state.allTasks.map(singleTask => {
+                    return (
+                      <TaskCard
+                        key={singleTask.id.toString()}
+                        today={this.state.today}
+                        currentTask={singleTask}
+                        loadTasks={() => {
+                          this.loadTasks();
+                        }}
+                      />
+                    );
+                  })}
+                </article>
+              </div>
+            )
+          }
+        }
+      </UserContext.Consumer>
+
+
     );
   }
 }
