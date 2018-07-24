@@ -64,10 +64,7 @@ export default class Main extends Component {
     }
     API.postFriend(
       String(buddy),
-      String(
-        sessionStorage.getItem("activeUser") ||
-          localStorage.getItem("activeUser")
-      )
+      String(sessionStorage.getItem("activeUser"))
     ).then(() => {
       this.readFriends();
     });

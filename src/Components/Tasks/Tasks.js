@@ -4,7 +4,8 @@ import TaskCard from "./TaskCard";
 import apiManager from "../API/apiManager";
 import moment from "moment";
 
-
+// This component represents the entire Tasks section of the main page
+// Author: Elliot Huck
 export default class Tasks extends Component {
   state = {
     today: moment().format("YYYY-MM-DD"),
@@ -13,17 +14,17 @@ export default class Tasks extends Component {
 
   // This code will get the active user's id from session storage and then build out the list of tasks
   // It runs after componentDidMount and is passed to the NewTaskSection to run after a new task is saved
+  // The reason there are so many variables is so that I can build out a string of additional filters to send to the simple GET request in the API manager
   loadTasks = () => {
-    // console.log("loading tasks...");
     const currentUser = sessionStorage.getItem("activeUser");
     const tableToAccess = "tasks";
     const notCompleted = "completed=false";
     const sortedByDate = "_sort=date&_order=asc";
     const notPast = `date_gte=${this.state.today}`;
     const filteredTable = `${tableToAccess}?_&userId=${currentUser}&${notCompleted}&${sortedByDate}&${notPast}`;
+    // console.log(filteredTable);
     apiManager.getField(filteredTable)
       .then(allUserTasks => {
-        // console.log("All user's tasks: ", allUserTasks);
         this.setState({ allTasks: allUserTasks });
       });
   }
@@ -32,8 +33,8 @@ export default class Tasks extends Component {
     this.loadTasks();
   }
 
+  // Renders the Tasks header, the NewTaskSection component, and the list of TaskCard components
   render() {
-    const sessionUser = sessionStorage.getItem("activeUser");
     return (
       <div className="tasks">
         <h4 className="section-headline">Tasks</h4>
