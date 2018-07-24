@@ -9,7 +9,7 @@ export default props => {
                 <h5 className="card-title">
                     {props.article.title}
                 </h5>
-                {((/^(f|ht)tps?:\/\//i.test(props.article.synopsis))) ? <img src={`${props.article.synopsis}`} alt="an image" height="100" width="100" /> : <p className="card-content">{props.article.synopsis}</p>
+                {((/^(f|ht)tps?:\/\//i.test(props.article.synopsis))) ? <img src={`${props.article.synopsis}`} alt="an image" height="200" width="200" /> : <p className="card-content">{props.article.synopsis}</p>
                 }
                 <p className="card-content">{props.article.url}</p>
                 <p className="card-content"><Moment>{props.article.timestamp}</Moment></p>
